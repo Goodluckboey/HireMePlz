@@ -1,21 +1,20 @@
 import React from "react";
+import jobSeedData from "../../Seed/MyJobsSeed";
+import Job from "./parts/Job";
+
 
 const MyJobs = () => {
-  const jobs = (
-    <div>
-      <img />
-      <div>Job Name</div>
-      <div>Job Description</div>
-      <div>Status</div>
-      <div>Delete</div>
-      <div>Edit</div>
-    </div>
-  );
+  const jobs = [];
+  for (const job of jobSeedData) {
+    jobs.push(
+      <Job {...job}></Job>
+    );
+  }
   return (
     <div>
       <h1>My Jobs</h1>
       <button>Add Job</button>
-      <div>{jobs}</div>
+      {jobs}
     </div>
   );
 };
