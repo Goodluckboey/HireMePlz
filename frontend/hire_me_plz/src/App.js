@@ -18,7 +18,7 @@ function App() {
         >
           Learn React
         </a> */}
-        <FrontPage></FrontPage>
+        {/* <FrontPage></FrontPage> */}
       </header>
     </div>
   );
