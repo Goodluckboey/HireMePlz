@@ -1,6 +1,6 @@
 import React from "react";
 
-const PostJob = () => {
+const MyJobs = () => {
   const jobs = (
     <div>
       <img />
@@ -20,4 +20,4 @@ const PostJob = () => {
   );
 };
 
-export default PostJob;
+export default MyJobs;
