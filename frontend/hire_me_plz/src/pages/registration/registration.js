@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer } from "react";
 import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
 
@@ -17,6 +17,8 @@ const changeInput = (input, action) => {
       return { ...input, password: action.payload.input };
     case "Retype Password":
       return { ...input, retypePassword: action.payload.input };
+    default:
+      return input;
   }
 };
 
@@ -31,84 +33,94 @@ const Registration = () => {
     retypePassword: "",
   });
 
-  const handleSignUp = () => {
+  const handleSignUp = (e) => {
+    e.preventDefault();
     console.log("handleSignUp");
   };
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     console.log("handleLogin");
   };
   return (
     <div className="registration-page">
-      <InputField
-        value={input.firstName}
-        onChange={(event) => {
-          dispatchInput({
-            type: "First Name",
-            payload: { input: event.target.value },
-          });
-        }}
-        placeholder="First Name"
-        className="YOLO"
-      />
-      <InputField
-        value={input.lastName}
-        onChange={(event) => {
-          dispatchInput({
-            type: "Last Name",
-            payload: { input: event.target.value },
-          });
-        }}
-        placeholder="Last Name"
-        className="YOLO"
-      />
-      <InputField
-        value={input.email}
-        onChange={(event) => {
-          dispatchInput({
-            type: "Email",
-            payload: { input: event.target.value },
-          });
-        }}
-        placeholder="Email"
-        className="YOLO"
-      />
-      <InputField
-        value={input.userName}
-        onChange={(event) => {
-          dispatchInput({
-            type: "Username",
-            payload: { input: event.target.value },
-          });
-        }}
-        placeholder="Username"
-        className="YOLO"
-      />
-      <p>*username exists</p>
-      <InputField
-        value={input.password}
-        onChange={(event) => {
-          dispatchInput({
-            type: "Password",
-            payload: { input: event.target.value },
-          });
-        }}
-        placeholder="Password"
-        className="YOLO"
-      />
-      <InputField
-        value={input.retypePassword}
-        onChange={(event) => {
-          dispatchInput({
-            type: "Retype Password",
-            payload: { input: event.target.value },
-          });
-        }}
-        placeholder="Retype Password"
-        className="YOLO"
-      />
-      <Button onClick={handleSignUp} value="Sign up"></Button>
-      <Button onClick={handleLogin} value="Login"></Button>
-      <p>Already a member? Login here</p>
+      <form>
+        <InputField
+          type="text"
+          value={input.firstName}
+          onChange={(event) => {
+            dispatchInput({
+              type: "First Name",
+              payload: { input: event.target.value },
+            });
+          }}
+          placeholder="First Name"
+          className="YOLO"
+        />
+        <InputField
+          type="text"
+          value={input.lastName}
+          onChange={(event) => {
+            dispatchInput({
+              type: "Last Name",
+              payload: { input: event.target.value },
+            });
+          }}
+          placeholder="Last Name"
+          className="YOLO"
+        />
+        <InputField
+          type="email"
+          value={input.email}
+          onChange={(event) => {
+            dispatchInput({
+              type: "Email",
+              payload: { input: event.target.value },
+            });
+          }}
+          placeholder="Email"
+          className="YOLO"
+        />
+        <InputField
+          type="text"
+          value={input.userName}
+          onChange={(event) => {
+            dispatchInput({
+              type: "Username",
+              payload: { input: event.target.value },
+            });
+          }}
+          placeholder="Username"
+          className="YOLO"
+        />
+        <p>*username exists</p>
+        <InputField
+          type="password"
+          value={input.password}
+          onChange={(event) => {
+            dispatchInput({
+              type: "Password",
+              payload: { input: event.target.value },
+            });
+          }}
+          placeholder="Password"
+          className="YOLO"
+        />
+        <InputField
+          type="password"
+          value={input.retypePassword}
+          onChange={(event) => {
+            dispatchInput({
+              type: "Retype Password",
+              payload: { input: event.target.value },
+            });
+          }}
+          placeholder="Retype Password"
+          className="YOLO"
+        />
+        <Button onClick={handleSignUp} value="Sign up"></Button>
+        <Button onClick={handleLogin} value="Login"></Button>
+        <p>Already a member? Login here</p>
+      </form>
     </div>
   );
 };
