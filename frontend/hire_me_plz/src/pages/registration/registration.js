@@ -1,4 +1,6 @@
-import React, { useReducer } from "react";
+import axios from "axios";
+import React, { useEffect, useState, useReducer } from "react";
+// import { useParams } from "react-router-dom";
 import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
 
@@ -34,9 +36,29 @@ const Registration = () => {
   });
 
   const handleSignUp = (e) => {
+    const post = async () => {
+      const data = {
+        firstname: input.firstName,
+        lastname: input.lastName,
+        email: input.email,
+        username: input.userName,
+        hash: input.password,
+      };
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/registration",
+          data
+        );
+        console.log(response);
+        console.log("sent data to mongo");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    post();
     e.preventDefault();
-    console.log("handleSignUp");
   };
+
   const handleLogin = (e) => {
     e.preventDefault();
     console.log("handleLogin");
