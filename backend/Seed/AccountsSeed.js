@@ -5,8 +5,6 @@ const Accounts = [
     email: "john369@gmail.com",
     username: "sexybeast",
     hash: "",
-    acceptedJobs: [],
-    postedJobs: [],
   },
   {
     firstName: "Jessica",
@@ -14,8 +12,6 @@ const Accounts = [
     email: "aliasinvestigation@yahoo.com",
     username: "Jessie",
     hash: "",
-    acceptedJobs: [],
-    postedJobs: [],
   },
   {
     firstName: "Luke",
@@ -23,7 +19,5 @@ const Accounts = [
     email: "caged@gmail.com",
     username: "hardskinned",
     hash: "",
-    acceptedJobs: [],
-    postedJobs: [],
   },
 ];
