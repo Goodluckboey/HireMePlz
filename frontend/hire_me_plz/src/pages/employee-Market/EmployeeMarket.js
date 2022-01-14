@@ -19,10 +19,14 @@ const EmployeeMarket = () => {
     fetcher();
   }, []);
 
-  const handleSearchJob =  async () => {
-    const endpoint = `http://127.0.0.1:5000/`
-    const jobs =  await axios.get()
-  }
+  // const handleSearchJob = async () => {
+  //   try {
+  //     const endpoint = `http://127.0.0.1:5000/`;
+  //     const jobs = await axios.post(endpoint, jobQuery);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const jobs = [];
   for (const job of fetchedJobs) {
