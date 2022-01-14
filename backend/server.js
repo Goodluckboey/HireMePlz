@@ -3,21 +3,23 @@ const connectDB = require("./models/db");
 const User = require("./models/user");
 const Job = require("./models/job");
 const bcrypt = require("bcrypt");
+const cors = require("cors");
+const accountsSeed = require("./Seed/AccountsSeed");
 
 const mongoUri = "mongodb://127.0.0.1:27017/hiremeplz";
 connectDB(mongoUri);
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // login
 app.post("/login", async (req, res) => {
   const { username, hash } = req.body;
-  console.log(username, hash)
+  //console.log(username, hash)
   const user = await User.findOne({ username });
-  console.log(user)
+  //console.log(user)
   const valid = await bcrypt.compare(hash, user.hash);
   if (valid) {
     res.json({ valid });
@@ -49,6 +51,20 @@ app.post("/registration", async (req, res) => {
   await User.create({ ...req.body, hash: hashed });
   res.send(req.body);
 });
+
+//profile
+app.get("/profile/:userid", async (req, res) => {
+  // await User.deleteMany();
+  // await User.create(accountsSeed);
+  const profileOfUserId = await User.find({ _id: req.params.userid });
+  res.json(profileOfUserId);
+});
+
+//get single profile id from login page( STILL WORKING ON THIS)
+// app.get("/profile/singleId", async (req, res) => {
+//   const singleUserId = await User.find({}, { id: 1 });
+//   res.json(singleUserId);
+// });
 
 const PORT = 5000;
 app.listen(PORT, () => {

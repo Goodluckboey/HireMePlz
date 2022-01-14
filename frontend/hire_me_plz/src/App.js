@@ -1,9 +1,12 @@
-import logo from "./logo.svg";
+import React, { useState } from "react";
+//import logo from "./logo.svg";
 import "./App.css";
-import IndividualJob from "./pages/IndividualJob/IndividualJob";
+import Profile from "./pages/profile/Profile";
+import Useridcontext from "./context/userid-context";
 // import FrontPage from "./pages/front/front.js";
 
 function App() {
+  const [userId, setUserId] = useState("");
   return (
     <div className="App">
       <header className="App-header">
@@ -20,8 +23,12 @@ function App() {
           Learn React
         </a> */}
         {/* <FrontPage></FrontPage> */}
-        <IndividualJob></IndividualJob>
       </header>
+      <body>
+        <Useridcontext.Provider value={(userId, setUserId)}>
+          <Profile />
+        </Useridcontext.Provider>
+      </body>
     </div>
   );
 }
