@@ -8,9 +8,13 @@ const MyJobs = () => {
   const employerid = "";
   useEffect(() => {
     async function fetcher() {
-      const endpoint = `http://localhost:5000/myjobs/${employerid}`;
-      const { data } = await axios.get(endpoint);
-      setFetchedJobs(data);
+      try {
+        const endpoint = `http://localhost:5000/myjobs/${employerid}`;
+        const res = await axios.get(endpoint);
+        setFetchedJobs(res.data);
+      } catch (err) {
+        console.log(err);
+      }
     }
     fetcher();
   }, []);

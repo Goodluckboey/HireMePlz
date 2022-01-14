@@ -14,8 +14,13 @@ const PostJobs = () => {
       reward,
       employerid,
     };
-    const endpoint = `http://localhost:5000/postjobs`;
-    const res = await axios.post(endpoint, body);
+    try {
+      const endpoint = `http://localhost:5000/postjobs`;
+      const res = await axios.post(endpoint, body);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
