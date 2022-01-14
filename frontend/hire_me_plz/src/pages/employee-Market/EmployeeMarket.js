@@ -26,8 +26,8 @@ const EmployeeMarket = () => {
   // button on click function to search for job with this specific name
   const handleSearchJob = async () => {
     try {
-      const endpoint = `http://127.0.0.1:5000/`;
-      const jobs = await axios.post(endpoint, { name: jobQuery });
+      const endpoint = `http://127.0.0.1:5000/searchjobs`;
+      const jobs = await axios.post(endpoint, { query: jobQuery });
       setFetchedJobs(jobs);
     } catch (err) {
       console.log(err);
@@ -39,7 +39,7 @@ const EmployeeMarket = () => {
   for (const job of fetchedJobs) {
     jobs.push(<Job {...job}></Job>);
   }
-  
+
   return (
     <div>
       <InputField
