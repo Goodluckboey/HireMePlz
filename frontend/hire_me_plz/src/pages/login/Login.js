@@ -1,6 +1,8 @@
-import React, { useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 import InputField from "../../generalcomponent/InputField";
 import Button from "../../generalcomponent/Button";
+import axios from "axios";
+import Useridcontext from "../../context/userid-context";
 
 const changeInput = (inputLogin, action) => {
   switch (action.type) {
@@ -19,13 +21,42 @@ const Login = () => {
     Password: "",
   });
 
+  //call the set function for useId and to be updated if there is a match
+  const callAndSetUserId = useContext(Useridcontext);
+  const setUserId = callAndSetUserId.setUserId;
+  // call the userId state in app
+  const userId = callAndSetUserId.userId;
+
+  //function to compare username to get the userid
+  const retriveUserNameToRetriveUserId = () => {
+    axios.post("http://localhost:5000/login").then((res) => {
+      if (res.data.username === inputLogin.Username) {
+        setUserId(res.data._id);
+        //redirect page link="http://localhost:5000/marketplace"
+      } else {
+        alert("Wrong UserName or Password");
+      }
+    });
+  };
+  //  useEffect(()=>{retriveUserNameToRetriveUserId},[handleLogin])
+
   const handleLogin = (e) => {
     e.preventDefault();
+    retriveUserNameToRetriveUserId();
     console.log("Logged in");
   };
+  // const retriveProfileData = () => {
+  //   axios.get(`http://localhost:5000/profile/${userId}`).then((res) => {
+  //     setProfileData(res.data);
+  //   });
+  // };
+  // useEffect(() => {
+  //   retriveProfileData();
+  // }, []);
+
   const handleSignUp = (e) => {
     e.preventDefault();
-    console.log("Sign up page");
+    console.log("Link to sign up page");
   };
 
   return (

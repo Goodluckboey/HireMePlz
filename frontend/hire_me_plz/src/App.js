@@ -4,6 +4,7 @@ import "./App.css";
 import Profile from "./pages/profile/Profile";
 import Useridcontext from "./context/userid-context";
 import Registration from "./pages/registration/registration";
+import Login from "./pages/login/Login";
 // import FrontPage from "./pages/front/front.js";
 
 function App() {
@@ -24,12 +25,12 @@ function App() {
           Learn React
         </a> */}
         {/* <FrontPage></FrontPage> */}
-
       </header>
       <body>
         <Useridcontext.Provider value={(userId, setUserId)}>
           <Profile />
-          <Registration></Registration>
+          <Login></Login>
+          {/* <Registration /> */}
         </Useridcontext.Provider>
       </body>
     </div>
