@@ -23,6 +23,7 @@ const Profile = () => {
     <div>
       <h1>Profile Page</h1>
       <p>{displayedProfileData[0]?.firstname}</p>
+      <p>{userId}</p>
       {/* <div>
         {displayedProfileData.map((eachData) => {
           return <p>{eachData.username}</p>;
