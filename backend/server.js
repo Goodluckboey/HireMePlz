@@ -4,7 +4,6 @@ const cors = require("cors");
 const User = require("./models/user");
 const Job = require("./models/job");
 const bcrypt = require("bcrypt");
-const cors = require("cors");
 const accountsSeed = require("./Seed/AccountsSeed");
 
 const mongoUri = "mongodb://127.0.0.1:27017/hiremeplz";
