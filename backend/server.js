@@ -26,12 +26,14 @@ app.get("/alljobs", async (req, res) => {
 });
 
 // search for a job
-app.post("/searchjobs", async (req, res) => {
-  const {}
-  try {
-    const jobs = await
-  }
-})
+// app.post("/searchjobs", async (req, res) => {
+//   const { query } = req.body;
+//   try {
+//     const jobs = await Job.find({})
+//   } catch (err) {
+//     console.log(err)
+//   }
+// })
 
 // login
 app.post("/login", async (req, res) => {
