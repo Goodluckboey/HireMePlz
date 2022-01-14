@@ -47,7 +47,8 @@ app.post("/login", async (req, res) => {
     console.log(err);
   }
   if (valid) {
-    res.json({ valid });
+    const userLoggedIn = await User.findOne({ username });
+    res.json(userLoggedIn);
   } else {
     res.json({ valid });
   }

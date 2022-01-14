@@ -24,26 +24,33 @@ const Login = () => {
   //call the set function for useId and to be updated if there is a match
   const callAndSetUserId = useContext(Useridcontext);
   const setUserId = callAndSetUserId.setUserId;
-  // call the userId state in app
+  // call the userId state in app. Not needed here. Only needed for the console.log
   const userId = callAndSetUserId.userId;
 
   //function to compare username to get the userid
   const retriveUserNameToRetriveUserId = () => {
-    axios.post("http://localhost:5000/login").then((res) => {
-      if (res.data.username === inputLogin.Username) {
+    //This userLogin has to match the object in back end. This input field is the req.body as tested in postman.
+    const userLogin = {
+      username: inputLogin.Username,
+      hash: inputLogin.Password,
+    };
+    //Login at backend checks if the username matches the password. The password is bcrypted so if the correct password matches the username, the hash in the db and the password hash will match and valid = true
+    axios.post("http://localhost:5000/login", userLogin).then((res) => {
+      //Using the valid to be true will allow the state to equal to the object unique userId.
+      if (res.data.valid !== false) {
         setUserId(res.data._id);
+        console.log("logged in", userId);
         //redirect page link="http://localhost:5000/marketplace"
+        // window.location.replace("http://localhost:5000/profile");
       } else {
-        alert("Wrong UserName or Password");
+        alert("Wrong username or password");
       }
     });
   };
-  //  useEffect(()=>{retriveUserNameToRetriveUserId},[handleLogin])
 
   const handleLogin = (e) => {
     e.preventDefault();
     retriveUserNameToRetriveUserId();
-    console.log("Logged in");
   };
   // const retriveProfileData = () => {
   //   axios.get(`http://localhost:5000/profile/${userId}`).then((res) => {
@@ -56,11 +63,11 @@ const Login = () => {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    console.log("Link to sign up page");
   };
 
   return (
     <div className="login-page">
+      <h1>Login</h1>
       <form>
         <InputField
           type="text"
