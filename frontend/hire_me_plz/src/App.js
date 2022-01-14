@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 //import logo from "./logo.svg";
 import "./App.css";
 import Profile from "./pages/profile/Profile";
@@ -27,10 +28,26 @@ function App() {
         {/* <FrontPage></FrontPage> */}
       </header>
       <body>
-        <Useridcontext.Provider value={(userId, setUserId)}>
+        {/* <BrowserRouter>
+          <Switch>
+            <Useridcontext.Provider value={{ userId, setUserId }}>
+              <Route exact path="/profile">
+                <Profile />
+              </Route>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route exact path="/registration">
+                <Registration />
+              </Route>
+            </Useridcontext.Provider>
+          </Switch>
+        </BrowserRouter> */}
+
+        <Useridcontext.Provider value={{ userId, setUserId }}>
           <Profile />
           <Login></Login>
-          {/* <Registration /> */}
+          <Registration />
         </Useridcontext.Provider>
       </body>
     </div>
