@@ -5,7 +5,7 @@ const jobSchema = new mongoose.Schema(
     name: String,
     description: String,
     reward: Number,
-    status: String,
+    status: {type: String, default: "Open"},
     employerid: String,
     employeeid: String,
   },
