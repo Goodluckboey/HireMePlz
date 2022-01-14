@@ -1,9 +1,28 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const PostJobs = () => {
+  const employerid = "";
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [reward, setReward] = useState("");
+
+  const handlePostJob = async () => {
+    const body = {
+      name,
+      description,
+      reward,
+      employerid,
+    };
+    try {
+      const endpoint = `http://localhost:5000/postjobs`;
+      const res = await axios.post(endpoint, body);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <h1>New Job Post</h1>
@@ -28,7 +47,7 @@ const PostJobs = () => {
           setReward(e.target.value);
         }}
       ></input>
-      <button>Add New Job</button>
+      <button onClick={handlePostJob}>Add New Job</button>
     </div>
   );
 };

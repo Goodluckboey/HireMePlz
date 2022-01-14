@@ -15,24 +15,62 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
+// get all jobs
+app.get("/alljobs", async (req, res) => {
+  try {
+    const jobs = await Job.find({});
+    res.json(jobs);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
+// search for a job
+// app.post("/searchjobs", async (req, res) => {
+//   const { query } = req.body;
+//   try {
+//     const jobs = await Job.find({})
+//   } catch (err) {
+//     console.log(err)
+//   }
+// })
+
 // login
 app.post("/login", async (req, res) => {
   const { username, hash } = req.body;
-  console.log(username, hash);
-  const user = await User.findOne({ username });
-  console.log(user);
-  const valid = await bcrypt.compare(hash, user.hash);
+  let valid = false;
+  try {
+    const user = await User.findOne({ username });
+    valid = await bcrypt.compare(hash, user.hash);
+  } catch (err) {
+    console.log(err);
+  }
   if (valid) {
     res.json({ valid });
-    return;
+  } else {
+    res.json({ valid });
   }
-  res.json({ valid });
 });
 
 // myjobs
 app.get("/myjobs/:userid", async (req, res) => {
-  const jobs = await Job.find({ employerid: req.params.userid });
-  res.json(jobs);
+  try {
+    const jobs = await Job.find({ employerid: req.params.userid });
+    res.json(jobs);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
+// postjobs
+app.post("/postjobs", async (req, res) => {
+  try {
+    const newJob = new Job(req.body);
+    await newJob.save();
+    res.json(newJob);
+  } catch (err) {
+    res.json(err);
+  }
 });
 
 // individualjobs
