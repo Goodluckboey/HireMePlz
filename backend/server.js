@@ -1,5 +1,6 @@
 const express = require("express");
 const connectDB = require("./models/db");
+const cors = require("cors");
 const User = require("./models/user");
 const Job = require("./models/job");
 const bcrypt = require("bcrypt");
@@ -13,13 +14,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 // login
 app.post("/login", async (req, res) => {
   const { username, hash } = req.body;
-  //console.log(username, hash)
+  console.log(username, hash);
   const user = await User.findOne({ username });
-  //console.log(user)
+  console.log(user);
   const valid = await bcrypt.compare(hash, user.hash);
   if (valid) {
     res.json({ valid });

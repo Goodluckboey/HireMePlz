@@ -13,11 +13,11 @@ const Jobs = [
   },
   {
     name: "Find a missing cat",
-    description: "There is a missing black cat with white ears in town. Find it",
+    description:
+      "There is a missing black cat with white ears in town. Find it",
     reward: 2000,
     status: "Open",
   },
-
 ];
 
 export default Jobs;
