@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import IndividualJob from "./pages/IndividualJob/IndividualJob";
+import Registration from "./pages/registration/registration";
 // import FrontPage from "./pages/front/front.js";
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
           Learn React
         </a> */}
         {/* <FrontPage></FrontPage> */}
-        <IndividualJob></IndividualJob>
+        <Registration></Registration>
       </header>
     </div>
   );
