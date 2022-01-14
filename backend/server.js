@@ -3,7 +3,6 @@ const connectDB = require("./models/db");
 const User = require("./models/user");
 const Job = require("./models/job");
 const bcrypt = require("bcrypt");
-const { Mongoose } = require("mongoose");
 
 const mongoUri = "mongodb://127.0.0.1:27017/hiremeplz";
 connectDB(mongoUri);
@@ -15,8 +14,11 @@ app.use(express.urlencoded({ extended: false }));
 
 // login
 app.post("/login", async (req, res) => {
-  const { username, hash } = await User.find({ username });
-  const valid = await bcrypt.compare(hash, req.body.hash);
+  const { username, hash } = req.body;
+  console.log(username, hash)
+  const user = await User.findOne({ username });
+  console.log(user)
+  const valid = await bcrypt.compare(hash, user.hash);
   if (valid) {
     res.json({ valid });
     return;
@@ -45,6 +47,7 @@ app.post("/registration", async (req, res) => {
   const { hash } = req.body;
   const hashed = await bcrypt.hash(hash, 12);
   await User.create({ ...req.body, hash: hashed });
+  res.send(req.body);
 });
 
 const PORT = 5000;
