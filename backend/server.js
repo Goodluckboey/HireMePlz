@@ -40,6 +40,13 @@ app.put("/individualjob/edit/:jobid", async (req, res) => {
   await Job.findOneAndUpdate({ _id: req.params.jobid }, { ...req.body });
 });
 
+// registration
+app.post("/registration", async (req, res) => {
+  const { hash } = req.body;
+  const hashed = await bcrypt.hash(hash, 12);
+  await User.create({ ...req.body, hash: hashed });
+});
+
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
