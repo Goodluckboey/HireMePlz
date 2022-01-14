@@ -1,10 +1,13 @@
-import logo from "./logo.svg";
+import React, { useState } from "react";
+//import logo from "./logo.svg";
 import "./App.css";
-import IndividualJob from "./pages/IndividualJob/IndividualJob";
+import Profile from "./pages/profile/Profile";
+import Useridcontext from "./context/userid-context";
 import Registration from "./pages/registration/registration";
 // import FrontPage from "./pages/front/front.js";
 
 function App() {
+  const [userId, setUserId] = useState("");
   return (
     <div className="App">
       <header className="App-header">
@@ -21,8 +24,14 @@ function App() {
           Learn React
         </a> */}
         {/* <FrontPage></FrontPage> */}
-        <Registration></Registration>
+
       </header>
+      <body>
+        <Useridcontext.Provider value={(userId, setUserId)}>
+          <Profile />
+          <Registration></Registration>
+        </Useridcontext.Provider>
+      </body>
     </div>
   );
 }

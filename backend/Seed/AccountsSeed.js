@@ -1,21 +1,21 @@
-const Accounts = [
+module.exports = [
   {
-    firstName: "John",
-    lastName: "Doe",
+    firstname: "John",
+    lastname: "Doe",
     email: "john369@gmail.com",
     username: "sexybeast",
     hash: "",
   },
   {
-    firstName: "Jessica",
-    lastName: "Jones",
+    firstname: "Jessica",
+    lastname: "Jones",
     email: "aliasinvestigation@yahoo.com",
     username: "Jessie",
     hash: "",
   },
   {
-    firstName: "Luke",
-    lastName: "Cage",
+    firstname: "Luke",
+    lastname: "Cage",
     email: "caged@gmail.com",
     username: "hardskinned",
     hash: "",
