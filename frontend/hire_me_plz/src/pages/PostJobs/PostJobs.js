@@ -1,12 +1,20 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import Button from "../../generalcomponent/Button";
+import InputField from "../../generalcomponent/InputField";
+import Useridcontext from "../../context/userid-context";
 
 const PostJobs = () => {
-  const employerid = "";
+  // context
+  const userIdContext = useContext(Useridcontext);
+  const employerid = userIdContext.userId;
+
+  // states
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [reward, setReward] = useState("");
 
+  // button on click function to post a new job
   const handlePostJob = async () => {
     const body = {
       name,
@@ -17,7 +25,7 @@ const PostJobs = () => {
     try {
       const endpoint = `http://localhost:5000/postjobs`;
       const res = await axios.post(endpoint, body);
-      console.log(res.data);
+      console.log("New job created on backend: ", res.data);
     } catch (err) {
       console.log(err);
     }
@@ -26,28 +34,28 @@ const PostJobs = () => {
   return (
     <div>
       <h1>New Job Post</h1>
-      <input
+      <InputField
         placeholder="Job Name"
         value={name}
         onChange={(e) => {
           setName(e.target.value);
         }}
-      ></input>
-      <input
+      ></InputField>
+      <InputField
         placeholder="Job Description"
         value={description}
         onChange={(e) => {
           setDescription(e.target.value);
         }}
-      ></input>
-      <input
+      ></InputField>
+      <InputField
         placeholder="Reward"
         value={reward}
         onChange={(e) => {
           setReward(e.target.value);
         }}
-      ></input>
-      <button onClick={handlePostJob}>Add New Job</button>
+      ></InputField>
+      <Button onClick={handlePostJob}>Add New Job</Button>
     </div>
   );
 };

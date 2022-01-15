@@ -1,11 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Button from "../../generalcomponent/Button";
+import InputField from "../../generalcomponent/InputField";
 import Job from "../myjobs/parts/Job";
 
 const EmployeeMarket = () => {
+  // states
   const [jobQuery, setJobQuery] = useState("");
   const [fetchedJobs, setFetchedJobs] = useState([]);
 
+  // fetch jobs on mount
   useEffect(() => {
     async function fetcher() {
       try {
@@ -19,31 +23,33 @@ const EmployeeMarket = () => {
     fetcher();
   }, []);
 
-  // const handleSearchJob = async () => {
-  //   try {
-  //     const endpoint = `http://127.0.0.1:5000/`;
-  //     const jobs = await axios.post(endpoint, jobQuery);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  // button on click function to search for job with this specific name
+  const handleSearchJob = async () => {
+    try {
+      const endpoint = `http://127.0.0.1:5000/searchjobs`;
+      const jobs = await axios.post(endpoint, { query: jobQuery });
+      setFetchedJobs(jobs);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
+  // create job components to populate page
   const jobs = [];
   for (const job of fetchedJobs) {
     jobs.push(<Job {...job}></Job>);
   }
+
   return (
     <div>
-      <form>
-        <input
-          placeholder="search for jobs"
-          value={jobQuery}
-          onChange={(e) => {
-            setJobQuery(e.target.value);
-          }}
-        ></input>
-        <button>Submit</button>
-      </form>
+      <InputField
+        placeholder="search jobs by job name"
+        value={jobQuery}
+        onChange={(e) => {
+          setJobQuery(e.target.value);
+        }}
+      ></InputField>
+      <Button value="Search" onClick={handleSearchJob}></Button>
       <div>{jobs}</div>
     </div>
   );

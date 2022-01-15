@@ -1,11 +1,18 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "../../generalcomponent/Button";
 import Job from "./parts/Job";
+import Useridcontext from "../../context/userid-context";
 
 const MyJobs = () => {
+  // context
+  const userIdContext = useContext(Useridcontext);
+  const employerid = userIdContext.userId;
+
+  // states
   const [fetchedJobs, setFetchedJobs] = useState("");
-  const employerid = "";
+
+  // fetch jobs on mount
   useEffect(() => {
     async function fetcher() {
       try {
@@ -19,10 +26,12 @@ const MyJobs = () => {
     fetcher();
   }, []);
 
+  // create job components to populate page
   const jobs = [];
   for (const job of fetchedJobs) {
     jobs.push(<Job {...job}></Job>);
   }
+
   return (
     <div>
       <h1>My Jobs</h1>
