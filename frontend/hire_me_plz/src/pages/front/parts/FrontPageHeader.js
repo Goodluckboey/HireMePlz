@@ -14,7 +14,7 @@ const FrontPageHeader = () => {
             <LinksForHeader link={"/"} name="Contact Us"></LinksForHeader>
           </li>
           <li className={styles.links}>
-            <LinksForHeader link={"/"} name="Login"></LinksForHeader>
+            <LinksForHeader link={"/login"} name="Login"></LinksForHeader>
           </li>
         </ul>
         <a href="/" id={styles.signUpButton}>
