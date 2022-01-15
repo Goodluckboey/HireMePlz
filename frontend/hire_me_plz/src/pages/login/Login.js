@@ -51,7 +51,7 @@ const Login = () => {
   };
   //This changes the address bar to what we want.
   const routeToNext = () => {
-    return history.push("/profile/");
+    return history.push("/employeemarketplace");
   };
 
   const handleLogin = (e) => {
@@ -60,6 +60,7 @@ const Login = () => {
   };
   const handleSignUp = (e) => {
     e.preventDefault();
+    return history.push("/registration");
   };
 
   return (
