@@ -1,4 +1,4 @@
-const Jobs = [
+const jobsSeed = [
   {
     name: "Kill 10 Dragons",
     description: "Head to Jenkinville and slay 10 dragons by the mountain.",
@@ -20,4 +20,4 @@ const Jobs = [
   },
 ];
 
-export default Jobs;
+module.exports = jobsSeed;

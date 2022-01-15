@@ -1,20 +1,36 @@
 const express = require("express");
 const connectDB = require("./models/db");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 const User = require("./models/user");
 const Job = require("./models/job");
-const bcrypt = require("bcrypt");
 const accountsSeed = require("./Seed/AccountsSeed");
-const { db } = require("./models/user");
+const jobsSeed = require("./Seed/JobsSeed");
 
 const mongoUri = "mongodb://127.0.0.1:27017/hiremeplz";
 connectDB(mongoUri);
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+
+// seed data
+app.get("/seeddata", async (req, res) => {
+  await Job.deleteMany({});
+  await User.deleteMany({});
+  for (const user of accountsSeed) {
+    const { hash } = user;
+    const hashed = await bcrypt.hash(hash, 12);
+    await User.create({ ...user, hash: hashed });
+    for (const job of jobsSeed) {
+      await Job.create({ ...job, employerid: user.id });
+    }
+  }
+  const users = await User.find({});
+  const jobs = await Job.find({});
+  res.send(users + jobs);
+});
 
 // get all jobs
 app.get("/alljobs", async (req, res) => {
@@ -37,25 +53,25 @@ app.post("/searchjobs", async (req, res) => {
   }
 });
 
-// login
+// find user by username, then compare hash to authenticate. then send back user data if valid, else send back false
 app.post("/login", async (req, res) => {
   const { username, hash } = req.body;
   let valid = false;
   try {
     const user = await User.findOne({ username });
     valid = await bcrypt.compare(hash, user.hash);
+    if (valid) {
+      res.json(user);
+    } else {
+      res.json("authentication failed");
+    }
   } catch (err) {
     console.log(err);
-  }
-  if (valid) {
-    const userLoggedIn = await User.findOne({ username });
-    res.json(userLoggedIn);
-  } else {
-    res.json({ valid });
+    res.json(`authentication failed ${err}`);
   }
 });
 
-// myjobs
+// find jobs by employer id
 app.get("/myjobs/:userid", async (req, res) => {
   try {
     const jobs = await Job.find({ employerid: req.params.userid });
@@ -65,7 +81,7 @@ app.get("/myjobs/:userid", async (req, res) => {
   }
 });
 
-// postjobs
+// add a new job
 app.post("/postjobs", async (req, res) => {
   try {
     const newJob = new Job(req.body);
@@ -76,37 +92,63 @@ app.post("/postjobs", async (req, res) => {
   }
 });
 
-// individualjobs
+// get jobs by employer id
 app.get("/individualjob/:userid", async (req, res) => {
-  const jobs = await Job.find({ employerid: req.params.userid });
-  res.json(jobs);
+  try {
+    const jobs = await Job.find({ employerid: req.params.userid });
+    res.json(jobs);
+  } catch (err) {
+    res.json(err);
+  }
 });
 
+// edit a job by job id
 app.put("/individualjob/edit/:jobid", async (req, res) => {
-  await Job.findOneAndUpdate({ _id: req.params.jobid }, { ...req.body });
+  try {
+    const job = await Job.findOneAndUpdate(
+      { _id: req.params.jobid },
+      { ...req.body }
+    );
+    res.json(job);
+  } catch (err) {
+    res.json(err);
+  }
 });
 
+// delete a job by job id
 app.delete("/individualjob/delete/:jobid", async (req, res) => {
-  const deleteJob = await Job.find({ _id: req.params.jobid });
-  db.Jobs.deleteOne(deleteJob);
+  try {
+    const job = await Job.findOneAndDelete({ _id: req.params.jobid });
+    res.json(job);
+  } catch (err) {
+    res.json(err);
+  }
 });
-// registration
+
+// create a new user after hashing password
 app.post("/registration", async (req, res) => {
   const { hash } = req.body;
-  const hashed = await bcrypt.hash(hash, 12);
-  await User.create({ ...req.body, hash: hashed });
-  res.send(req.body);
+  try {
+    const hashed = await bcrypt.hash(hash, 12);
+    await User.create({ ...req.body, hash: hashed });
+    res.json(req.body);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
 });
 
-//profile
+// find a user then send back everything except the userid and hash
 app.get("/profile/:userid", async (req, res) => {
-  // await User.deleteMany();
-  // await User.create(accountsSeed);
-  const profileOfUserId = await User.find(
-    { _id: req.params.userid },
-    { _id: 0, hash: 0 }
-  );
-  res.json(profileOfUserId);
+  try {
+    const profileOfUserId = await User.find(
+      { _id: req.params.userid },
+      { _id: 0, hash: 0 }
+    );
+    res.json(profileOfUserId);
+  } catch (err) {
+    res.json(err);
+  }
 });
 
 //get single profile id from login page( STILL WORKING ON THIS)
