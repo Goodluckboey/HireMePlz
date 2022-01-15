@@ -102,6 +102,20 @@ app.get("/individualjob/:userid", async (req, res) => {
   }
 });
 
+//apply jobs by attaching user id to employee id
+app.put("/applyjob/:jobid", async (req, res) => {
+  const { userId } = req.body;
+  try {
+    const job = await Job.findOneAndUpdate(
+      { _id: req.params.jobid },
+      { $set: { employeeid: userId } }
+    );
+    res.json(job);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
 // edit a job by job id
 app.put("/individualjob/edit/:jobid", async (req, res) => {
   try {
@@ -118,8 +132,8 @@ app.put("/individualjob/edit/:jobid", async (req, res) => {
 // delete a job by job id
 app.delete("/individualjob/delete/:jobid", async (req, res) => {
   try {
-    const job = await Job.findOneAndDelete({ _id: req.params.jobid });
-    res.json(job);
+    const deletedJob = await Job.findOneAndDelete({ _id: req.params.jobid });
+    res.json(deletedJob);
   } catch (err) {
     res.json(err);
   }

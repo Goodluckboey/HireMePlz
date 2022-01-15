@@ -33,8 +33,12 @@ const IndividualJob = (props) => {
     console.log("fetching data");
   }, []);
 
-  const applyForJob = () => {
-    console.log("Applied for this Job!");
+  const handleDelete = (element) => {
+    axios
+      .delete(`http://localhost:5000/individualjob/delete/${element}`)
+      .then(() => {
+        getJobsDataUnderUser();
+      });
   };
 
   return (
@@ -53,7 +57,10 @@ const IndividualJob = (props) => {
                     </p>
                     <h2>{element.reward} Copper Coins</h2>
                     <h2>{element.status}</h2>
-                    <Button onClick={applyForJob} value="Apply"></Button>
+                    <Button
+                      onClick={() => handleDelete(element._id)}
+                      value="Delete"
+                    ></Button>
                   </div>
                 </SplideSlide>
               </>

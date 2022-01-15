@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import Useridcontext from "../../context/userid-context";
 import { Link } from "react-router-dom";
 import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
@@ -10,7 +11,8 @@ const EmployeeMarketplace = () => {
   // states
   const [jobQuery, setJobQuery] = useState("");
   const [fetchedJobs, setFetchedJobs] = useState([]);
-
+  const callAndSetUserId = useContext(Useridcontext);
+  const userId = callAndSetUserId.userId;
   // fetch jobs on mount
   useEffect(() => {
     async function fetcher() {
@@ -37,9 +39,34 @@ const EmployeeMarketplace = () => {
   };
 
   // create job components to populate page
+  const attachEmployeeId = (jobId) => {
+    const userIdToAttach = {
+      userId: userId,
+    };
+    axios
+      .put(`http://127.0.0.1:5000/applyjob/${jobId}`, userIdToAttach)
+      .then(() => {
+        async function fetcher() {
+          try {
+            const endpoint = `http://127.0.0.1:5000/alljobs`;
+            const res = await axios.get(endpoint);
+            setFetchedJobs(res.data);
+          } catch (err) {
+            console.log(err);
+          }
+        }
+        fetcher();
+      });
+  };
   const jobs = [];
   for (const job of fetchedJobs) {
-    jobs.push(<Job {...job} key={uuidv4()}></Job>);
+    jobs.push(
+      <Job
+        {...job}
+        key={uuidv4()}
+        onClick={() => attachEmployeeId(job._id)}
+      ></Job>
+    );
   }
 
   return (
