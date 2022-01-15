@@ -13,73 +13,64 @@ const EmployeeMarketplace = () => {
   const [fetchedJobs, setFetchedJobs] = useState([]);
   const callAndSetUserId = useContext(Useridcontext);
   const userId = callAndSetUserId.userId;
+
   // fetch jobs on mount
-  useEffect(() => {
-    async function fetcher() {
-      try {
-        const endpoint = `http://127.0.0.1:5000/alljobs`;
-        const res = await axios.get(endpoint);
-        setFetchedJobs(res.data);
-      } catch (err) {
-        console.log(err);
-      }
+  async function fetcher() {
+    try {
+      const endpoint = `http://127.0.0.1:5000/alljobs`;
+      const res = await axios.get(endpoint);
+      setFetchedJobs(res.data);
+    } catch (err) {
+      console.log(err);
     }
+  }
+  useEffect(() => {
     fetcher();
   }, []);
 
   // button on click function to search for job with this specific name
-  const handleSearchJob = async () => {
+  const handleSearchJob = async (e) => {
+    e.preventDefault();
     try {
       const endpoint = `http://127.0.0.1:5000/searchjobs`;
-      const jobs = await axios.post(endpoint, { query: jobQuery });
-      setFetchedJobs(jobs);
+      const res = await axios.post(endpoint, { query: jobQuery });
+      setFetchedJobs(res.data);
     } catch (err) {
       console.log(err);
     }
   };
 
-  // create job components to populate page
-  const attachEmployeeId = (jobId) => {
-    const userIdToAttach = {
-      userId: userId,
-    };
+  // function for apply job
+  const applyJob = (jobId) => {
+    const userIdToAttach = { userId };
     axios
       .put(`http://127.0.0.1:5000/applyjob/${jobId}`, userIdToAttach)
       .then(() => {
-        async function fetcher() {
-          try {
-            const endpoint = `http://127.0.0.1:5000/alljobs`;
-            const res = await axios.get(endpoint);
-            setFetchedJobs(res.data);
-          } catch (err) {
-            console.log(err);
-          }
-        }
         fetcher();
       });
   };
+
+  // create job components to populate page
   const jobs = [];
   for (const job of fetchedJobs) {
     jobs.push(
-      <Job
-        {...job}
-        key={uuidv4()}
-        onClick={() => attachEmployeeId(job._id)}
-      ></Job>
+      <Job {...job} key={uuidv4()} applyJob={() => applyJob(job._id)}></Job>
     );
   }
 
   return (
     <div>
       <Link to="/postjobs">Add Job</Link>
-      <InputField
-        placeholder="search jobs by job name"
-        value={jobQuery}
-        onChange={(e) => {
-          setJobQuery(e.target.value);
-        }}
-      ></InputField>
-      <Button value="Search" onClick={handleSearchJob}></Button>
+      <form>
+        <InputField
+          placeholder="search jobs by job name"
+          value={jobQuery}
+          onChange={(e) => {
+            setJobQuery(e.target.value);
+          }}
+        ></InputField>
+        <Button type="submit" value="Search" onClick={handleSearchJob}></Button>
+      </form>
       <div>{jobs}</div>
     </div>
   );
