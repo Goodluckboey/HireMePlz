@@ -3,6 +3,7 @@ import InputField from "../../generalcomponent/InputField";
 import Button from "../../generalcomponent/Button";
 import axios from "axios";
 import Useridcontext from "../../context/userid-context";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const changeInput = (inputLogin, action) => {
   switch (action.type) {
@@ -20,7 +21,8 @@ const Login = () => {
     Username: "",
     Password: "",
   });
-
+  //useHistory is like a state. It gets set at the start of the component render.
+  let history = useHistory();
   //call the set function for useId and to be updated if there is a match
   const callAndSetUserId = useContext(Useridcontext);
   const setUserId = callAndSetUserId.setUserId;
@@ -40,27 +42,22 @@ const Login = () => {
       if (res.data.valid !== false) {
         setUserId(res.data._id);
         console.log("logged in", userId);
-        //redirect page link="http://localhost:5000/marketplace"
-        // window.location.replace("http://localhost:5000/profile");
+        //Check is already performed by this loop. Will redirect. Check not done in route to next because you need to click the log in button twice
+        routeToNext();
       } else {
         alert("Wrong username or password");
       }
     });
+  };
+  //This changes the address bar to what we want.
+  const routeToNext = () => {
+    return history.push("/profile/");
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
     retriveUserNameToRetriveUserId();
   };
-  // const retriveProfileData = () => {
-  //   axios.get(`http://localhost:5000/profile/${userId}`).then((res) => {
-  //     setProfileData(res.data);
-  //   });
-  // };
-  // useEffect(() => {
-  //   retriveProfileData();
-  // }, []);
-
   const handleSignUp = (e) => {
     e.preventDefault();
   };
