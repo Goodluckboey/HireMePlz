@@ -22,9 +22,9 @@ app.get("/seeddata", async (req, res) => {
   for (const user of accountsSeed) {
     const { hash } = user;
     const hashed = await bcrypt.hash(hash, 12);
-    await User.create({ ...user, hash: hashed });
+    const createdUser = await User.create({ ...user, hash: hashed });
     for (const job of jobsSeed) {
-      await Job.create({ ...job, employerid: user.id });
+      await Job.create({ ...job, employerid: createdUser.id });
     }
   }
   const users = await User.find({});
