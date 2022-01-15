@@ -8,8 +8,6 @@ const Job = ({name, description, reward, status}) => {
       <div>{description}</div>
       <div>{reward}</div>
       <div>{status}</div>
-      <button>Delete</button>
-      <button>Edit</button>
     </div>
   );
 };
