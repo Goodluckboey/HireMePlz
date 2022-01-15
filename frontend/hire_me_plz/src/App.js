@@ -11,11 +11,14 @@ import FrontPage from "./pages/front/front.js";
 import MyJobs from "./pages/myjobs/MyJobs";
 import EmployeeMarketplace from "./pages/employeemarketplace/EmployeeMarketplace";
 import PostJobs from "./pages/postjobs/PostJobs";
-// import { useParams } from "react-router";
+import AfterLoggedInHeader from "./generalcomponent/AfterLoggedInHeader";
 
 function App() {
   const [userId, setUserId] = useState("");
   // const params = useParams();
+  const afterLoggedInHeader = userId && (
+    <AfterLoggedInHeader></AfterLoggedInHeader>
+  );
   return (
     <div className="App">
       <BrowserRouter>
@@ -31,18 +34,22 @@ function App() {
               <Registration></Registration>
             </Route>
             <Route exact path="/profile/">
+              {afterLoggedInHeader}
               <Profile></Profile>
             </Route>
             <Route exact path="/individualjob/">
               <IndividualJob></IndividualJob>
             </Route>
             <Route exact path="/myjobs">
+              {afterLoggedInHeader}
               <MyJobs></MyJobs>
             </Route>
             <Route exact path="/postjobs">
+              {afterLoggedInHeader}
               <PostJobs></PostJobs>
             </Route>
             <Route exact path="/employeemarketplace">
+              {afterLoggedInHeader}
               <EmployeeMarketplace></EmployeeMarketplace>
             </Route>
           </Useridcontext.Provider>
