@@ -6,7 +6,7 @@ import Profile from "./pages/profile/Profile";
 import Useridcontext from "./context/userid-context";
 import Registration from "./pages/registration/registration";
 import Login from "./pages/login/Login";
-import IndividualJob from "./pages/IndividualJob/IndividualJob";
+import IndividualJob from "./pages/individualjob/IndividualJob";
 import FrontPage from "./pages/front/front.js";
 import MyJobs from "./pages/MyJobs/MyJobs";
 // import { useParams } from "react-router";
