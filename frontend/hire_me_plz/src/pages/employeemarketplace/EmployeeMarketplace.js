@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
-import Job from "../myjobs/parts/Job";
+import Job from "./parts/Job";
+import { v4 as uuidv4 } from "uuid";
 
 const EmployeeMarketplace = () => {
   // states
@@ -38,7 +39,7 @@ const EmployeeMarketplace = () => {
   // create job components to populate page
   const jobs = [];
   for (const job of fetchedJobs) {
-    jobs.push(<Job {...job}></Job>);
+    jobs.push(<Job {...job} key={uuidv4()}></Job>);
   }
 
   return (
