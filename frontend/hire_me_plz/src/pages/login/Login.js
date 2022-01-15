@@ -27,7 +27,7 @@ const Login = () => {
   const callAndSetUserId = useContext(Useridcontext);
   const setUserId = callAndSetUserId.setUserId;
   // call the userId state in app. Not needed here. Only needed for the console.log
-  const userId = callAndSetUserId.userId;
+  //const userId = callAndSetUserId.userId;
 
   //function to compare username to get the userid
   const retriveUserNameToRetriveUserId = () => {
@@ -41,7 +41,6 @@ const Login = () => {
       //Using the valid to be true will allow the state to equal to the object unique userId.
       if (res.data.valid !== false) {
         setUserId(res.data._id);
-        console.log("logged in", userId);
         //Check is already performed by this loop. Will redirect. Check not done in route to next because you need to click the log in button twice
         routeToNext();
       } else {
