@@ -35,27 +35,27 @@ const PostJobs = () => {
     <div>
       <h1>New Job Post</h1>
       <InputField
-        placeholder="Job Name"
+        placeholder="job name"
         value={name}
         onChange={(e) => {
           setName(e.target.value);
         }}
       ></InputField>
       <InputField
-        placeholder="Job Description"
+        placeholder="job description"
         value={description}
         onChange={(e) => {
           setDescription(e.target.value);
         }}
       ></InputField>
       <InputField
-        placeholder="Reward"
+        placeholder="reward"
         value={reward}
         onChange={(e) => {
           setReward(e.target.value);
         }}
       ></InputField>
-      <Button onClick={handlePostJob}>Add New Job</Button>
+      <Button onClick={handlePostJob} value="post"></Button>
     </div>
   );
 };
