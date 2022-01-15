@@ -5,6 +5,7 @@ const User = require("./models/user");
 const Job = require("./models/job");
 const bcrypt = require("bcrypt");
 const accountsSeed = require("./Seed/AccountsSeed");
+const { db } = require("./models/user");
 
 const mongoUri = "mongodb://127.0.0.1:27017/hiremeplz";
 connectDB(mongoUri);
@@ -85,6 +86,10 @@ app.put("/individualjob/edit/:jobid", async (req, res) => {
   await Job.findOneAndUpdate({ _id: req.params.jobid }, { ...req.body });
 });
 
+app.delete("/individualjob/delete/:jobid", async (req, res) => {
+  const deleteJob = await Job.find({ _id: req.params.jobid });
+  db.Jobs.deleteOne(deleteJob);
+});
 // registration
 app.post("/registration", async (req, res) => {
   const { hash } = req.body;
