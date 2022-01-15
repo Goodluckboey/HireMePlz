@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
-import Job from "../MyJobs/parts/Job";
+import Job from "../myjobs/parts/Job";
 
 const EmployeeMarketplace = () => {
   // states
