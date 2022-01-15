@@ -3,11 +3,15 @@ import React, { useContext, useState } from "react";
 import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
 import Useridcontext from "../../context/userid-context";
+import { Link, useHistory } from "react-router-dom";
 
 const PostJobs = () => {
   // context
   const userIdContext = useContext(Useridcontext);
   const employerid = userIdContext.userId;
+
+  // useHistory
+  let history = useHistory();
 
   // states
   const [name, setName] = useState("");
@@ -25,6 +29,7 @@ const PostJobs = () => {
     try {
       const endpoint = `http://localhost:5000/postjobs`;
       const res = await axios.post(endpoint, body);
+      history.push("/myjobs");
       console.log("New job created on backend: ", res.data);
     } catch (err) {
       console.log(err);
@@ -35,27 +40,30 @@ const PostJobs = () => {
     <div>
       <h1>New Job Post</h1>
       <InputField
-        placeholder="Job Name"
+        placeholder="job name"
         value={name}
         onChange={(e) => {
           setName(e.target.value);
         }}
       ></InputField>
       <InputField
-        placeholder="Job Description"
+        placeholder="job description"
         value={description}
         onChange={(e) => {
           setDescription(e.target.value);
         }}
       ></InputField>
       <InputField
-        placeholder="Reward"
+        placeholder="reward"
         value={reward}
         onChange={(e) => {
           setReward(e.target.value);
         }}
       ></InputField>
-      <Button onClick={handlePostJob}>Add New Job</Button>
+      <Button onClick={handlePostJob} value="post"></Button>
+      <Link to="/myjobs">
+        <Button value="cancel"></Button>
+      </Link>
     </div>
   );
 };

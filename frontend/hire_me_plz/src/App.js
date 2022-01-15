@@ -9,6 +9,8 @@ import Login from "./pages/login/Login";
 import IndividualJob from "./pages/individualjob/IndividualJob";
 import FrontPage from "./pages/front/front.js";
 import MyJobs from "./pages/MyJobs/MyJobs";
+import EmployeeMarketplace from "./pages/employee-Market/EmployeeMarketplace";
+import PostJobs from "./pages/postjobs/PostJobs";
 // import { useParams } from "react-router";
 
 function App() {
@@ -17,29 +19,36 @@ function App() {
   return (
     <div className="App">
       <header className="App-header"></header>
-      <body>
-        <BrowserRouter>
-          <Switch>
-            <Useridcontext.Provider value={{ userId, setUserId }}>
-              <Route exact path="/">
-                <FrontPage></FrontPage>
-              </Route>
-              <Route exact path="/login">
-                <Login></Login>
-              </Route>
-              <Route exact path="/registration">
-                <Registration></Registration>
-              </Route>
-              <Route exact path="/profile/">
-                <Profile></Profile>
-              </Route>
-              <Route exact path="/individualjob/">
-                <IndividualJob></IndividualJob>
-              </Route>
-            </Useridcontext.Provider>
-          </Switch>
-        </BrowserRouter>
-      </body>
+      <BrowserRouter>
+        <Switch>
+          <Useridcontext.Provider value={{ userId, setUserId }}>
+            <Route exact path="/">
+              <FrontPage></FrontPage>
+            </Route>
+            <Route exact path="/login">
+              <Login></Login>
+            </Route>
+            <Route exact path="/registration">
+              <Registration></Registration>
+            </Route>
+            <Route exact path="/profile/">
+              <Profile></Profile>
+            </Route>
+            <Route exact path="/individualjob/">
+              <IndividualJob></IndividualJob>
+            </Route>
+            <Route exact path="/myjobs">
+              <MyJobs></MyJobs>
+            </Route>
+            <Route exact path="/postjobs">
+              <PostJobs></PostJobs>
+            </Route>
+            <Route exact path="/employeemarketplace">
+              <EmployeeMarketplace></EmployeeMarketplace>
+            </Route>
+          </Useridcontext.Provider>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

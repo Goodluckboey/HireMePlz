@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
-import Job from "../myjobs/parts/Job";
+import Job from "../MyJobs/parts/Job";
 
-const EmployeeMarket = () => {
+const EmployeeMarketplace = () => {
   // states
   const [jobQuery, setJobQuery] = useState("");
   const [fetchedJobs, setFetchedJobs] = useState([]);
@@ -42,6 +43,7 @@ const EmployeeMarket = () => {
 
   return (
     <div>
+      <Link to="/postjobs">Add Job</Link>
       <InputField
         placeholder="search jobs by job name"
         value={jobQuery}
@@ -55,4 +57,4 @@ const EmployeeMarket = () => {
   );
 };
 
-export default EmployeeMarket;
+export default EmployeeMarketplace;
