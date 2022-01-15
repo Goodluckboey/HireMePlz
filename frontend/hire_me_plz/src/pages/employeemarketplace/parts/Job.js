@@ -1,6 +1,7 @@
 import React from "react";
+import Button from "../../../generalcomponent/Button";
 
-const Job = ({name, description, reward, status}) => {
+const Job = ({ name, description, reward, status, onClick }) => {
   return (
     <div>
       <img src="" alt="myImage" />
@@ -8,6 +9,7 @@ const Job = ({name, description, reward, status}) => {
       <div>{description}</div>
       <div>{reward}</div>
       <div>{status}</div>
+      <Button onClick={onClick} value="Apply"></Button>
     </div>
   );
 };
