@@ -97,7 +97,10 @@ app.post("/registration", async (req, res) => {
 app.get("/profile/:userid", async (req, res) => {
   // await User.deleteMany();
   // await User.create(accountsSeed);
-  const profileOfUserId = await User.find({ _id: req.params.userid });
+  const profileOfUserId = await User.find(
+    { _id: req.params.userid },
+    { _id: 0, hash: 0 }
+  );
   res.json(profileOfUserId);
 });
 
