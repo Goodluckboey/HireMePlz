@@ -56,7 +56,6 @@ const Registration = () => {
       }
     };
     post();
-    e.preventDefault();
   };
 
   const handleLogin = (e) => {
