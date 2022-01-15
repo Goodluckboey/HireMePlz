@@ -6,49 +6,39 @@ import Profile from "./pages/profile/Profile";
 import Useridcontext from "./context/userid-context";
 import Registration from "./pages/registration/registration";
 import Login from "./pages/login/Login";
-// import FrontPage from "./pages/front/front.js";
+import IndividualJob from "./pages/IndividualJob/IndividualJob";
+import FrontPage from "./pages/front/front.js";
+import MyJobs from "./pages/MyJobs/MyJobs";
+// import { useParams } from "react-router";
 
 function App() {
   const [userId, setUserId] = useState("");
+  // const params = useParams();
   return (
     <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p> */}
-        {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-        {/* <FrontPage></FrontPage> */}
-      </header>
+      <header className="App-header"></header>
       <body>
-        {/* <BrowserRouter>
+        <BrowserRouter>
           <Switch>
             <Useridcontext.Provider value={{ userId, setUserId }}>
-              <Route exact path="/profile">
-                <Profile />
+              <Route exact path="/">
+                <FrontPage></FrontPage>
               </Route>
               <Route exact path="/login">
-                <Login />
+                <Login></Login>
               </Route>
               <Route exact path="/registration">
-                <Registration />
+                <Registration></Registration>
+              </Route>
+              <Route exact path="/profile/">
+                <Profile></Profile>
+              </Route>
+              <Route exact path="/individualjob/">
+                <IndividualJob></IndividualJob>
               </Route>
             </Useridcontext.Provider>
           </Switch>
-        </BrowserRouter> */}
-
-        <Useridcontext.Provider value={{ userId, setUserId }}>
-          <Profile />
-          <Login></Login>
-          <Registration />
-        </Useridcontext.Provider>
+        </BrowserRouter>
       </body>
     </div>
   );
