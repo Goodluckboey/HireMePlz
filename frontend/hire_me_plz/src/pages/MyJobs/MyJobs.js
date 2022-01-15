@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Button from "../../generalcomponent/Button";
 import Job from "./parts/Job";
 import Useridcontext from "../../context/userid-context";
+import { Link } from "react-router-dom";
 
 const MyJobs = () => {
   // context
@@ -35,7 +36,12 @@ const MyJobs = () => {
   return (
     <div>
       <h1>My Jobs</h1>
-      <Button value="Add Job"></Button>
+      <Link to="/postjobs">
+        <Button value="Add Job"></Button>
+      </Link>
+      <Link to="/employeemarketplace">
+        <Button value="Employee Marketplace"></Button>
+      </Link>
       <div>{jobs}</div>
     </div>
   );
