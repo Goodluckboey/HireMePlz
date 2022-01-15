@@ -8,8 +8,8 @@ import Registration from "./pages/registration/registration";
 import Login from "./pages/login/Login";
 import IndividualJob from "./pages/individualjob/IndividualJob";
 import FrontPage from "./pages/front/front.js";
-import MyJobs from "./pages/MyJobs/MyJobs";
-import EmployeeMarketplace from "./pages/employee-Market/EmployeeMarketplace";
+import MyJobs from "./pages/myjobs/MyJobs";
+import EmployeeMarketplace from "./pages/employeemarketplace/EmployeeMarketplace";
 import PostJobs from "./pages/postjobs/PostJobs";
 // import { useParams } from "react-router";
 
@@ -18,7 +18,6 @@ function App() {
   // const params = useParams();
   return (
     <div className="App">
-      <header className="App-header"></header>
       <BrowserRouter>
         <Switch>
           <Useridcontext.Provider value={{ userId, setUserId }}>
