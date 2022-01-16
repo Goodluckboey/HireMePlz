@@ -44,7 +44,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Useridcontext.Provider value={{ userId, setUserId, picsArray }}>
+          <Useridcontext.Provider
+            value={{ userId, setUserId, picsArray, switchMode, setSwitchMode }}
+          >
             <Route exact path="/">
               <FrontPage></FrontPage>
             </Route>

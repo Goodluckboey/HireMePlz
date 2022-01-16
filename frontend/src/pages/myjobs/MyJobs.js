@@ -8,15 +8,21 @@ import Useridcontext from "../../context/userid-context";
 import Button from "../../generalcomponent/Button";
 import Job from "./parts/Job";
 import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
+import AppliedJobs from "../appliedjobs/AppliedJobs";
 
 const MyJobs = () => {
   // context
-  const { userId, picsArray } = useContext(Useridcontext);
+  const { userId, picsArray, switchMode, setSwitchMode } =
+    useContext(Useridcontext);
   const employerid = userId;
 
   // states
   const [fetchedJobs, setFetchedJobs] = useState("");
 
+  //state change
+  const handleModeChange = () => {
+    setSwitchMode(false);
+  };
   // fetch jobs on mount
   useEffect(() => {
     async function fetcher() {
@@ -37,7 +43,7 @@ const MyJobs = () => {
   const jobs = [];
   if (fetchedJobs) {
     fetchedJobs.map((element, index) => {
-      jobs.push(
+      return jobs.push(
         <Link to={`/individualjob/${index}`}>
           <Job
             {...element}
@@ -54,16 +60,21 @@ const MyJobs = () => {
   return (
     <div>
       {userId ? (
-        <>
-          <h1>My Jobs</h1>
-          <Link to="/postjobs">
-            <Button value="Add Job"></Button>
-          </Link>
-          <Link to="/employeemarketplace">
-            <Button value="Employee Marketplace"></Button>
-          </Link>
-          <div>{jobs}</div>
-        </>
+        switchMode ? (
+          <>
+            <h1>My Jobs</h1>
+            <Link to="/postjobs">
+              <Button value="Add Job"></Button>
+            </Link>
+            <Link to="/employeemarketplace">
+              <Button value="Employee Marketplace"></Button>
+            </Link>
+            <Button onClick={handleModeChange} value="Employer Mode" />
+            <div>{jobs}</div>
+          </>
+        ) : (
+          <AppliedJobs />
+        )
       ) : (
         <NotLoggedIn />
       )}
