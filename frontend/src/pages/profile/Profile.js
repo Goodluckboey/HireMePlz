@@ -28,12 +28,9 @@ const Profile = () => {
         <>
           <h1>Profile Page</h1>
           <p>{displayedProfileData[0]?.firstname}</p>
-          <p>{userId}</p>
-          {/* <div>
-        {displayedProfileData.map((eachData) => {
-          return <p>{eachData.username}</p>;
-        })}
-      </div> */}
+          <p>{displayedProfileData[0]?.lastname}</p>
+          <p>{displayedProfileData[0]?.email}</p>
+          <p>{displayedProfileData[0]?.username}</p>
         </>
       ) : (
         <NotLoggedIn />
