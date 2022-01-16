@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Useridcontext from "../../context/userid-context";
+import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
 
 const Profile = () => {
   //This is to use the use context. To call the above id in the parent just use call UserIdApp.userId and UserIdApp.setUserId to change state
@@ -17,18 +18,26 @@ const Profile = () => {
     });
   };
   useEffect(() => {
-    retriveProfileData();
+    if (userId) {
+      retriveProfileData();
+    }
   }, []);
   return (
     <div>
-      <h1>Profile Page</h1>
-      <p>{displayedProfileData[0]?.firstname}</p>
-      <p>{userId}</p>
-      {/* <div>
+      {userId ? (
+        <>
+          <h1>Profile Page</h1>
+          <p>{displayedProfileData[0]?.firstname}</p>
+          <p>{userId}</p>
+          {/* <div>
         {displayedProfileData.map((eachData) => {
           return <p>{eachData.username}</p>;
         })}
       </div> */}
+        </>
+      ) : (
+        <NotLoggedIn />
+      )}
     </div>
   );
 };

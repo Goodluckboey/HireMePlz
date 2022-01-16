@@ -8,6 +8,7 @@ import styles from "./parts/modules/IndividualJob.module.css";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
+import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
 
 const IndividualJob = (props) => {
   //UseContext
@@ -33,9 +34,11 @@ const IndividualJob = (props) => {
     fetcher();
   };
   useEffect(() => {
-    getJobsDataUnderUser();
-    console.log("fetching data");
-    console.log("params.index: ", params.index);
+    if (userId) {
+      getJobsDataUnderUser();
+      console.log("fetching data");
+      console.log("params.index: ", params.index);
+    }
   }, []);
 
   const handleDelete = (element) => {
@@ -48,36 +51,42 @@ const IndividualJob = (props) => {
 
   return (
     <div>
-      <Link to="/myjobs">My Jobs</Link>
-      {jobsData && (
-        <Splide
-          options={{
-            start: params.index,
-            wheel: true,
-          }}
-        >
-          {jobsData.map((element) => {
-            return (
-              <>
-                <SplideSlide>
-                  <div className={styles.largeJob}>
-                    <h1>{element.name}</h1>
-                    <p className={styles.description}>
-                      Job Description: {element.description}
-                    </p>
-                    <h2>{element.reward} Copper Coins</h2>
-                    <h2>{element.status}</h2>
-                    <Button
-                      onClick={() => handleDelete(element._id)}
-                      value="Delete"
-                    ></Button>
-                    <Link to={`/editjob/${element._id}`}>Edit Quest</Link>
-                  </div>
-                </SplideSlide>
-              </>
-            );
-          })}
-        </Splide>
+      {userId ? (
+        <>
+          <Link to="/myjobs">My Jobs</Link>
+          {jobsData && (
+            <Splide
+              options={{
+                start: params.index,
+                wheel: true,
+              }}
+            >
+              {jobsData.map((element) => {
+                return (
+                  <>
+                    <SplideSlide>
+                      <div className={styles.largeJob}>
+                        <h1>{element.name}</h1>
+                        <p className={styles.description}>
+                          Job Description: {element.description}
+                        </p>
+                        <h2>{element.reward} Copper Coins</h2>
+                        <h2>{element.status}</h2>
+                        <Button
+                          onClick={() => handleDelete(element._id)}
+                          value="Delete"
+                        ></Button>
+                        <Link to={`/editjob/${element._id}`}>Edit Quest</Link>
+                      </div>
+                    </SplideSlide>
+                  </>
+                );
+              })}
+            </Splide>
+          )}
+        </>
+      ) : (
+        <NotLoggedIn />
       )}
     </div>
   );
