@@ -49,16 +49,17 @@ const IndividualJob = (props) => {
   return (
     <div>
       <Link to="/myjobs">My Jobs</Link>
-      <Splide
-        options={{
-          start: 2,
-        }}
-      >
-        {jobsData &&
-          jobsData.map((element) => {
+      {jobsData && (
+        <Splide
+          options={{
+            start: params.index,
+            wheel: true,
+          }}
+        >
+          {jobsData.map((element) => {
             return (
               <>
-                <SplideSlide key={uuidv4()}>
+                <SplideSlide>
                   <div className={styles.largeJob}>
                     <h1>{element.name}</h1>
                     <p className={styles.description}>
@@ -76,7 +77,8 @@ const IndividualJob = (props) => {
               </>
             );
           })}
-      </Splide>
+        </Splide>
+      )}
     </div>
   );
 };
