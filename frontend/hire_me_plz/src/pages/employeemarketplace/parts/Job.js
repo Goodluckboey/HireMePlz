@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../../../generalcomponent/Button";
 
-const Job = ({ name, description, reward, status, applyJob }) => {
+const Job = ({ name, description, reward, status, onClick }) => {
   return (
     <div>
       <img src="" alt="myImage" />
@@ -9,7 +9,7 @@ const Job = ({ name, description, reward, status, applyJob }) => {
       <div>{description}</div>
       <div>{reward}</div>
       <div>{status}</div>
-      <Button onClick={applyJob} value="Apply"></Button>
+      <Button onClick={onClick} value="Apply"></Button>
     </div>
   );
 };
