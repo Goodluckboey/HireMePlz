@@ -10,14 +10,14 @@ module.exports = [
     firstname: "Jessica",
     lastname: "Jones",
     email: "aliasinvestigation@yahoo.com",
-    username: "Jessie",
+    username: "Jess",
     hash: "password",
   },
   {
     firstname: "Luke",
     lastname: "Cage",
     email: "caged@gmail.com",
-    username: "hardskinned",
+    username: "hard",
     hash: "password",
   },
 ];

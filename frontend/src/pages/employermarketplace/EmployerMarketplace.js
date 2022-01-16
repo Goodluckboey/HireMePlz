@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Useridcontext from "../../context/userid-context";
 import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
@@ -15,27 +16,29 @@ const EmployerMarketplace = () => {
   const [fetchedEmployees, setFetchedEmployees] = useState([]);
 
   // fetch employees on mount
-  useEffect(() => {
-    async function fetcher() {
-      try {
-        const endpoint = `http://127.0.0.1:5000/`;
-        const res = await axios.get(endpoint);
-        setFetchedEmployees(res.data);
-      } catch (err) {
-        console.log(err);
-      }
+  async function fetcher() {
+    try {
+      const endpoint = `http://127.0.0.1:5000/allemployees`;
+      const res = await axios.get(endpoint);
+      setFetchedEmployees(res.data);
+    } catch (err) {
+      console.log(err);
     }
+  }
+
+  useEffect(() => {
     if (userId) {
       fetcher();
     }
   }, []);
 
-  // button on click function to search for job with this specific name
-  const handleSearchEmployee = async () => {
+  // button on click function to search for employee with this specific name
+  const handleSearchEmployee = async (e) => {
+    e.preventDefault()
     try {
-      const endpoint = `http://127.0.0.1:5000/`;
-      const employees = await axios.post(endpoint, { query: employeeQuery });
-      setFetchedEmployees(employees);
+      const endpoint = `http://127.0.0.1:5000/searchemployee`;
+      const res = await axios.post(endpoint, { query: employeeQuery });
+      setFetchedEmployees(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -44,21 +47,23 @@ const EmployerMarketplace = () => {
   // create employee components to populate page
   const employees = [];
   for (const employee of fetchedEmployees) {
-    employees.push(<Employee {...employee}></Employee>);
+    employees.push(<Employee {...employee} key={uuidv4()}></Employee>);
   }
 
   return (
     <div>
       {userId ? (
         <>
-          <InputField
-            placeholder="search jobs by employee name"
-            value={employeeQuery}
-            onChange={(e) => {
-              setEmployeeQuery(e.target.value);
-            }}
-          ></InputField>
-          <Button value="Search" onClick={handleSearchEmployee}></Button>
+          <form>
+            <InputField
+              placeholder="search jobs by employee name"
+              value={employeeQuery}
+              onChange={(e) => {
+                setEmployeeQuery(e.target.value);
+              }}
+            ></InputField>
+            <Button value="Search" onClick={handleSearchEmployee}></Button>
+          </form>
           <div>{employees}</div>
         </>
       ) : (
