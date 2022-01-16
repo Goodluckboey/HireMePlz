@@ -4,6 +4,7 @@ import Button from "../../generalcomponent/Button";
 import axios from "axios";
 import Useridcontext from "../../context/userid-context";
 import { useHistory, Link } from "react-router-dom/cjs/react-router-dom.min";
+import styles from "./parts/modules/login.module.css";
 
 const changeInput = (inputLogin, action) => {
   switch (action.type) {
@@ -63,36 +64,61 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      <h1>Login</h1>
-      <form>
-        <InputField
-          type="text"
-          value={inputLogin.Username}
-          onChange={(event) => {
-            dispatchInput({
-              type: "Username",
-              payload: { inputLogin: event.target.value },
-            });
-          }}
-          placeholder="Username"
-        ></InputField>
-        <InputField
-          type="password"
-          value={inputLogin.Password}
-          onChange={(event) => {
-            dispatchInput({
-              type: "Password",
-              payload: { inputLogin: event.target.value },
-            });
-          }}
-          placeholder="Password"
-        />
-        <Button onClick={handleLogin} value="Login" />
-        <p>Not a member? Sign up here!</p>
-        <Button onClick={handleSignUp} value="Sign up" />
-        <Link to="/">Back to home</Link>
-      </form>
+    <div>
+      <img
+        id={styles.loginImage}
+        src="/images/background-g6df07de67_1920.jpg"
+        alt=""
+      ></img>
+      <div id={styles.login}>
+        <form>
+          <h1 id={styles.welcome}>
+            Welcome <br />
+            to <br />
+            HireUs
+          </h1>
+          <div className={styles.inputField}>
+            <InputField
+              type="text"
+              value={inputLogin.Username}
+              onChange={(event) => {
+                dispatchInput({
+                  type: "Username",
+                  payload: { inputLogin: event.target.value },
+                });
+              }}
+              placeholder="Username"
+            ></InputField>
+          </div>
+          <div className={styles.inputField}>
+            {" "}
+            <InputField
+              type="password"
+              value={inputLogin.Password}
+              onChange={(event) => {
+                dispatchInput({
+                  type: "Password",
+                  payload: { inputLogin: event.target.value },
+                });
+              }}
+              placeholder="Password"
+            />
+          </div>
+          {/* <Button onClick={handleLogin} value="Login" /> */}
+          <button type="button" class="btn btn-primary" onClick={handleLogin}>
+            Login
+          </button>
+          <p>Not a member? Sign up here!</p>
+          {/* <Button onClick={handleSignUp} value="Sign up" /> */}
+          <button type="button" class="btn btn-light" onClick={handleSignUp}>
+            Sign up
+          </button>
+          <br />
+          <div id={styles.backToHome}>
+            <Link to="/">Back to home</Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

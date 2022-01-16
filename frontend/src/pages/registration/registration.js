@@ -4,6 +4,7 @@ import React, { useEffect, useState, useReducer } from "react";
 import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
 import { Link } from "react-router-dom";
+import styles from "./parts/modules/registration.module.css";
 
 //Use reducer to have 5 states
 const changeInput = (input, action) => {
@@ -64,89 +65,110 @@ const Registration = () => {
     console.log("handleLogin");
   };
   return (
-    <div className="registration-page">
-      <form>
-        <InputField
-          type="text"
-          value={input.firstName}
-          onChange={(event) => {
-            dispatchInput({
-              type: "First Name",
-              payload: { input: event.target.value },
-            });
-          }}
-          placeholder="First Name"
-          className="YOLO"
-        />
-        <InputField
-          type="text"
-          value={input.lastName}
-          onChange={(event) => {
-            dispatchInput({
-              type: "Last Name",
-              payload: { input: event.target.value },
-            });
-          }}
-          placeholder="Last Name"
-          className="YOLO"
-        />
-        <InputField
-          type="email"
-          value={input.email}
-          onChange={(event) => {
-            dispatchInput({
-              type: "Email",
-              payload: { input: event.target.value },
-            });
-          }}
-          placeholder="Email"
-          className="YOLO"
-        />
-        <InputField
-          type="text"
-          value={input.userName}
-          onChange={(event) => {
-            dispatchInput({
-              type: "Username",
-              payload: { input: event.target.value },
-            });
-          }}
-          placeholder="Username"
-          className="YOLO"
-        />
-        <p>*username exists</p>
-        <InputField
-          type="password"
-          value={input.password}
-          onChange={(event) => {
-            dispatchInput({
-              type: "Password",
-              payload: { input: event.target.value },
-            });
-          }}
-          placeholder="Password"
-          className="YOLO"
-        />
-        <InputField
-          type="password"
-          value={input.retypePassword}
-          onChange={(event) => {
-            dispatchInput({
-              type: "Retype Password",
-              payload: { input: event.target.value },
-            });
-          }}
-          placeholder="Retype Password"
-          className="YOLO"
-        />
-        <Link to="/login">
-          <Button onClick={handleSignUp} value="Sign up"></Button>
-        </Link>
-
-        <p>
-          Already a member? <Link to="/login">Login here</Link>
-        </p>
-      </form>
+    <div>
+      <img
+        id={styles.loginImage}
+        src="/images/background-g6df07de67_1920.jpg"
+        alt=""
+      ></img>
+      <div className={styles.registerPage}>
+        <form>
+          <h1 id={styles.welcome}>Sign up with Us!</h1>
+          <div className={styles.inputField}>
+            <InputField
+              type="text"
+              value={input.firstName}
+              onChange={(event) => {
+                dispatchInput({
+                  type: "First Name",
+                  payload: { input: event.target.value },
+                });
+              }}
+              placeholder="First Name"
+              className="YOLO"
+            />
+          </div>
+          <div className={styles.inputField}>
+            <InputField
+              type="text"
+              value={input.lastName}
+              onChange={(event) => {
+                dispatchInput({
+                  type: "Last Name",
+                  payload: { input: event.target.value },
+                });
+              }}
+              placeholder="Last Name"
+              className="YOLO"
+            />
+          </div>
+          <div className={styles.inputField}>
+            <InputField
+              type="email"
+              value={input.email}
+              onChange={(event) => {
+                dispatchInput({
+                  type: "Email",
+                  payload: { input: event.target.value },
+                });
+              }}
+              placeholder="Email"
+              className="YOLO"
+            />
+          </div>
+          <div className={styles.inputField}>
+            <InputField
+              type="text"
+              value={input.userName}
+              onChange={(event) => {
+                dispatchInput({
+                  type: "Username",
+                  payload: { input: event.target.value },
+                });
+              }}
+              placeholder="Username"
+              className="YOLO"
+            />
+          </div>
+          <p>*username exists</p>
+          <div className={styles.inputField}>
+            <InputField
+              type="password"
+              value={input.password}
+              onChange={(event) => {
+                dispatchInput({
+                  type: "Password",
+                  payload: { input: event.target.value },
+                });
+              }}
+              placeholder="Password"
+              className="YOLO"
+            />
+          </div>
+          <div className={styles.inputField}>
+            <InputField
+              type="password"
+              value={input.retypePassword}
+              onChange={(event) => {
+                dispatchInput({
+                  type: "Retype Password",
+                  payload: { input: event.target.value },
+                });
+              }}
+              placeholder="Retype Password"
+              className="YOLO"
+            />
+          </div>
+          <div className={styles.inputField}>
+            <Link to="/login">
+              <Button onClick={handleSignUp} value="Sign up"></Button>
+            </Link>
+          </div>
+          <p>
+            Already a member? <Link to="/login">Login here</Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
