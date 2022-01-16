@@ -17,10 +17,11 @@ import axios from "axios";
 
 function App() {
   // top level states: userid and random pics
+  const [switchMode, setSwitchMode] = false;
   const [userId, setUserId] = useState("");
   const [picsArray, setPicsArray] = useState("");
   const apiKey = "563492ad6f917000010000011ffd758dc43247008b50f4fd9d528ff2";
-  
+
   // fetch random images for usage
   useEffect(() => {
     async function fetchRandomPics() {
@@ -33,7 +34,7 @@ function App() {
     }
     fetchRandomPics();
   }, []);
-  
+
   // header for pages that requires authorization
   const afterLoggedInHeader = userId && (
     <AfterLoggedInHeader></AfterLoggedInHeader>
