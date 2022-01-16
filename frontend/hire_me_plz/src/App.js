@@ -12,6 +12,7 @@ import MyJobs from "./pages/myjobs/MyJobs";
 import EmployeeMarketplace from "./pages/employeemarketplace/EmployeeMarketplace";
 import PostJobs from "./pages/postjobs/PostJobs";
 import AfterLoggedInHeader from "./generalcomponent/AfterLoggedInHeader";
+import Editjob from "./pages/editjob/editjob";
 
 function App() {
   const [userId, setUserId] = useState("");
@@ -37,7 +38,7 @@ function App() {
               {afterLoggedInHeader}
               <Profile></Profile>
             </Route>
-            <Route exact path="/individualjob/">
+            <Route exact path="/individualjob/:index">
               <IndividualJob></IndividualJob>
             </Route>
             <Route exact path="/myjobs">
@@ -51,6 +52,10 @@ function App() {
             <Route exact path="/employeemarketplace">
               {afterLoggedInHeader}
               <EmployeeMarketplace></EmployeeMarketplace>
+            </Route>
+            <Route exact path="/editjob/:jobid">
+              {afterLoggedInHeader}
+              <Editjob></Editjob>
             </Route>
           </Useridcontext.Provider>
         </Switch>

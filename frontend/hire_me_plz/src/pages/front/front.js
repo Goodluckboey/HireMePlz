@@ -1,7 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FrontPageHeader from "./parts/FrontPageHeader";
+import axios from "axios";
 
 const FrontPage = () => {
+  let [foundJobData, setFoundJobData] = useState("");
+  const [jobQuery, setJobQuery] = useState("");
+
+  const pullJobData = () => {
+    async function fetcher() {
+      try {
+        const jobs = await axios.post(`http://localhost:5000/searchjobs`, {
+          query: jobQuery,
+        });
+        setFoundJobData(jobs);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetcher();
+  };
+
+  const jobs = [];
+  for (const job of foundJobData) {
+    jobs.push(
+      <Job
+        {...job}
+        key={uuidv4()}
+        onClick={() => attachEmployeeId(job._id)}
+      ></Job>
+    );
+  }
+
   return (
     <div id="FrontPage">
       <div>
@@ -13,7 +42,10 @@ const FrontPage = () => {
             id="searchbar"
             type="text"
             placeholder="Search.."
-            // onKeyPress={(e) => searchCheck(e)}
+            onChange={(e) => {
+              setJobQuery(e.target.value);
+            }}
+            onClick={pullJobData()}
           ></input>
         </form>
       </div>

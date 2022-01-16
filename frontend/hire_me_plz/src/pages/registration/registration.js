@@ -3,6 +3,7 @@ import React, { useEffect, useState, useReducer } from "react";
 // import { useParams } from "react-router-dom";
 import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
+import { Link } from "react-router-dom";
 
 //Use reducer to have 5 states
 const changeInput = (input, action) => {
@@ -138,9 +139,13 @@ const Registration = () => {
           placeholder="Retype Password"
           className="YOLO"
         />
-        <Button onClick={handleSignUp} value="Sign up"></Button>
-        <Button onClick={handleLogin} value="Login"></Button>
-        <p>Already a member? Login here</p>
+        <Link to="/login">
+          <Button onClick={handleSignUp} value="Sign up"></Button>
+        </Link>
+
+        <p>
+          Already a member? <Link to="/login">Login here</Link>
+        </p>
       </form>
     </div>
   );

@@ -5,6 +5,9 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import Useridcontext from "../../context/userid-context";
 import Button from "../../generalcomponent/Button";
 import styles from "./parts/modules/IndividualJob.module.css";
+import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 
 const IndividualJob = (props) => {
   //UseContext
@@ -13,6 +16,7 @@ const IndividualJob = (props) => {
 
   // save state
   let [jobsData, setJobsData] = useState("");
+  const params = useParams();
 
   const getJobsDataUnderUser = () => {
     async function fetcher() {
@@ -31,6 +35,7 @@ const IndividualJob = (props) => {
   useEffect(() => {
     getJobsDataUnderUser();
     console.log("fetching data");
+    console.log("params.index: ", params.index);
   }, []);
 
   const handleDelete = (element) => {
@@ -43,12 +48,17 @@ const IndividualJob = (props) => {
 
   return (
     <div>
-      <Splide>
-        {jobsData &&
-          jobsData.map((element) => {
+      <Link to="/myjobs">My Jobs</Link>
+      {jobsData && (
+        <Splide
+          options={{
+            start: params.index,
+            wheel: true,
+          }}
+        >
+          {jobsData.map((element) => {
             return (
               <>
-                <h1>{element.name}</h1>
                 <SplideSlide>
                   <div className={styles.largeJob}>
                     <h1>{element.name}</h1>
@@ -61,17 +71,14 @@ const IndividualJob = (props) => {
                       onClick={() => handleDelete(element._id)}
                       value="Delete"
                     ></Button>
+                    <Link to={`/editjob/${element._id}`}>Edit Quest</Link>
                   </div>
                 </SplideSlide>
               </>
             );
           })}
-
-        {/* {jobsData ? <div>hello</div> : <div>no jobs</div>} */}
-      </Splide>
-      {/* <Splide>{jobCards}</Splide> */}
-      <h1>hello world</h1>
-      {/* <h1>{jobCards}</h1> */}
+        </Splide>
+      )}
     </div>
   );
 };

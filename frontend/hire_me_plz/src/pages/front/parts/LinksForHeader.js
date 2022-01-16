@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LinksForHeader = (props) => {
-  return <a href={props.link}>{props.name}</a>;
+  return <Link to={props.link}>{props.name}</Link>;
 };
 
 export default LinksForHeader;

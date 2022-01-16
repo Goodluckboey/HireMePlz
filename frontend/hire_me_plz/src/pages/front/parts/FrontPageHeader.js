@@ -8,18 +8,21 @@ const FrontPageHeader = () => {
       <div id={styles.allLinks}>
         <ul className={styles.header}>
           <li className={styles.links}>
-            <LinksForHeader link={"/"} name="About"></LinksForHeader>
-          </li>
-          <li className={styles.links}>
-            <LinksForHeader link={"/"} name="Contact Us"></LinksForHeader>
+            <LinksForHeader
+              link={"/employeemarketplace"}
+              name="Find Jobs"
+            ></LinksForHeader>
           </li>
           <li className={styles.links}>
             <LinksForHeader link={"/login"} name="Login"></LinksForHeader>
           </li>
+          <li className={styles.links}>
+            <LinksForHeader
+              link={"/registration"}
+              name="Sign Up!"
+            ></LinksForHeader>
+          </li>
         </ul>
-        <a href="/" id={styles.signUpButton}>
-          Sign Up!
-        </a>
       </div>
     </div>
   );
