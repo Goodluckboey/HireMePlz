@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import LinksForHeader from "./LinksForHeader";
 import styles from "./modules/header.module.css";
 import { Link } from "react-router-dom";
+import Useridcontext from "../../../context/userid-context";
 
 const FrontPageHeader = () => {
   const callUserId = useContext(Useridcontext);

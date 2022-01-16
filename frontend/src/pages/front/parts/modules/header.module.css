@@ -30,6 +30,8 @@
   overflow: hidden;
   padding: 30px;
   text-align: right;
+  position: relative;
+  right: 130px;
 }
 
 .links {
@@ -46,7 +48,7 @@
   display: inline;
   width: 90px;
   top: 30px;
-  left: 30px;
+  left: 200px;
 }
 
 .banner {
@@ -63,7 +65,7 @@
   height: 800px;
   transform: scaleX(-1);
   display: inline-block;
-  left: 800px;
+  left: 880px;
 }
 
 #searchbar {
@@ -73,7 +75,7 @@
   padding: 20px;
   border: 2px solid rgb(20, 119, 86);
   border-radius: 25px;
-  left: 100px;
+  left: 200px;
   top: 400px;
 }
 
@@ -86,15 +88,13 @@
 #titleText {
   position: absolute;
   top: 250px;
-  left: 170px;
+  left: 260px;
   text-align: center;
   font-weight: bold;
 }
 
 #iconsBox {
   padding: 40px;
-  max-width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  display: inline-block;
+  display: flex;
+  justify-content: space-evenly;
 }
