@@ -53,6 +53,10 @@ function App() {
               {afterLoggedInHeader}
               <EmployeeMarketplace></EmployeeMarketplace>
             </Route>
+            <Route exact path="/employermarketplace">
+              {afterLoggedInHeader}
+              <Editjob></Editjob>
+            </Route>
             <Route exact path="/editjob/:jobid">
               {afterLoggedInHeader}
               <Editjob></Editjob>
