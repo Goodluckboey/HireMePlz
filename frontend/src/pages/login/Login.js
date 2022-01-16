@@ -3,7 +3,7 @@ import InputField from "../../generalcomponent/InputField";
 import Button from "../../generalcomponent/Button";
 import axios from "axios";
 import Useridcontext from "../../context/userid-context";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const changeInput = (inputLogin, action) => {
   switch (action.type) {
@@ -91,6 +91,7 @@ const Login = () => {
         <Button onClick={handleLogin} value="Login" />
         <p>Not a member? Sign up here!</p>
         <Button onClick={handleSignUp} value="Sign up" />
+        <Link to="/">Back to home</Link>
       </form>
     </div>
   );

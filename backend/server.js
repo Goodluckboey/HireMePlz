@@ -35,7 +35,7 @@ app.get("/seeddata", async (req, res) => {
 // get all jobs
 app.get("/alljobs", async (req, res) => {
   try {
-    const jobs = await Job.find({});
+    const jobs = await Job.find({ status: "Open" });
     res.json(jobs);
   } catch (err) {
     res.json(err);
@@ -109,7 +109,7 @@ app.put("/applyjob/:jobid", async (req, res) => {
   try {
     const job = await Job.findOneAndUpdate(
       { _id: req.params.jobid },
-      { $set: { employeeid: userId } }
+      { $set: { employeeid: userId, status: "accepted" } }
     );
     res.json(job);
   } catch (err) {
