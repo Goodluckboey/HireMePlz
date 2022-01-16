@@ -119,6 +119,19 @@ app.put("/applyjob/:jobid", async (req, res) => {
   }
 });
 
+//display applied jobs via employee id
+app.get("/appliedjobs/:userid", async (req, res) => {
+  try {
+    const jobs = await Job.find({
+      employeeid: req.params.userid,
+      status: "accepted",
+    });
+    res.json(jobs);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
 // edit a job by job id
 app.put("/individualjob/edit/:jobid", async (req, res) => {
   const body = sanitize(req.body);
