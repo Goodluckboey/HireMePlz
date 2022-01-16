@@ -9,7 +9,7 @@ import Employee from "./parts/Employee";
 
 const EmployerMarketplace = () => {
   // context
-  const { userId } = useContext(Useridcontext);
+  const { userId, picsArray } = useContext(Useridcontext);
 
   // states
   const [employeeQuery, setEmployeeQuery] = useState("");
@@ -34,7 +34,7 @@ const EmployerMarketplace = () => {
 
   // button on click function to search for employee with this specific name
   const handleSearchEmployee = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const endpoint = `http://127.0.0.1:5000/searchemployee`;
       const res = await axios.post(endpoint, { query: employeeQuery });
@@ -47,7 +47,15 @@ const EmployerMarketplace = () => {
   // create employee components to populate page
   const employees = [];
   for (const employee of fetchedEmployees) {
-    employees.push(<Employee {...employee} key={uuidv4()}></Employee>);
+    employees.push(
+      <Employee
+        {...employee}
+        key={uuidv4()}
+        imageUrl={
+          picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
+        }
+      ></Employee>
+    );
   }
 
   return (

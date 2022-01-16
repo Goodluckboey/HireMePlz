@@ -10,7 +10,7 @@ import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
 
 const EmployeeMarketplace = () => {
   // context
-  const { userId } = useContext(Useridcontext);
+  const { userId, picsArray } = useContext(Useridcontext);
 
   // states
   const [jobQuery, setJobQuery] = useState("");
@@ -61,6 +61,9 @@ const EmployeeMarketplace = () => {
         {...job}
         key={uuidv4()}
         applyJob={() => handleApplyJob(job._id)}
+        imageUrl={
+          picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
+        }
       ></Job>
     );
   }
