@@ -46,7 +46,8 @@ app.get("/alljobs", async (req, res) => {
 app.post("/searchjobs", async (req, res) => {
   const { query } = req.body;
   try {
-    const jobs = await Job.find({ name: query });
+    const regex = new RegExp(query, "gi");
+    const jobs = await Job.find({ name: regex });
     res.json(jobs);
   } catch (err) {
     console.log(err);
