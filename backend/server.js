@@ -6,6 +6,7 @@ const User = require("./models/user");
 const Job = require("./models/job");
 const accountsSeed = require("./Seed/AccountsSeed");
 const jobsSeed = require("./Seed/JobsSeed");
+const sanitize = require("mongo-sanitize");
 
 const mongoUri = "mongodb://127.0.0.1:27017/hiremeplz";
 connectDB(mongoUri);
@@ -44,7 +45,7 @@ app.get("/alljobs", async (req, res) => {
 
 // search for a job
 app.post("/searchjobs", async (req, res) => {
-  const { query } = req.body;
+  const { query } = sanitize(req.body);
   try {
     const regex = new RegExp(query, "gi");
     const jobs = await Job.find({ name: regex });
@@ -56,7 +57,7 @@ app.post("/searchjobs", async (req, res) => {
 
 // find user by username, then compare hash to authenticate. then send back user data if valid, else send back false
 app.post("/login", async (req, res) => {
-  const { username, hash } = req.body;
+  const { username, hash } = sanitize(req.body);
   let valid = false;
   try {
     const user = await User.findOne({ username });
@@ -84,8 +85,9 @@ app.get("/myjobs/:userid", async (req, res) => {
 
 // add a new job
 app.post("/postjobs", async (req, res) => {
+  const job = sanitize(req.body);
   try {
-    const newJob = new Job(req.body);
+    const newJob = new Job(job);
     await newJob.save();
     res.json(newJob);
   } catch (err) {
@@ -105,7 +107,7 @@ app.get("/individualjob/:userid", async (req, res) => {
 
 //apply jobs by attaching user id to employee id
 app.put("/applyjob/:jobid", async (req, res) => {
-  const { userId } = req.body;
+  const { userId } = sanitize(req.body);
   try {
     const job = await Job.findOneAndUpdate(
       { _id: req.params.jobid },
@@ -119,11 +121,10 @@ app.put("/applyjob/:jobid", async (req, res) => {
 
 // edit a job by job id
 app.put("/individualjob/edit/:jobid", async (req, res) => {
+  const body = sanitize(req.body);
+  const jobid = sanitize(req.params.jobid);
   try {
-    const job = await Job.findOneAndUpdate(
-      { _id: req.params.jobid },
-      { ...req.body }
-    );
+    const job = await Job.findOneAndUpdate({ _id: jobid }, { ...body });
     res.json(job);
   } catch (err) {
     res.json(err);
@@ -132,8 +133,9 @@ app.put("/individualjob/edit/:jobid", async (req, res) => {
 
 // delete a job by job id
 app.delete("/individualjob/delete/:jobid", async (req, res) => {
+  const jobid = sanitize(req.params.jobid);
   try {
-    const deletedJob = await Job.findOneAndDelete({ _id: req.params.jobid });
+    const deletedJob = await Job.findOneAndDelete({ _id: jobid });
     res.json(deletedJob);
   } catch (err) {
     res.json(err);
@@ -142,7 +144,7 @@ app.delete("/individualjob/delete/:jobid", async (req, res) => {
 
 // create a new user after hashing password
 app.post("/registration", async (req, res) => {
-  const { hash } = req.body;
+  const { hash } = sanitize(req.body);
   try {
     const hashed = await bcrypt.hash(hash, 12);
     await User.create({ ...req.body, hash: hashed });
@@ -188,7 +190,7 @@ app.get("/allemployees", async (req, res) => {
 
 // search employee by name
 app.post("/searchemployee", async (req, res) => {
-  const { query } = req.body;
+  const { query } = sanitize(req.body);
   try {
     const regex = new RegExp(query, "gi");
     const employees = await User.find({
