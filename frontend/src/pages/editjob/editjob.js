@@ -3,8 +3,13 @@ import axios from "axios";
 import { useParams } from "react-router";
 import styles from "./parts/modules/editjob.module.css";
 import { Link } from "react-router-dom";
+import Useridcontext from "../../context/userid-context";
+import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
 
 const Editjob = () => {
+  // context
+  const { userId } = useContext(Useridcontext);
+
   // job id
   const params = useParams();
   const jobid = params.jobid;
@@ -49,48 +54,56 @@ const Editjob = () => {
   };
 
   useEffect(() => {
-    grabSpecificJob();
-    console.log("fetching data");
+    if (userId) {
+      grabSpecificJob();
+      console.log("fetching data");
+    }
   }, []);
 
   return (
     <div>
-      {oneJobData && (
-        <div className={styles.editJobPrevious}>
-          <h1>{oneJobData.name}</h1>
-          <h3>{oneJobData.description}</h3>
-          <h3>{oneJobData.reward}</h3>
-          <h2>{oneJobData.status}</h2>
-        </div>
+      {userId ? (
+        <>
+          {oneJobData && (
+            <div className={styles.editJobPrevious}>
+              <h1>{oneJobData.name}</h1>
+              <h3>{oneJobData.description}</h3>
+              <h3>{oneJobData.reward}</h3>
+              <h2>{oneJobData.status}</h2>
+            </div>
+          )}
+          <form onSubmit={handleSave}>
+            <input
+              placeholder="job title"
+              value={jobTitle}
+              onChange={(e) => {
+                setJobTitle(e.target.value);
+              }}
+            />
+            <input
+              placeholder="job description"
+              value={jobDescription}
+              onChange={(e) => {
+                setJobDescription(e.target.value);
+              }}
+            />
+            <input
+              placeholder="reward"
+              value={reward}
+              onChange={(e) => {
+                setReward(e.target.value);
+              }}
+            />
+            {/* <Link to="/individualjob"> */}
+            <button type="submit" value="save">
+              Submit
+            </button>
+            {/* </Link> */}
+          </form>
+        </>
+      ) : (
+        <NotLoggedIn />
       )}
-      <form onSubmit={handleSave}>
-        <input
-          placeholder="job title"
-          value={jobTitle}
-          onChange={(e) => {
-            setJobTitle(e.target.value);
-          }}
-        />
-        <input
-          placeholder="job description"
-          value={jobDescription}
-          onChange={(e) => {
-            setJobDescription(e.target.value);
-          }}
-        />
-        <input
-          placeholder="reward"
-          value={reward}
-          onChange={(e) => {
-            setReward(e.target.value);
-          }}
-        />
-        {/* <Link to="/individualjob"> */}
-        <button type="submit" value="save">
-          Submit
-        </button>
-        {/* </Link> */}
-      </form>
     </div>
   );
 };

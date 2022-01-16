@@ -6,13 +6,16 @@ import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
 import Job from "./parts/Job";
 import { v4 as uuidv4 } from "uuid";
+import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
 
 const EmployeeMarketplace = () => {
+  // context
+  const { userId } = useContext(Useridcontext);
+
   // states
   const [jobQuery, setJobQuery] = useState("");
   const [fetchedJobs, setFetchedJobs] = useState([]);
-  const callAndSetUserId = useContext(Useridcontext);
-  const userId = callAndSetUserId.userId;
+
   // fetch jobs on mount
   useEffect(() => {
     async function fetcher() {
@@ -24,7 +27,9 @@ const EmployeeMarketplace = () => {
         console.log(err);
       }
     }
-    fetcher();
+    if (userId) {
+      fetcher();
+    }
   }, []);
 
   // button on click function to search for job with this specific name
@@ -71,16 +76,22 @@ const EmployeeMarketplace = () => {
 
   return (
     <div>
-      <Link to="/postjobs">Add Job</Link>
-      <InputField
-        placeholder="search jobs by job name"
-        value={jobQuery}
-        onChange={(e) => {
-          setJobQuery(e.target.value);
-        }}
-      ></InputField>
-      <Button value="Search" onClick={handleSearchJob}></Button>
-      <div>{jobs}</div>
+      {userId ? (
+        <>
+          <Link to="/postjobs">Add Job</Link>
+          <InputField
+            placeholder="search jobs by job name"
+            value={jobQuery}
+            onChange={(e) => {
+              setJobQuery(e.target.value);
+            }}
+          ></InputField>
+          <Button value="Search" onClick={handleSearchJob}></Button>
+          <div>{jobs}</div>
+        </>
+      ) : (
+        <NotLoggedIn />
+      )}
     </div>
   );
 };

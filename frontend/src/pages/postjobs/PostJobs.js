@@ -4,11 +4,12 @@ import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
 import Useridcontext from "../../context/userid-context";
 import { Link, useHistory } from "react-router-dom";
+import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
 
 const PostJobs = () => {
   // context
-  const userIdContext = useContext(Useridcontext);
-  const employerid = userIdContext.userId;
+  const { userId } = useContext(Useridcontext);
+  const employerid = userId;
 
   // useHistory
   let history = useHistory();
@@ -38,32 +39,38 @@ const PostJobs = () => {
 
   return (
     <div>
-      <h1>New Job Post</h1>
-      <InputField
-        placeholder="job name"
-        value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      ></InputField>
-      <InputField
-        placeholder="job description"
-        value={description}
-        onChange={(e) => {
-          setDescription(e.target.value);
-        }}
-      ></InputField>
-      <InputField
-        placeholder="reward"
-        value={reward}
-        onChange={(e) => {
-          setReward(e.target.value);
-        }}
-      ></InputField>
-      <Button onClick={handlePostJob} value="post"></Button>
-      <Link to="/myjobs">
-        <Button value="cancel"></Button>
-      </Link>
+      {userId ? (
+        <>
+          <h1>New Job Post</h1>
+          <InputField
+            placeholder="job name"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          ></InputField>
+          <InputField
+            placeholder="job description"
+            value={description}
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
+          ></InputField>
+          <InputField
+            placeholder="reward"
+            value={reward}
+            onChange={(e) => {
+              setReward(e.target.value);
+            }}
+          ></InputField>
+          <Button onClick={handlePostJob} value="post"></Button>
+          <Link to="/myjobs">
+            <Button value="cancel"></Button>
+          </Link>
+        </>
+      ) : (
+        <NotLoggedIn />
+      )}
     </div>
   );
 };

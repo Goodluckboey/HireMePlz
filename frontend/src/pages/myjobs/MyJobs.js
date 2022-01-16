@@ -7,11 +7,12 @@ import { v4 as uuidv4 } from "uuid";
 import Useridcontext from "../../context/userid-context";
 import Button from "../../generalcomponent/Button";
 import Job from "./parts/Job";
+import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
 
 const MyJobs = () => {
   // context
-  const userIdContext = useContext(Useridcontext);
-  const employerid = userIdContext.userId;
+  const { userId } = useContext(Useridcontext);
+  const employerid = userId;
 
   // states
   const [fetchedJobs, setFetchedJobs] = useState("");
@@ -27,7 +28,9 @@ const MyJobs = () => {
         console.log(err);
       }
     }
-    fetcher();
+    if (userId) {
+      fetcher();
+    }
   }, [employerid]);
 
   // create job components to populate page
@@ -51,15 +54,21 @@ const MyJobs = () => {
 
   return (
     <div>
-      <h1>My Jobs</h1>
-      <Link to="/individualjob/0">individual job</Link>
-      <Link to="/postjobs">
-        <Button value="Add Job"></Button>
-      </Link>
-      <Link to="/employeemarketplace">
-        <Button value="Employee Marketplace"></Button>
-      </Link>
-      <div>{jobs}</div>
+      {userId ? (
+        <>
+          <h1>My Jobs</h1>
+          <Link to="/individualjob/0">individual job</Link>
+          <Link to="/postjobs">
+            <Button value="Add Job"></Button>
+          </Link>
+          <Link to="/employeemarketplace">
+            <Button value="Employee Marketplace"></Button>
+          </Link>
+          <div>{jobs}</div>
+        </>
+      ) : (
+        <NotLoggedIn />
+      )}
     </div>
   );
 };
