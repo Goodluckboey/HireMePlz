@@ -7,6 +7,7 @@ import InputField from "../../generalcomponent/InputField";
 import Job from "./parts/Job";
 import { v4 as uuidv4 } from "uuid";
 import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
+import styles from "./parts/modules/ee.module.css";
 
 const EmployeeMarketplace = () => {
   // context
@@ -72,15 +73,33 @@ const EmployeeMarketplace = () => {
     <div>
       {userId ? (
         <>
+          <img
+            id={styles.marketImage}
+            src="/images/adult-g741925a1e_1920.jpg"
+            alt=""
+          ></img>
           <form>
-            <InputField
-              placeholder="search jobs by job name"
-              value={jobQuery}
-              onChange={(e) => {
-                setJobQuery(e.target.value);
-              }}
-            ></InputField>
-            <Button value="Search" onClick={handleSearchJob}></Button>
+            <h2 id={styles.marketTitleText}>
+              Discover a variety of lifestyles;
+              <br /> and Improve your Rank at the same time!
+            </h2>
+            <div id={styles.searchBar}>
+              <input
+                placeholder="search jobs by job name"
+                value={jobQuery}
+                onChange={(e) => {
+                  setJobQuery(e.target.value);
+                }}
+                size="80"
+              ></input>
+            </div>
+            <button
+              id={styles.submitButton}
+              onClick={handleSearchJob}
+              class="btn btn-info"
+            >
+              Search
+            </button>
           </form>
           <div>{jobs}</div>
         </>

@@ -1,0 +1,37 @@
+#marketImage {
+  display: flex;
+  width: 40%;
+  border-radius: 12px;
+  padding: 10px;
+  margin-left: auto;
+  position: relative;
+  right: 175px;
+  top: 50px;
+}
+
+#searchBar {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  line-height: 40px;
+  width: 200px;
+  border-radius: 25px;
+  /* border: 2px solid rgb(20, 119, 86); */
+}
+
+#marketTitleText {
+  position: absolute;
+  font-weight: bold;
+  padding: 10px;
+  line-height: 80px;
+  top: 230px;
+  text-align: center;
+  left: 190px;
+}
+
+#submitButton {
+  position: relative;
+  left: 430px;
+  bottom: 120px;
+}
