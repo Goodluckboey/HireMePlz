@@ -17,16 +17,16 @@ const EmployeeMarketplace = () => {
   const [fetchedJobs, setFetchedJobs] = useState([]);
 
   // fetch jobs on mount
-  useEffect(() => {
-    async function fetcher() {
-      try {
-        const endpoint = `http://127.0.0.1:5000/alljobs`;
-        const res = await axios.get(endpoint);
-        setFetchedJobs(res.data);
-      } catch (err) {
-        console.log(err);
-      }
+  async function fetcher() {
+    try {
+      const endpoint = `http://127.0.0.1:5000/alljobs`;
+      const res = await axios.get(endpoint);
+      setFetchedJobs(res.data);
+    } catch (err) {
+      console.log(err);
     }
+  }
+  useEffect(() => {
     if (userId) {
       fetcher();
     }
@@ -43,33 +43,23 @@ const EmployeeMarketplace = () => {
     }
   };
 
-  // create job components to populate page
-  const attachEmployeeId = (jobId) => {
-    const userIdToAttach = {
-      userId: userId,
-    };
+  const handleApplyJob = (jobId) => {
+    const userIdToAttach = { userId };
     axios
       .put(`http://127.0.0.1:5000/applyjob/${jobId}`, userIdToAttach)
       .then(() => {
-        async function fetcher() {
-          try {
-            const endpoint = `http://127.0.0.1:5000/alljobs`;
-            const res = await axios.get(endpoint);
-            setFetchedJobs(res.data);
-          } catch (err) {
-            console.log(err);
-          }
-        }
         fetcher();
       });
   };
+
+  // create job components to populate page
   const jobs = [];
   for (const job of fetchedJobs) {
     jobs.push(
       <Job
         {...job}
         key={uuidv4()}
-        onClick={() => attachEmployeeId(job._id)}
+        applyJob={() => handleApplyJob(job._id)}
       ></Job>
     );
   }

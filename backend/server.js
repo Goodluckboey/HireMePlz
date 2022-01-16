@@ -176,6 +176,30 @@ app.get("/findjob/:jobid", async (req, res) => {
   }
 });
 
+// find all employees (which is all users for now)
+app.get("/allemployees", async (req, res) => {
+  try {
+    const employees = await User.find({});
+    res.json(employees);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
+// search employee by name
+app.post("/searchemployee", async (req, res) => {
+  const { query } = req.body;
+  try {
+    const regex = new RegExp(query, "gi");
+    const employees = await User.find({
+      $or: [{ username: regex }, { firstname: regex }, { lastname: regex }],
+    });
+    res.json(employees);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
 //get single profile id from login page( STILL WORKING ON THIS)
 // app.get("/profile/singleId", async (req, res) => {
 //   const singleUserId = await User.find({}, { id: 1 });
