@@ -57,7 +57,6 @@ const MyJobs = () => {
       {userId ? (
         <>
           <h1>My Jobs</h1>
-          <Link to="/individualjob/0">individual job</Link>
           <Link to="/postjobs">
             <Button value="Add Job"></Button>
           </Link>

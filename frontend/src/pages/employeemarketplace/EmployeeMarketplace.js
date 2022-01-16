@@ -69,7 +69,6 @@ const EmployeeMarketplace = () => {
     <div>
       {userId ? (
         <>
-          <Link to="/postjobs">Add Job</Link>
           <form>
             <InputField
               placeholder="search jobs by job name"
