@@ -1,10 +1,10 @@
 import React from "react";
 import noImage from "../images/noimage.png";
 
-const Job = ({name, description, reward, status}) => {
+const Job = ({ name, description, reward, status, imageUrl }) => {
   return (
     <div>
-      <img src={noImage} alt="myImage" />
+      <img src={imageUrl ? imageUrl : noImage} alt="myImage" />
       <div>{name}</div>
       <div>{description}</div>
       <div>{reward}</div>

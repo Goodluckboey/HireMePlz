@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "../../../generalcomponent/Button";
 
-const Job = ({ name, description, reward, status, applyJob }) => {
+const Job = ({ name, description, reward, status, applyJob, imageUrl }) => {
+  const imgStyle = { width: "100px", height: "100px", objectFit: "cover" };
   return (
     <div>
-      <img src="" alt="myImage" />
+      <img src={imageUrl} style={imgStyle} alt="myImage" />
       <div>{name}</div>
       <div>{description}</div>
       <div>{reward}</div>
