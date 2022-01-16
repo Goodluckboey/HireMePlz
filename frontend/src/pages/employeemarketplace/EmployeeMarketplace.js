@@ -33,11 +33,12 @@ const EmployeeMarketplace = () => {
   }, []);
 
   // button on click function to search for job with this specific name
-  const handleSearchJob = async () => {
+  const handleSearchJob = async (e) => {
+    e.preventDefault();
     try {
       const endpoint = `http://127.0.0.1:5000/searchjobs`;
-      const jobs = await axios.post(endpoint, { query: jobQuery });
-      setFetchedJobs(jobs);
+      const res = await axios.post(endpoint, { query: jobQuery });
+      setFetchedJobs(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -69,14 +70,16 @@ const EmployeeMarketplace = () => {
       {userId ? (
         <>
           <Link to="/postjobs">Add Job</Link>
-          <InputField
-            placeholder="search jobs by job name"
-            value={jobQuery}
-            onChange={(e) => {
-              setJobQuery(e.target.value);
-            }}
-          ></InputField>
-          <Button value="Search" onClick={handleSearchJob}></Button>
+          <form>
+            <InputField
+              placeholder="search jobs by job name"
+              value={jobQuery}
+              onChange={(e) => {
+                setJobQuery(e.target.value);
+              }}
+            ></InputField>
+            <Button value="Search" onClick={handleSearchJob}></Button>
+          </form>
           <div>{jobs}</div>
         </>
       ) : (
