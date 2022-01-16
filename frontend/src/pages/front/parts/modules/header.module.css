@@ -1,24 +1,100 @@
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
+}
+
+:-ms-input-placeholder {
+  text-align: center;
+}
+
 .NavigationBar {
-  background-color: cyan;
-  position: relative;
-  padding: 10px;
+  background-color: rgb(226, 226, 226);
 }
 
 .links,
 .links:visited {
-  color: white;
+  list-style-type: none;
+  color: black;
 }
 
 .header {
-  display: flex;
-
-  padding: 20px;
+  overflow: hidden;
+  padding: 30px;
+  text-align: right;
 }
 
 .links {
   margin: 20px;
+  display: inline;
 }
 
-#allLinks {
+#findjobs {
+  color: yellow;
+}
+
+#logo {
+  position: absolute;
+  display: inline;
+  width: 90px;
+  top: 30px;
+  left: 30px;
+}
+
+.banner {
+  text-align: left;
+  position: relative;
+  top: 100px;
+  max-width: fit-content;
+  background-color: rgb(243, 242, 231);
+}
+
+#bannerImage {
+  position: relative;
+  z-index: 0;
+  height: 800px;
+  transform: scaleX(-1);
+  display: inline-block;
+  left: 800px;
+}
+
+#searchbar {
+  position: absolute;
+  width: 600px;
+  height: 50px;
+  padding: 20px;
+  border: 2px solid rgb(20, 119, 86);
+  border-radius: 25px;
+  left: 100px;
+  top: 400px;
+}
+
+#whyChooseUs {
+  position: relative;
+  top: 200px;
+  text-align: center;
+}
+
+#titleText {
+  position: absolute;
+  top: 250px;
+  left: 170px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#iconsBox {
+  padding: 40px;
+  max-width: fit-content;
+  margin-left: auto;
   margin-right: auto;
+  display: inline-block;
 }
