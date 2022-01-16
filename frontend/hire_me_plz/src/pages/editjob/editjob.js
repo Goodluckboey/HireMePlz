@@ -37,7 +37,7 @@ const Editjob = () => {
   const grabSpecificJob = () => {
     async function fetcher() {
       try {
-        const res = await axios.get(`http://localhost:5000/${jobid}`);
+        const res = await axios.get(`http://localhost:5000/findjob/${jobid}`);
         console.log("fetched specific Job Data!");
         setOneJobData(res.data[0]);
         console.log(oneJobData);

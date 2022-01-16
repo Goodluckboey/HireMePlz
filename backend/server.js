@@ -166,7 +166,7 @@ app.get("/profile/:userid", async (req, res) => {
 });
 
 // find specific job data
-app.get("/:jobid", async (req, res) => {
+app.get("/findjob/:jobid", async (req, res) => {
   try {
     const specificJob = await Job.find({ _id: req.params.jobid });
     res.json(specificJob);
