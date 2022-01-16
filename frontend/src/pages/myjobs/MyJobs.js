@@ -11,7 +11,7 @@ import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
 
 const MyJobs = () => {
   // context
-  const { userId } = useContext(Useridcontext);
+  const { userId, picsArray } = useContext(Useridcontext);
   const employerid = userId;
 
   // states
@@ -35,18 +35,17 @@ const MyJobs = () => {
 
   // create job components to populate page
   const jobs = [];
-  // for (const job of fetchedJobs) {
-  //   jobs.push(
-  //     <Link to="/individualjob/:">
-  //       <Job {...job} key={uuidv4()}></Job>
-  //     </Link>
-  //   );
-  // }
   if (fetchedJobs) {
     fetchedJobs.map((element, index) => {
       jobs.push(
         <Link to={`/individualjob/${index}`}>
-          <Job {...element} key={uuidv4()}></Job>
+          <Job
+            {...element}
+            key={uuidv4()}
+            imageUrl={
+              picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
+            }
+          ></Job>
         </Link>
       );
     });

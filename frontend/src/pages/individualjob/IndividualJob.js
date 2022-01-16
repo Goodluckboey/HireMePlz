@@ -12,8 +12,7 @@ import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
 
 const IndividualJob = (props) => {
   //UseContext
-  const callUserIdApp = useContext(Useridcontext);
-  const userId = callUserIdApp.userId;
+  const { userId, picsArray } = useContext(Useridcontext);
 
   // save state
   let [jobsData, setJobsData] = useState("");
