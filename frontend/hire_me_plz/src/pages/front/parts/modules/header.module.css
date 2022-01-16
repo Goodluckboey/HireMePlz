@@ -2,7 +2,6 @@
   background-color: cyan;
   position: relative;
   padding: 10px;
-  text-align: right;
 }
 
 .links,
@@ -12,7 +11,7 @@
 
 .header {
   display: flex;
-  margin-left: 20px;
+
   padding: 20px;
 }
 
@@ -22,13 +21,4 @@
 
 #allLinks {
   margin-right: auto;
-}
-
-#signUpButton {
-  border: 1px solid black;
-  border-radius: 12%;
-  background-color: darkgray;
-  color: white;
-  padding: 10px;
-  /* position: relative; */
 }

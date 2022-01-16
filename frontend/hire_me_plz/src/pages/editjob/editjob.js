@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router";
+import styles from "./parts/modules/editjob.module.css";
+import { Link } from "react-router-dom";
 
-const editjob = () => {
+const Editjob = () => {
   // job id
-  const jobid = "";
+  const params = useParams();
+  const jobid = params.jobid;
 
   // states for input fields
   const [jobTitle, setJobTitle] = useState("");
   const [jobDescription, setJobDescription] = useState("");
   const [reward, setReward] = useState("");
+  const [oneJobData, setOneJobData] = useState("");
 
   // function for onClick to update job on database
   const handleSave = async (e) => {
@@ -18,7 +23,7 @@ const editjob = () => {
       description: jobDescription,
       reward,
     };
-    const endpoint = `http://127.0.0.1:5000/editjob/${jobid}`;
+    const endpoint = `http://127.0.0.1:5000/individualjob/edit/${jobid}`;
     try {
       const res = await axios.put(endpoint, editedJob);
       console.log(res);
@@ -27,8 +32,37 @@ const editjob = () => {
     }
   };
 
+  const showJobId = console.log(`${jobid}`);
+  // function to grab specific job data to show to user
+  const grabSpecificJob = () => {
+    async function fetcher() {
+      try {
+        const res = await axios.get(`http://localhost:5000/${jobid}`);
+        console.log("fetched specific Job Data!");
+        setOneJobData(res.data[0]);
+        console.log(oneJobData);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetcher();
+  };
+
+  useEffect(() => {
+    grabSpecificJob();
+    console.log("fetching data");
+  }, []);
+
   return (
     <div>
+      {oneJobData && (
+        <div className={styles.editJobPrevious}>
+          <h1>{oneJobData.name}</h1>
+          <h3>{oneJobData.description}</h3>
+          <h3>{oneJobData.reward}</h3>
+          <h2>{oneJobData.status}</h2>
+        </div>
+      )}
       <form onSubmit={handleSave}>
         <input
           placeholder="job title"
@@ -51,10 +85,14 @@ const editjob = () => {
             setReward(e.target.value);
           }}
         />
-        <button type="submit" value="save" />
+        {/* <Link to="/individualjob"> */}
+        <button type="submit" value="save">
+          Submit
+        </button>
+        {/* </Link> */}
       </form>
     </div>
   );
 };
 
-export default editjob;
+export default Editjob;

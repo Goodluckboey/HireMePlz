@@ -32,14 +32,27 @@ const MyJobs = () => {
 
   // create job components to populate page
   const jobs = [];
-  for (const job of fetchedJobs) {
-    jobs.push(<Job {...job} key={uuidv4()}></Job>);
+  // for (const job of fetchedJobs) {
+  //   jobs.push(
+  //     <Link to="/individualjob/:">
+  //       <Job {...job} key={uuidv4()}></Job>
+  //     </Link>
+  //   );
+  // }
+  if (fetchedJobs) {
+    fetchedJobs.map((element, index) => {
+      jobs.push(
+        <Link to={`/individualjob/${index}`}>
+          <Job {...element} key={uuidv4()}></Job>
+        </Link>
+      );
+    });
   }
 
   return (
     <div>
       <h1>My Jobs</h1>
-      <Link to="/individualjob">individual job</Link>
+      <Link to="/individualjob/0">individual job</Link>
       <Link to="/postjobs">
         <Button value="Add Job"></Button>
       </Link>

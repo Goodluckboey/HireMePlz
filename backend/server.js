@@ -165,6 +165,16 @@ app.get("/profile/:userid", async (req, res) => {
   }
 });
 
+// find specific job data
+app.get("/:jobid", async (req, res) => {
+  try {
+    const specificJob = await Job.find({ _id: req.params.jobid });
+    res.json(specificJob);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
 //get single profile id from login page( STILL WORKING ON THIS)
 // app.get("/profile/singleId", async (req, res) => {
 //   const singleUserId = await User.find({}, { id: 1 });
