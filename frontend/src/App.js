@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 //import logo from "./logo.svg";
 import "./App.css";
@@ -13,18 +13,37 @@ import EmployeeMarketplace from "./pages/employeemarketplace/EmployeeMarketplace
 import PostJobs from "./pages/postjobs/PostJobs";
 import AfterLoggedInHeader from "./generalcomponent/AfterLoggedInHeader";
 import Editjob from "./pages/editjob/editjob";
+import axios from "axios";
 
 function App() {
+  // top level states: userid and random pics
   const [userId, setUserId] = useState("");
-  // const params = useParams();
+  const [picsArray, setPicsArray] = useState("");
+  const apiKey = "563492ad6f917000010000011ffd758dc43247008b50f4fd9d528ff2";
+  
+  // fetch random images for usage
+  useEffect(() => {
+    async function fetchRandomPics() {
+      const endpoint = "https://api.pexels.com/v1/curated?per_page=30";
+      const res = await axios.get(endpoint, {
+        headers: { Authorization: `${apiKey}` },
+      });
+      const data = res.data;
+      setPicsArray(data.photos);
+    }
+    fetchRandomPics();
+  }, []);
+  
+  // header for pages that requires authorization
   const afterLoggedInHeader = userId && (
     <AfterLoggedInHeader></AfterLoggedInHeader>
   );
+
   return (
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Useridcontext.Provider value={{ userId, setUserId }}>
+          <Useridcontext.Provider value={{ userId, setUserId, picsArray }}>
             <Route exact path="/">
               <FrontPage></FrontPage>
             </Route>
