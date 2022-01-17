@@ -29,7 +29,7 @@ const changeInput = (input, action) => {
 
 const Registration = () => {
   // usestate to track checkboxes
-  const [checkBoxesData, setCheckBoxesData] = useState({});
+  const [checkBoxesData, setCheckBoxesData] = useState([]);
 
   // This is to set the state to be used as value in the input. State is required to allow inputs in the fields
   const [input, dispatchInput] = useReducer(changeInput, {
@@ -43,19 +43,13 @@ const Registration = () => {
 
   const handleSignUp = (e) => {
     const post = async () => {
-      const tags = [];
-      for (const [tag, value] of Object.entries(checkBoxesData)) {
-        if (value) {
-          tags.push(tag);
-        }
-      }
       const data = {
         firstname: input.firstName,
         lastname: input.lastName,
         email: input.email,
         username: input.userName,
         hash: input.password,
-        tags,
+        tags: checkBoxesData,
       };
       try {
         const response = await axios.post(

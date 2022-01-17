@@ -8,7 +8,13 @@ const TagsCheckBoxBundle = ({ handleData }) => {
   );
 
   useEffect(() => {
-    handleData(checkBoxes);
+    const tags = [];
+    for (const [tag, value] of Object.entries(checkBoxes)) {
+      if (value) {
+        tags.push(tag);
+      }
+    }
+    handleData(tags);
   }, [checkBoxes]);
 
   const tagsArray = tags.map((tag) => {
