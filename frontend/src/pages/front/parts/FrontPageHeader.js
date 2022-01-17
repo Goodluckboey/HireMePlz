@@ -25,24 +25,28 @@ const FrontPageHeader = () => {
               name="Find Jobs"
             ></LinksForHeader>
           </li>
-          <li className={styles.links}>
-            <Link to="/login">
-              <button type="button" class="btn btn-primary">
-                Sign in
-              </button>
-            </Link>
-          </li>
-          <li className={styles.links}>
-            <Link to="/registration">
-              <button
-                type="button"
-                class="btn btn-light"
-                data-mdb-ripple-color="dark"
-              >
-                Sign up
-              </button>
-            </Link>
-          </li>
+          {userId === "" && (
+            <li className={styles.links}>
+              <Link to="/login">
+                <button type="button" class="btn btn-primary">
+                  Sign in
+                </button>
+              </Link>
+            </li>
+          )}
+          {userId === "" && (
+            <li className={styles.links}>
+              <Link to="/registration">
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  data-mdb-ripple-color="dark"
+                >
+                  Sign up
+                </button>
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>
