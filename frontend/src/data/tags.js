@@ -1,13 +1,16 @@
 const tags = [
-  "plumbing",
-  "killing",
-  "courier",
-  "coding",
-  "academic",
-  "relaxing",
-  "cooking",
-  "delivery",
-  "food",
+  "Logo Design",
+  "WordPress",
+  "Voice Over",
+  "SEO",
+  "Illustration",
+  "Translation",
+  "Digital Marketing",
+  "Delivery",
+  "Plumbing",
+  "Fix Computer",
+  "Website Design",
+  "NFT Art"
 ];
 
 export default tags;
