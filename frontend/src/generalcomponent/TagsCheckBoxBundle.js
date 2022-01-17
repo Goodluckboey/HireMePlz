@@ -23,7 +23,7 @@ const TagsCheckBoxBundle = ({ handleData }) => {
         <input
           type="checkbox"
           checked={checkBoxes[tag]}
-          name={tag}
+          id={tag}
           onChange={(e) => {
             setCheckBoxes({ ...checkBoxes, [tag]: e.target.checked });
           }}

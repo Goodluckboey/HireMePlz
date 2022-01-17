@@ -48,16 +48,20 @@ app.post("/searchjobs?", async (req, res) => {
   const { query, tags } = sanitize(req.body);
   const { type } = sanitize(req.query); // ?type=and
   let jobs;
+  console.log(query, tags, type);
   try {
     const regex = new RegExp(query, "gi");
-    if (type === "or") {
-      jobs = await Job.find({
-        $or: [{ name: regex }, { tags: { $all: tags } }],
-      });
-    } else if (type === "and") {
-      jobs = await Job.find({ $or: [{ name: regex }, { tags }] });
-    } else {
+    if (tags.length === 0) {
       jobs = await Job.find({ name: regex });
+    } else {
+      if (type === "or") {
+        jobs = await Job.find({
+          name: regex,
+          tags: { $all: tags },
+        });
+      } else if (type === "and") {
+        jobs = await Job.find({ name: regex, tags });
+      }
     }
     res.json(jobs);
   } catch (err) {
@@ -232,24 +236,22 @@ app.post("/searchemployee?", async (req, res) => {
   let employees;
   try {
     const regex = new RegExp(query, "gi");
-    if (type === "and") {
-      employees = await User.find({
-        $or: [
-          { username: regex },
-          { firstname: regex },
-          { lastname: regex },
-          { tags },
-        ],
-      });
-    } else if (type === "or") {
+    if (tags.length === 0) {
       employees = await User.find({
         $or: [{ username: regex }, { firstname: regex }, { lastname: regex }],
-        tags: { $all: tags },
       });
     } else {
-      employees = await User.find({
-        $or: [{ username: regex }, { firstname: regex }, { lastname: regex }],
-      });
+      if (type === "and") {
+        employees = await User.find({
+          $or: [{ username: regex }, { firstname: regex }, { lastname: regex }],
+          tags,
+        });
+      } else if (type === "or") {
+        employees = await User.find({
+          $or: [{ username: regex }, { firstname: regex }, { lastname: regex }],
+          tags: { $all: tags },
+        });
+      }
     }
     res.json(employees);
   } catch (err) {
