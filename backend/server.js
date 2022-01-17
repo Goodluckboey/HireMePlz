@@ -43,19 +43,29 @@ app.get("/alljobs", async (req, res) => {
   }
 });
 
-// search for a job
-app.post("/searchjobs", async (req, res) => {
-  const { query } = sanitize(req.body);
+// search for a job allows optional tags and query
+app.post("/searchjobs?", async (req, res) => {
+  const { query, tags } = sanitize(req.body);
+  const { type } = sanitize(req.query); // ?type=and
+  let jobs;
   try {
     const regex = new RegExp(query, "gi");
-    const jobs = await Job.find({ name: regex });
+    if (type === "or") {
+      jobs = await Job.find({
+        $or: [{ name: regex }, { tags: { $all: tags } }],
+      });
+    } else if (type === "and") {
+      jobs = await Job.find({ $or: [{ name: regex }, { tags }] });
+    } else {
+      jobs = await Job.find({ name: regex });
+    }
     res.json(jobs);
   } catch (err) {
     console.log(err);
   }
 });
 
-// find user by username, then compare hash to authenticate. then send back user data if valid, else send back false
+// find user by username, then compare hash to authenticate
 app.post("/login", async (req, res) => {
   const { username, hash } = sanitize(req.body);
   let valid = false;
@@ -131,6 +141,7 @@ app.put("/appliedjob/cancel/:jobid", async (req, res) => {
     res.json(err);
   }
 });
+
 //display applied jobs via employee id
 app.get("/appliedjobs/:userid", async (req, res) => {
   try {
@@ -214,14 +225,32 @@ app.get("/allemployees", async (req, res) => {
   }
 });
 
-// search employee by name
-app.post("/searchemployee", async (req, res) => {
-  const { query } = sanitize(req.body);
+// search employee by name w/ optional tags and query
+app.post("/searchemployee?", async (req, res) => {
+  const { query, tags } = sanitize(req.body);
+  const { type } = sanitize(req.query);
+  let employees;
   try {
     const regex = new RegExp(query, "gi");
-    const employees = await User.find({
-      $or: [{ username: regex }, { firstname: regex }, { lastname: regex }],
-    });
+    if (type === "and") {
+      employees = await User.find({
+        $or: [
+          { username: regex },
+          { firstname: regex },
+          { lastname: regex },
+          { tags },
+        ],
+      });
+    } else if (type === "or") {
+      employees = await User.find({
+        $or: [{ username: regex }, { firstname: regex }, { lastname: regex }],
+        tags: { $all: tags },
+      });
+    } else {
+      employees = await User.find({
+        $or: [{ username: regex }, { firstname: regex }, { lastname: regex }],
+      });
+    }
     res.json(employees);
   } catch (err) {
     res.json(err);
