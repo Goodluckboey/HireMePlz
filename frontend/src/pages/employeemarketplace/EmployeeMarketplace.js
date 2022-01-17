@@ -58,14 +58,16 @@ const EmployeeMarketplace = () => {
   const jobs = [];
   for (const job of fetchedJobs) {
     jobs.push(
-      <Job
-        {...job}
-        key={uuidv4()}
-        applyJob={() => handleApplyJob(job._id)}
-        imageUrl={
-          picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
-        }
-      ></Job>
+      <div className={styles.card}>
+        <Job
+          {...job}
+          key={uuidv4()}
+          applyJob={() => handleApplyJob(job._id)}
+          imageUrl={
+            picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
+          }
+        ></Job>
+      </div>
     );
   }
 
@@ -73,35 +75,41 @@ const EmployeeMarketplace = () => {
     <div>
       {userId ? (
         <>
-          <img
-            id={styles.marketImage}
-            src="/images/adult-g741925a1e_1920.jpg"
-            alt=""
-          ></img>
-          <form>
-            <h2 id={styles.marketTitleText}>
-              Discover a variety of lifestyles;
-              <br /> and Improve your Rank at the same time!
-            </h2>
-            <div id={styles.searchBar}>
-              <input
-                placeholder="search jobs by job name"
-                value={jobQuery}
-                onChange={(e) => {
-                  setJobQuery(e.target.value);
-                }}
-                size="80"
-              ></input>
+          <div className={styles.banner}>
+            <img
+              id={styles.marketImage}
+              src="/images/adult-g741925a1e_1920.jpg"
+              alt=""
+            ></img>
+            <form>
+              <h2 id={styles.marketTitleText}>
+                Discover a variety of lifestyles;
+                <br /> and Improve your Rank at the same time!
+              </h2>
+              <div>
+                <input
+                  id={styles.searchbar}
+                  type="text"
+                  placeholder="Search jobs by job name.."
+                  value={jobQuery}
+                  onChange={(e) => {
+                    setJobQuery(e.target.value);
+                  }}
+                ></input>
+              </div>
+
+              <button id={styles.submitButton} onClick={handleSearchJob}>
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+            <div className={styles.smallIcons}>
+              <i class="fab fa-facebook fa-3x"></i>
+              <i class="fab fa-instagram fa-3x"></i>
+              <i class="fab fa-twitter fa-3x"></i>
             </div>
-            <button
-              id={styles.submitButton}
-              onClick={handleSearchJob}
-              class="btn btn-info"
-            >
-              Search
-            </button>
-          </form>
-          <div>{jobs}</div>
+          </div>
+
+          <div id={styles.cardBox}>{jobs}</div>
         </>
       ) : (
         <NotLoggedIn />
