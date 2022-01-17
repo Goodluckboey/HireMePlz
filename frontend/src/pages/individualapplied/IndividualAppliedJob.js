@@ -21,6 +21,7 @@ const AppliedIndividualJob = (props) => {
   const getJobsDataUnderUser = () => {
     async function fetcher() {
       try {
+        //using same route as the appliedjobs component
         const res = await axios.get(
           `http://127.0.0.1:5000/appliedjobs/${userId}`
         );
