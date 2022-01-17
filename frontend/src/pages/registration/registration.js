@@ -5,6 +5,7 @@ import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
 import { Link } from "react-router-dom";
 import styles from "./parts/modules/registration.module.css";
+import TagsCheckBoxBundle from "../../generalcomponent/TagsCheckBoxBundle";
 
 //Use reducer to have 5 states
 const changeInput = (input, action) => {
@@ -27,6 +28,9 @@ const changeInput = (input, action) => {
 };
 
 const Registration = () => {
+  // usestate to track checkboxes
+  const [checkBoxesData, setCheckBoxesData] = useState({});
+
   // This is to set the state to be used as value in the input. State is required to allow inputs in the fields
   const [input, dispatchInput] = useReducer(changeInput, {
     firstName: "",
@@ -39,12 +43,19 @@ const Registration = () => {
 
   const handleSignUp = (e) => {
     const post = async () => {
+      const tags = [];
+      for (const [tag, value] of Object.entries(checkBoxesData)) {
+        if (value) {
+          tags.push(tag);
+        }
+      }
       const data = {
         firstname: input.firstName,
         lastname: input.lastName,
         email: input.email,
         username: input.userName,
         hash: input.password,
+        tags,
       };
       try {
         const response = await axios.post(
@@ -158,6 +169,10 @@ const Registration = () => {
               placeholder="Retype Password"
               className="YOLO"
             />
+          </div>
+          <div className={styles.inputField}>
+            <div>Skills: </div>
+            <TagsCheckBoxBundle handleData={setCheckBoxesData} />
           </div>
           <div className={styles.inputField}>
             <Link to="/login">
