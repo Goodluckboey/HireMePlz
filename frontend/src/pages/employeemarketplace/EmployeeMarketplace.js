@@ -1,13 +1,14 @@
+// dependencies
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import Useridcontext from "../../context/userid-context";
-import { Link } from "react-router-dom";
-import Button from "../../generalcomponent/Button";
-import InputField from "../../generalcomponent/InputField";
-import Job from "./parts/Job";
 import { v4 as uuidv4 } from "uuid";
-import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
+
+// css modules
 import styles from "./parts/modules/ee.module.css";
+
+// child components
+import Job from "./parts/Job";
 import TagsCheckBoxBundle from "../../generalcomponent/TagsCheckBoxBundle";
 import SearchFilter from "../../generalcomponent/SearchFilter";
 
@@ -19,16 +20,19 @@ const EmployeeMarketplace = () => {
   const [jobQuery, setJobQuery] = useState("");
   const [fetchedJobs, setFetchedJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchFilter1, setSearchFilter1] = useState([]); // tags
-  const [searchFilter2, setSearchFilter2] = useState(""); // search type
+  const [tags, setTags] = useState([]); // tags
+  const [searchType, setSearchType] = useState(""); // search type
 
   // button on click function to search for job with this specific name
-  const handleSearchJob = async () => {
+  const handleSearchJob = async (e) => {
+    if (e) {
+      e.preventDefault();
+    }
     try {
-      const endpoint = `http://127.0.0.1:5000/searchjobs?type=${searchFilter2}`;
+      const endpoint = `http://127.0.0.1:5000/searchjobs?type=${searchType}`;
       const res = await axios.post(endpoint, {
         query: jobQuery,
-        tags: searchFilter1,
+        tags,
       });
       setFetchedJobs(res.data);
     } catch (err) {
@@ -37,7 +41,7 @@ const EmployeeMarketplace = () => {
     setIsLoading(false);
   };
 
-  // fetch jobs on mount
+  // fetch jobs on mount, search changes
   useEffect(() => {
     setIsLoading(true);
     const timer = setTimeout(handleSearchJob, 1000);
@@ -46,7 +50,7 @@ const EmployeeMarketplace = () => {
         clearTimeout(timer);
       }
     };
-  }, [jobQuery, searchFilter1, searchFilter2]);
+  }, [jobQuery, tags, searchType]);
 
   const handleApplyJob = (jobId) => {
     const userIdToAttach = { userId };
@@ -99,10 +103,10 @@ const EmployeeMarketplace = () => {
               }}
             ></input>
           </div>
-          <TagsCheckBoxBundle handleData={setSearchFilter1} />{" "}
-          {/* this is a general component */}
-          <SearchFilter setFilter={setSearchFilter2}></SearchFilter>{" "}
-          {/* this is a general component */}
+
+          <TagsCheckBoxBundle handleData={setTags} />
+          <SearchFilter setFilter={setSearchType} />
+
           <button id={styles.submitButton} onClick={handleSearchJob}>
             <i class="fas fa-search"></i>
           </button>
