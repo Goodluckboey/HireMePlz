@@ -48,19 +48,21 @@ app.post("/searchjobs?", async (req, res) => {
   const { query, tags } = sanitize(req.body);
   const { type } = sanitize(req.query); // ?type=and
   let jobs;
-  console.log(query, tags, type);
   try {
     const regex = new RegExp(query, "gi");
     if (tags.length === 0) {
-      jobs = await Job.find({ name: regex });
+      jobs = await Job.find({ $or: [{ name: regex }, { description: regex }] });
     } else {
       if (type === "or") {
         jobs = await Job.find({
-          name: regex,
+          $or: [{ name: regex }, { description: regex }],
           tags: { $all: tags },
         });
       } else if (type === "and") {
-        jobs = await Job.find({ name: regex, tags });
+        jobs = await Job.find({
+          $or: [{ name: regex }, { description: regex }],
+          tags,
+        });
       }
     }
     res.json(jobs);
