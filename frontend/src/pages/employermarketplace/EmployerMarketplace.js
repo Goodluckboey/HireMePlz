@@ -1,12 +1,16 @@
+// dependencies
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import Useridcontext from "../../context/userid-context";
-import Button from "../../generalcomponent/Button";
-import InputField from "../../generalcomponent/InputField";
-import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
-import Employee from "./parts/Employee";
+import { v4 as uuidv4 } from "uuid";
+
+// css modules
 import styles from "./parts/modules/employee.module.css";
+
+// child components
+import Employee from "./parts/Employee";
+import TagsCheckBoxBundle from "../../generalcomponent/TagsCheckBoxBundle";
+import SearchFilter from "../../generalcomponent/SearchFilter";
 
 const EmployerMarketplace = () => {
   // context
@@ -15,35 +19,38 @@ const EmployerMarketplace = () => {
   // states
   const [employeeQuery, setEmployeeQuery] = useState("");
   const [fetchedEmployees, setFetchedEmployees] = useState([]);
-
-  // fetch employees on mount
-  async function fetcher() {
-    try {
-      const endpoint = `http://127.0.0.1:5000/allemployees`;
-      const res = await axios.get(endpoint);
-      setFetchedEmployees(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    if (userId) {
-      fetcher();
-    }
-  }, []);
+  const [isLoading, setIsLoading] = useState(true);
+  const [tags, setTags] = useState([]); // tags
+  const [searchType, setSearchType] = useState(""); // search type
 
   // button on click function to search for employee with this specific name
   const handleSearchEmployee = async (e) => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     try {
-      const endpoint = `http://127.0.0.1:5000/searchemployee`;
-      const res = await axios.post(endpoint, { query: employeeQuery });
+      const endpoint = `http://127.0.0.1:5000/searchemployee?type=${searchType}`;
+      const res = await axios.post(endpoint, {
+        query: employeeQuery,
+        tags,
+      });
       setFetchedEmployees(res.data);
     } catch (err) {
       console.log(err);
     }
+    setIsLoading(false);
   };
+
+  // fetch employees on mount, search changes
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(handleSearchEmployee, 1000);
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [employeeQuery, tags, searchType]);
 
   // create employee components to populate page
   const employees = [];
@@ -61,43 +68,44 @@ const EmployerMarketplace = () => {
 
   return (
     <div>
-      {userId ? (
-        <>
-          <div className={styles.banner}>
-            <img
-              id={styles.marketImage}
-              src="/images/adult-g741925a1e_1920.jpg"
-              alt=""
-            ></img>
-            <form>
-              <h2 id={styles.marketTitleText}>
-                Whether it's finding a missing dog, or cheating on <br />
-                your science project, find the perfect applicant here!
-              </h2>
-              <div>
-                <input
-                  id={styles.searchbar}
-                  type="text"
-                  placeholder="Search jobs by employee name.."
-                  value={employeeQuery}
-                  onChange={(e) => {
-                    setEmployeeQuery(e.target.value);
-                  }}
-                ></input>
-              </div>
-
-              <button id={styles.submitButton} onClick={handleSearchEmployee}>
-                <i class="fas fa-search"></i>
-              </button>
-            </form>
-            <div className={styles.smallIcons}>
-              <i class="fab fa-facebook fa-3x"></i>
-              <i class="fab fa-instagram fa-3x"></i>
-              <i class="fab fa-twitter fa-3x"></i>
-            </div>
+      <div className={styles.banner}>
+        <img
+          id={styles.marketImage}
+          src="/images/adult-g741925a1e_1920.jpg"
+          alt=""
+        ></img>
+        <form>
+          <h2 id={styles.marketTitleText}>
+            Whether it's finding a missing dog, or cheating on <br />
+            your science project, find the perfect applicant here!
+          </h2>
+          <div>
+            <input
+              id={styles.searchbar}
+              type="text"
+              placeholder="Search jobs by employee name.."
+              value={employeeQuery}
+              onChange={(e) => {
+                setEmployeeQuery(e.target.value);
+              }}
+            ></input>
           </div>
 
-          {/* <form>
+          <TagsCheckBoxBundle handleData={setTags} />
+          <SearchFilter setFilter={setSearchType} />
+
+          <button id={styles.submitButton} onClick={handleSearchEmployee}>
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        <div className={styles.smallIcons}>
+          <i class="fab fa-facebook fa-3x"></i>
+          <i class="fab fa-instagram fa-3x"></i>
+          <i class="fab fa-twitter fa-3x"></i>
+        </div>
+      </div>
+
+      {/* <form>
             <InputField
               placeholder="search jobs by employee name"
               value={employeeQuery}
@@ -107,11 +115,10 @@ const EmployerMarketplace = () => {
             ></InputField>
             <Button value="Search" onClick={handleSearchEmployee}></Button>
           </form> */}
-
-          <div className={styles.cardBox}>{employees}</div>
-        </>
+      {isLoading ? (
+        <h1>Loading...</h1>
       ) : (
-        <NotLoggedIn></NotLoggedIn>
+        <div className={styles.cardBox}>{employees}</div>
       )}
     </div>
   );
