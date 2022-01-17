@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import LinksForHeader from "./LinksForHeader";
 import styles from "./modules/header.module.css";
 import { Link } from "react-router-dom";
@@ -7,6 +7,13 @@ import Useridcontext from "../../../context/userid-context";
 const FrontPageHeader = () => {
   const callUserId = useContext(Useridcontext);
   const userId = callUserId.userId;
+  const [logState, setLogState] = useState(false);
+  let visibillityTracker = styles.links;
+
+  if (userId !== "") {
+    visibillityTracker = styles.transparent;
+  }
+
   return (
     <div className={styles.NavigationBar}>
       <Link to="/">
@@ -17,7 +24,7 @@ const FrontPageHeader = () => {
           }
         ></img>
       </Link>
-      <div id={styles.allLinks}>
+      <div id={styles.allLinks} >
         <ul className={styles.header}>
           <li className={styles.links} id={styles.findjobs}>
             <LinksForHeader
@@ -25,8 +32,9 @@ const FrontPageHeader = () => {
               name="Find Jobs"
             ></LinksForHeader>
           </li>
+
           {userId === "" && (
-            <li className={styles.links}>
+            <li className={visibillityTracker}>
               <Link to="/login">
                 <button type="button" class="btn btn-primary">
                   Sign in
@@ -35,7 +43,7 @@ const FrontPageHeader = () => {
             </li>
           )}
           {userId === "" && (
-            <li className={styles.links}>
+            <li className={visibillityTracker}>
               <Link to="/registration">
                 <button
                   type="button"

@@ -75,6 +75,7 @@ const EmployeeMarketplace = () => {
     <div>
       {userId ? (
         <>
+          {/* <h1>All Available Jobs</h1> */}
           <div className={styles.banner}>
             <img
               id={styles.marketImage}
