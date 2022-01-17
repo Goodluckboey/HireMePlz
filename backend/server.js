@@ -127,7 +127,7 @@ app.put("/applyjob/:jobid", async (req, res) => {
   try {
     const job = await Job.findOneAndUpdate(
       { _id: req.params.jobid },
-      { $set: { employeeid: userId, status: "Accepted" } }
+      { $set: { employeeid: userId, status: "Pending" } }
     );
     res.json(job);
   } catch (err) {
@@ -140,7 +140,7 @@ app.put("/appliedjob/cancel/:jobid", async (req, res) => {
   try {
     const appliedJob = await Job.findOneAndUpdate(
       { _id: req.params.jobid },
-      { $set: { status: "Open" } }
+      { $set: { status: "Open", employeeid: "" } }
     );
     res.json(appliedJob);
   } catch (err) {
@@ -153,7 +153,7 @@ app.get("/appliedjobs/:userid", async (req, res) => {
   try {
     const jobs = await Job.find({
       employeeid: req.params.userid,
-      status: "Accepted",
+      status: { $in: ["Accepted", "Pending"] },
     });
     res.json(jobs);
   } catch (err) {
@@ -179,6 +179,34 @@ app.delete("/individualjob/delete/:jobid", async (req, res) => {
   try {
     const deletedJob = await Job.findOneAndDelete({ _id: jobid });
     res.json(deletedJob);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
+//accept a job by jobid
+app.put("/individualjob/accept/:jobid", async (req, res) => {
+  const jobid = sanitize(req.params.jobid);
+  try {
+    const updateStatus = await Job.findOneAndUpdate(
+      { _id: jobid },
+      { $set: { status: "Accepted" } }
+    );
+    res.json(updateStatus);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
+//reject a job by jobid
+app.put("/individualjob/reject/:jobid", async (req, res) => {
+  const jobid = sanitize(req.params.jobid);
+  try {
+    const updateStatus = await Job.findOneAndUpdate(
+      { _id: jobid },
+      { $set: { status: "Open" } }
+    );
+    res.json(updateStatus);
   } catch (err) {
     res.json(err);
   }

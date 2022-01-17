@@ -48,6 +48,21 @@ const IndividualJob = (props) => {
       });
   };
 
+  const handleAccept = (element) => {
+    axios
+      .put(`http://localhost:5000/individualjob/accept/${element}`)
+      .then(() => {
+        getJobsDataUnderUser();
+      });
+  };
+
+  const handleReject = (element) => {
+    axios
+      .put(`http://localhost:5000/individualjob/reject/${element}`)
+      .then(() => {
+        getJobsDataUnderUser();
+      });
+  };
   return (
     <div>
       {userId ? (
@@ -71,10 +86,21 @@ const IndividualJob = (props) => {
                         </p>
                         <h2>{element.reward} Copper Coins</h2>
                         <h2>{element.status}</h2>
+                        <div>
+                          <Button
+                            onClick={() => handleAccept(element._id)}
+                            value="Accept"
+                          />
+                          <Button
+                            onClick={() => handleReject(element._id)}
+                            value="Reject"
+                          />
+                        </div>
                         <Button
                           onClick={() => handleDelete(element._id)}
                           value="Delete"
                         ></Button>
+
                         <Link to={`/editjob/${element._id}`}>Edit Quest</Link>
                       </div>
                     </SplideSlide>
