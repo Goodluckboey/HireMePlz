@@ -1,0 +1,36 @@
+/* .backgroundBody {
+  background-color: darkgray;
+  height: 100%;
+} */
+
+.encompass {
+  background-color: rgb(245, 245, 245);
+  height: fit-content;
+}
+
+/* sideBar */
+#sidebar {
+  color: rgb(43, 43, 43);
+  position: fixed;
+  /* background-color: rgb(228, 228, 228); */
+  width: 15%;
+  height: 60%;
+  left: 170px;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: 200;
+}
+
+/* Cards */
+.cardBox {
+  display: grid;
+  grid-template-columns: repeat(3, 20%);
+  grid-column-gap: 25px;
+  position: relative;
+  left: 530px;
+}

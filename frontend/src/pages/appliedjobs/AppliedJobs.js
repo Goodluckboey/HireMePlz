@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Button from "../../generalcomponent/Button";
 import AppliedJob from "./parts/AppliedJob";
+import styles from "../myjobs/parts/modules/myJobs.module.css";
 
 const AppliedJobs = () => {
   const { userId, picsArray, setSwitchMode } = useContext(Useridcontext);
@@ -44,13 +45,37 @@ const AppliedJobs = () => {
     });
   }
   return (
-    <div>
-      <Link to="/employeemarketplace">
-        <Button value="Employee Marketplace"></Button>
-      </Link>
-      <Button onClick={handleModeChange} value="Employer Mode" />
-      <h1>Applied Jobs</h1>
-      {<div>{appliedJobs}</div>}
+    // <div>
+    //   <Link to="/employeemarketplace">
+    //     <Button value="Employee Marketplace"></Button>
+    //   </Link>
+    //   <Button onClick={handleModeChange} value="Employer Mode" />
+    //   <h1>Applied Jobs</h1>
+    //   {<div>{appliedJobs}</div>}
+    // </div>
+    <div className={styles.encompass}>
+      <div id={styles.sidebar}>
+        <h1 className={styles.title}>Applied Jobs</h1>
+        <div className={styles.buttonGroup}></div>
+        <button
+          type="button"
+          class="btn btn-outline-danger col-11 mx-auto"
+          data-mdb-ripple-color="dark"
+          onClick={handleModeChange}
+        >
+          Employer Mode
+        </button>
+        <Link to="/employeemarketplace">
+          <button
+            type="button"
+            class="btn btn-outline-secondary col-11 mx-auto"
+            data-mdb-ripple-color="dark"
+          >
+            Employer Marketplace
+          </button>
+        </Link>
+      </div>
+      <div className={styles.cardBox}>{appliedJobs}</div>
     </div>
   );
 };
