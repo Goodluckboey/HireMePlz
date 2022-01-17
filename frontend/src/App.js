@@ -14,10 +14,11 @@ import PostJobs from "./pages/postjobs/PostJobs";
 import AfterLoggedInHeader from "./generalcomponent/AfterLoggedInHeader";
 import Editjob from "./pages/editjob/editjob";
 import axios from "axios";
+import EmployerMarketplace from "./pages/employermarketplace/EmployerMarketplace";
 
 function App() {
   // top level states: userid and random pics
-  const [switchMode, setSwitchMode] = useState(false);
+  const [switchMode, setSwitchMode] = useState(false); //false = employEE, true = employER
   const [userId, setUserId] = useState("");
   const [picsArray, setPicsArray] = useState("");
   const apiKey = "563492ad6f917000010000011ffd758dc43247008b50f4fd9d528ff2";
@@ -77,7 +78,7 @@ function App() {
             </Route>
             <Route exact path="/employermarketplace">
               {afterLoggedInHeader}
-              <Editjob></Editjob>
+              <EmployerMarketplace></EmployerMarketplace>
             </Route>
             <Route exact path="/editjob/:jobid">
               {afterLoggedInHeader}

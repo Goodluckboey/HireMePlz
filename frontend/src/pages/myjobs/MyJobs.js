@@ -67,9 +67,9 @@ const MyJobs = () => {
               <Button value="Add Job"></Button>
             </Link>
             <Link to="/employermarketplace">
-              <Button value="Employee Marketplace"></Button>
+              <Button value="Employer Marketplace"></Button>
             </Link>
-            <Button onClick={handleModeChange} value="Employer Mode" />
+            <Button onClick={handleModeChange} value="Employee Mode" />
             <div>{jobs}</div>
           </>
         ) : (

@@ -44,9 +44,9 @@ const AppliedJobs = () => {
   return (
     <div>
       <Link to="/employeemarketplace">
-        <Button value="Employer Marketplace"></Button>
+        <Button value="Employee Marketplace"></Button>
       </Link>
-      <Button onClick={handleModeChange} value="Employee Mode" />
+      <Button onClick={handleModeChange} value="Employer Mode" />
       <h1>Applied Jobs</h1>
       <div>{appliedJobs}</div>
     </div>
