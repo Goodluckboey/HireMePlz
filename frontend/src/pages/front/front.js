@@ -18,14 +18,6 @@ const FrontPage = () => {
           <h1>Be a part of a thriving community of adventurous people!</h1>
           <p>Sign Up today for a free trial</p>
         </div>
-        {/* <form>
-          <input
-            id={styles.searchbar}
-            type="text"
-            placeholder={`Try entering "fixer"..`}
-            size="80"
-          ></input>
-        </form> */}
       </div>
       <div id={styles.whyChooseUs}>
         <h1>Why Choose Us?</h1>

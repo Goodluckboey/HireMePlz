@@ -69,7 +69,7 @@
 #bannerImage {
   position: relative;
   z-index: 0;
-  height: 750px;
+  height: 650px;
   transform: scaleX(-1);
   justify-content: center;
 }
@@ -110,4 +110,9 @@
   padding: 40px;
   display: flex;
   justify-content: space-evenly;
+}
+
+#logout {
+  border-radius: 20px;
+  margin-right:40px
 }

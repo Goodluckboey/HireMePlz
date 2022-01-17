@@ -7,8 +7,14 @@ import Useridcontext from "../../../context/userid-context";
 const FrontPageHeader = () => {
   const callUserId = useContext(Useridcontext);
   const userId = callUserId.userId;
+  const setUserId = callUserId.setUserId;
+
   const [logState, setLogState] = useState(false);
   let visibillityTracker = styles.links;
+
+  const handleLogout = () => {
+    setUserId("");
+  };
 
   if (userId !== "") {
     visibillityTracker = styles.transparent;
@@ -24,7 +30,7 @@ const FrontPageHeader = () => {
           }
         ></img>
       </Link>
-      <div id={styles.allLinks} >
+      <div id={styles.allLinks}>
         <ul className={styles.header}>
           <li className={styles.links} id={styles.findjobs}>
             <LinksForHeader
@@ -51,6 +57,19 @@ const FrontPageHeader = () => {
                   data-mdb-ripple-color="dark"
                 >
                   Sign up
+                </button>
+              </Link>
+            </li>
+          )}
+          {userId !== "" && (
+            <li className={styles.links}>
+              <Link to="/">
+                <button
+                  id={styles.logout}
+                  class="btn btn-dark"
+                  onClick={handleLogout}
+                >
+                  Logout
                 </button>
               </Link>
             </li>

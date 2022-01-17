@@ -9,6 +9,7 @@ import Button from "../../generalcomponent/Button";
 import Job from "./parts/Job";
 import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
 import AppliedJobs from "../appliedjobs/AppliedJobs";
+import styles from "./parts/modules/myJobs.module.css";
 
 const MyJobs = () => {
   // context
@@ -58,20 +59,44 @@ const MyJobs = () => {
   }
 
   return (
-    <div>
+    <div className={styles.backgroundBody}>
       {userId ? (
         switchMode ? (
-          <>
-            <h1>My Jobs</h1>
-            <Link to="/postjobs">
-              <Button value="Add Job"></Button>
-            </Link>
-            <Link to="/employermarketplace">
-              <Button value="Employer Marketplace"></Button>
-            </Link>
-            <Button onClick={handleModeChange} value="Employee Mode" />
-            <div>{jobs}</div>
-          </>
+          <div className={styles.encompass}>
+            <div id={styles.sidebar}>
+              <h1 className={styles.title}>My Jobs</h1>
+              <div className={styles.buttonGroup}></div>
+              <button
+                type="button"
+                class="btn btn-outline-success col-11 mx-auto"
+                data-mdb-ripple-color="dark"
+                onClick={handleModeChange}
+              >
+                Employee Mode
+              </button>
+
+              <Link to="/postjobs">
+                <button
+                  type="button"
+                  class="btn btn-outline-dark col-11 mx-auto"
+                  data-mdb-ripple-color="dark"
+                >
+                  Add a new Job
+                </button>
+              </Link>
+
+              <Link to="/employermarketplace">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary col-11 mx-auto"
+                  data-mdb-ripple-color="dark"
+                >
+                  Employer Marketplace
+                </button>
+              </Link>
+            </div>
+            <div className={styles.cardBox}>{jobs}</div>
+          </div>
         ) : (
           <AppliedJobs />
         )
