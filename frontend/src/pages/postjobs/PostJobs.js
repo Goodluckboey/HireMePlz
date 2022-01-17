@@ -5,6 +5,7 @@ import InputField from "../../generalcomponent/InputField";
 import Useridcontext from "../../context/userid-context";
 import { Link, useHistory } from "react-router-dom";
 import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
+import TagsCheckBoxBundle from "../../generalcomponent/TagsCheckBoxBundle";
 
 const PostJobs = () => {
   // context
@@ -14,10 +15,13 @@ const PostJobs = () => {
   // useHistory
   let history = useHistory();
 
-  // states
+  // states for input fields
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [reward, setReward] = useState("");
+
+  // state lifting from tagscheckboxbundle
+  const [tags, setTags] = useState([]);
 
   // button on click function to post a new job
   const handlePostJob = async () => {
@@ -26,12 +30,13 @@ const PostJobs = () => {
       description,
       reward,
       employerid,
+      tags,
     };
     try {
       const endpoint = `http://localhost:5000/postjobs`;
       const res = await axios.post(endpoint, body);
       history.push("/myjobs");
-      console.log("New job created on backend: ", res.data);
+      console.log("Response from backend:", res);
     } catch (err) {
       console.log(err);
     }
@@ -63,6 +68,8 @@ const PostJobs = () => {
               setReward(e.target.value);
             }}
           ></InputField>
+          <div>Skills:</div>
+          <TagsCheckBoxBundle handleData={setTags} />
           <Button onClick={handlePostJob} value="post"></Button>
           <Link to="/myjobs">
             <Button value="cancel"></Button>
