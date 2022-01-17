@@ -8,6 +8,8 @@ import Job from "./parts/Job";
 import { v4 as uuidv4 } from "uuid";
 import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
 import styles from "./parts/modules/ee.module.css";
+import TagsCheckBoxBundle from "../../generalcomponent/TagsCheckBoxBundle";
+import SearchFilter from "../../generalcomponent/SearchFilter";
 
 const EmployeeMarketplace = () => {
   // context
@@ -16,41 +18,42 @@ const EmployeeMarketplace = () => {
   // states
   const [jobQuery, setJobQuery] = useState("");
   const [fetchedJobs, setFetchedJobs] = useState([]);
-
-  // fetch jobs on mount
-  async function fetcher() {
-    try {
-      const endpoint = `http://127.0.0.1:5000/alljobs`;
-      const res = await axios.get(endpoint);
-      setFetchedJobs(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  useEffect(() => {
-    if (userId) {
-      fetcher();
-    }
-  }, []);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchFilter1, setSearchFilter1] = useState([]); // tags
+  const [searchFilter2, setSearchFilter2] = useState(""); // search type
 
   // button on click function to search for job with this specific name
-  const handleSearchJob = async (e) => {
-    e.preventDefault();
+  const handleSearchJob = async () => {
     try {
-      const endpoint = `http://127.0.0.1:5000/searchjobs`;
-      const res = await axios.post(endpoint, { query: jobQuery });
+      const endpoint = `http://127.0.0.1:5000/searchjobs?type=${searchFilter2}`;
+      const res = await axios.post(endpoint, {
+        query: jobQuery,
+        tags: searchFilter1,
+      });
       setFetchedJobs(res.data);
     } catch (err) {
       console.log(err);
     }
+    setIsLoading(false);
   };
+
+  // fetch jobs on mount
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(handleSearchJob, 1000);
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [jobQuery, searchFilter1, searchFilter2]);
 
   const handleApplyJob = (jobId) => {
     const userIdToAttach = { userId };
     axios
       .put(`http://127.0.0.1:5000/applyjob/${jobId}`, userIdToAttach)
       .then(() => {
-        fetcher();
+        handleSearchJob();
       });
   };
 
@@ -73,48 +76,44 @@ const EmployeeMarketplace = () => {
 
   return (
     <div>
-      {userId ? (
-        <>
-          {/* <h1>All Available Jobs</h1> */}
-          <div className={styles.banner}>
-            <img
-              id={styles.marketImage}
-              src="/images/adult-g741925a1e_1920.jpg"
-              alt=""
-            ></img>
-            <form>
-              <h2 id={styles.marketTitleText}>
-                Discover a variety of lifestyles;
-                <br /> and Improve your Rank at the same time!
-              </h2>
-              <div>
-                <input
-                  id={styles.searchbar}
-                  type="text"
-                  placeholder="Search jobs by job name.."
-                  value={jobQuery}
-                  onChange={(e) => {
-                    setJobQuery(e.target.value);
-                  }}
-                ></input>
-              </div>
-
-              <button id={styles.submitButton} onClick={handleSearchJob}>
-                <i class="fas fa-search"></i>
-              </button>
-            </form>
-            <div className={styles.smallIcons}>
-              <i class="fab fa-facebook fa-3x"></i>
-              <i class="fab fa-instagram fa-3x"></i>
-              <i class="fab fa-twitter fa-3x"></i>
-            </div>
+      {/* <h1>All Available Jobs</h1> */}
+      <div className={styles.banner}>
+        <img
+          id={styles.marketImage}
+          src="/images/adult-g741925a1e_1920.jpg"
+          alt=""
+        ></img>
+        <form>
+          <h2 id={styles.marketTitleText}>
+            Discover a variety of lifestyles;
+            <br /> and Improve your Rank at the same time!
+          </h2>
+          <div>
+            <input
+              id={styles.searchbar}
+              type="text"
+              placeholder="Search jobs by job name.."
+              value={jobQuery}
+              onChange={(e) => {
+                setJobQuery(e.target.value);
+              }}
+            ></input>
           </div>
-
-          <div id={styles.cardBox}>{jobs}</div>
-        </>
-      ) : (
-        <NotLoggedIn />
-      )}
+          <TagsCheckBoxBundle handleData={setSearchFilter1} />{" "}
+          {/* this is a general component */}
+          <SearchFilter setFilter={setSearchFilter2}></SearchFilter>{" "}
+          {/* this is a general component */}
+          <button id={styles.submitButton} onClick={handleSearchJob}>
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        <div className={styles.smallIcons}>
+          <i class="fab fa-facebook fa-3x"></i>
+          <i class="fab fa-instagram fa-3x"></i>
+          <i class="fab fa-twitter fa-3x"></i>
+        </div>
+      </div>
+      {isLoading ? <h1>Loading...</h1> : <div id={styles.cardBox}>{jobs}</div>}
     </div>
   );
 };
