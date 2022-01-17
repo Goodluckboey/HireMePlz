@@ -11,6 +11,7 @@ import styles from "./parts/modules/ee.module.css";
 import Job from "./parts/Job";
 import TagsCheckBoxBundle from "../../generalcomponent/TagsCheckBoxBundle";
 import SearchFilter from "../../generalcomponent/SearchFilter";
+import { Link } from "react-router-dom";
 
 const EmployeeMarketplace = () => {
   // context
@@ -64,22 +65,29 @@ const EmployeeMarketplace = () => {
   // create job components to populate page
   const jobs = [];
   for (const job of fetchedJobs) {
-    jobs.push(
-      <div className={styles.card}>
-        <Job
-          {...job}
-          key={uuidv4()}
-          applyJob={() => handleApplyJob(job._id)}
-          imageUrl={
-            picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
-          }
-        ></Job>
-      </div>
-    );
+    if (job.status === "Open") {
+      jobs.push(
+        <div className={styles.card}>
+          <Job
+            {...job}
+            key={uuidv4()}
+            applyJob={() => handleApplyJob(job._id)}
+            imageUrl={
+              picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
+            }
+          ></Job>
+        </div>
+      );
+    }
   }
 
   return (
     <div>
+      <Link className={styles.switchTo} to="/employermarketplace">
+        <button type="button" class="btn btn-danger">
+          Switch to Employer
+        </button>
+      </Link>
       {/* <h1>All Available Jobs</h1> */}
       <div className={styles.banner}>
         <img
