@@ -111,7 +111,7 @@ app.put("/applyjob/:jobid", async (req, res) => {
   try {
     const job = await Job.findOneAndUpdate(
       { _id: req.params.jobid },
-      { $set: { employeeid: userId, status: "accepted" } }
+      { $set: { employeeid: userId, status: "Accepted" } }
     );
     res.json(job);
   } catch (err) {
@@ -119,12 +119,24 @@ app.put("/applyjob/:jobid", async (req, res) => {
   }
 });
 
+//cancel apply jobs by changine the status
+app.put("/appliedjob/cancel/:jobid", async (req, res) => {
+  try {
+    const appliedJob = await Job.findOneAndUpdate(
+      { _id: req.params.jobid },
+      { $set: { status: "Open" } }
+    );
+    res.json(appliedJob);
+  } catch (err) {
+    res.json(err);
+  }
+});
 //display applied jobs via employee id
 app.get("/appliedjobs/:userid", async (req, res) => {
   try {
     const jobs = await Job.find({
       employeeid: req.params.userid,
-      status: "accepted",
+      status: "Accepted",
     });
     res.json(jobs);
   } catch (err) {

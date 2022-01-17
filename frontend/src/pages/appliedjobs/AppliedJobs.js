@@ -31,13 +31,15 @@ const AppliedJobs = () => {
   if (fetchAppliedJobs) {
     fetchAppliedJobs.map((eachJob, index) => {
       return appliedJobs.push(
-        <AppliedJob
-          {...eachJob}
-          key={uuidv4}
-          imageUrl={
-            picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
-          }
-        />
+        <Link to={`/appliedjob/${index}`}>
+          <AppliedJob
+            {...eachJob}
+            key={uuidv4}
+            imageUrl={
+              picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
+            }
+          />
+        </Link>
       );
     });
   }
@@ -48,7 +50,7 @@ const AppliedJobs = () => {
       </Link>
       <Button onClick={handleModeChange} value="Employer Mode" />
       <h1>Applied Jobs</h1>
-      <div>{appliedJobs}</div>
+      {<div>{appliedJobs}</div>}
     </div>
   );
 };
