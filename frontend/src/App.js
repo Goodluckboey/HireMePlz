@@ -15,6 +15,7 @@ import AfterLoggedInHeader from "./generalcomponent/AfterLoggedInHeader";
 import Editjob from "./pages/editjob/editjob";
 import axios from "axios";
 import EmployerMarketplace from "./pages/employermarketplace/EmployerMarketplace";
+import AppliedIndividualJob from "./pages/individualapplied/IndividualAppliedJob";
 
 function App() {
   // top level states: userid and random pics
@@ -63,6 +64,9 @@ function App() {
             </Route>
             <Route exact path="/individualjob/:index">
               <IndividualJob></IndividualJob>
+            </Route>
+            <Route exact path="/appliedjob/:index">
+              <AppliedIndividualJob></AppliedIndividualJob>
             </Route>
             <Route exact path="/myjobs">
               {afterLoggedInHeader}
