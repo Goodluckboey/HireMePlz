@@ -6,6 +6,7 @@ import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
 import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
 import Employee from "./parts/Employee";
+import styles from "./parts/modules/employee.module.css";
 
 const EmployerMarketplace = () => {
   // context
@@ -62,7 +63,41 @@ const EmployerMarketplace = () => {
     <div>
       {userId ? (
         <>
-          <form>
+          <div className={styles.banner}>
+            <img
+              id={styles.marketImage}
+              src="/images/adult-g741925a1e_1920.jpg"
+              alt=""
+            ></img>
+            <form>
+              <h2 id={styles.marketTitleText}>
+                Whether it's finding a missing dog, or cheating on <br />
+                your science project, find the perfect applicant here!
+              </h2>
+              <div>
+                <input
+                  id={styles.searchbar}
+                  type="text"
+                  placeholder="Search jobs by employee name.."
+                  value={employeeQuery}
+                  onChange={(e) => {
+                    setEmployeeQuery(e.target.value);
+                  }}
+                ></input>
+              </div>
+
+              <button id={styles.submitButton} onClick={handleSearchEmployee}>
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+            <div className={styles.smallIcons}>
+              <i class="fab fa-facebook fa-3x"></i>
+              <i class="fab fa-instagram fa-3x"></i>
+              <i class="fab fa-twitter fa-3x"></i>
+            </div>
+          </div>
+
+          {/* <form>
             <InputField
               placeholder="search jobs by employee name"
               value={employeeQuery}
@@ -71,8 +106,9 @@ const EmployerMarketplace = () => {
               }}
             ></InputField>
             <Button value="Search" onClick={handleSearchEmployee}></Button>
-          </form>
-          <div>{employees}</div>
+          </form> */}
+
+          <div className={styles.cardBox}>{employees}</div>
         </>
       ) : (
         <NotLoggedIn></NotLoggedIn>

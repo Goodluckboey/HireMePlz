@@ -17,7 +17,9 @@
 }
 
 .NavigationBar {
+  display: flex;
   background-color: rgb(226, 226, 226);
+  padding: 10px;
 }
 
 .links,
@@ -26,46 +28,50 @@
   color: black;
 }
 
+#allLinks {
+  margin-left: auto;
+  display: flex;
+}
+
 .header {
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  /* display: flex; */
+  /* overflow: hidden;
   padding: 30px;
   text-align: right;
   position: relative;
-  right: 130px;
-}
-
-.links {
-  margin: 20px;
-  display: inline;
-}
-
-#findjobs {
-  color: yellow;
+  right: 130px; */
 }
 
 #logo {
-  position: absolute;
-  display: inline;
   width: 90px;
-  top: 30px;
-  left: 200px;
+  margin: auto;
 }
 
-.banner {
-  text-align: left;
-  position: relative;
-  top: 100px;
-  max-width: fit-content;
-  background-color: rgb(243, 242, 231);
+.links {
+  padding-left: 25px;
+  margin: 0px;
+  margin-left: auto;
+}
+
+.transparent {
+  margin: 0px;
+  margin-left: auto;
+  visibility: hidden;
+}
+
+#findjobs {
+  padding-right: 40px;
 }
 
 #bannerImage {
   position: relative;
   z-index: 0;
-  height: 800px;
+  height: 750px;
   transform: scaleX(-1);
-  display: inline-block;
-  left: 880px;
+  justify-content: center;
 }
 
 #searchbar {
@@ -85,12 +91,19 @@
   text-align: center;
 }
 
+.banner {
+  position: relative;
+  top: 100px;
+  /* max-width: fit-content; */
+  background-color: rgb(243, 242, 231);
+  text-align: center;
+}
+
 #titleText {
   position: absolute;
-  top: 250px;
-  left: 260px;
-  text-align: center;
-  font-weight: bold;
+  /* font-weight: bold; */
+  top: 5%;
+  left: 26%;
 }
 
 #iconsBox {

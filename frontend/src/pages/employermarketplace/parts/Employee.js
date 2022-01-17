@@ -1,12 +1,28 @@
 import React from "react";
+import styles from "./modules/employee.module.css";
 
-const Employee = ({ username, firstname, lastname, imageUrl }) => {
+const Employee = ({ username, firstname, lastname, imageUrl, tags }) => {
   return (
-    <div>
-      <img src={imageUrl} alt="myImage" />
-      <div>{username}</div>
-      <div>{firstname}</div>
-      <div>{lastname}</div>
+    <div className={styles.card}>
+      <div className={styles.cardImgBox}>
+        <img src={imageUrl} className={styles.cardImg} alt="myImage" />
+      </div>
+      <div className={styles.cardText}>
+        <div className={styles.cardInfo}>
+          <h1 className={styles.username}>{username}</h1>
+          <h2 className={styles.firstname}>{firstname}</h2>
+          <h3 className={styles.lastname}>{lastname}</h3>
+        </div>
+        <ul className={styles.ul}>
+          {tags.map((element) => {
+            return (
+              <li>
+                <h4 className={styles.li}>{element}</h4>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };
