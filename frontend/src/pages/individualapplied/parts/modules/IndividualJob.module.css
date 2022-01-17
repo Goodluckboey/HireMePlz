@@ -1,0 +1,11 @@
+.largeJob {
+  margin: 0 auto;
+  text-align: center;
+  background-color: darkgreen;
+  padding: 30px;
+}
+
+.description {
+  background-color: white;
+  padding: 10px;
+}
