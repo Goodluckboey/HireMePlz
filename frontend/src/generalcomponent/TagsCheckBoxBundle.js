@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import tags from "../data/tags";
 import { v4 as uuidv4 } from "uuid";
+import styles from "./modules/skilltags.module.css";
 
 const TagsCheckBoxBundle = ({ handleData }) => {
   const [checkBoxes, setCheckBoxes] = useState(
@@ -27,13 +28,14 @@ const TagsCheckBoxBundle = ({ handleData }) => {
           onChange={(e) => {
             setCheckBoxes({ ...checkBoxes, [tag]: e.target.checked });
           }}
+          class="form-check-input"
         />
         <label htmlFor={tag}>{tag}</label>
       </div>
     );
   });
 
-  return <div>{tagsArray}</div>;
+  return <div className={styles.tagsGroup}>{tagsArray}</div>;
 };
 
 export default TagsCheckBoxBundle;

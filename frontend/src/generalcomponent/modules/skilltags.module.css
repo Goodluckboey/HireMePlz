@@ -1,0 +1,21 @@
+.tagsGroup {
+  display: grid;
+  grid-template-columns: repeat(4, 10%);
+  grid-column-gap: 0px;
+  position: relative;
+  left: 190px;
+  top: -150px;
+}
+
+.radioButtons {
+  position: relative;
+  left: 280px;
+  top: -130px;
+}
+
+.radio {
+  margin: 20px;
+}
+/* .checkBox {
+  margin: 20px;
+} */

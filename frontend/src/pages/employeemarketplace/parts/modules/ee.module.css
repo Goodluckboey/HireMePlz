@@ -22,18 +22,18 @@
 
 #marketTitleText {
   position: absolute;
-  font-weight: bold;
   padding: 10px;
-  line-height: 80px;
+  line-height: 60px;
   top: 230px;
   text-align: center;
-  left: 190px;
+  left: 240px;
 }
 
 #submitButton {
+  visibility: hidden;
   position: relative;
-  left: 750px;
-  bottom: 220px;
+  /* left: 730px;
+  bottom: 365px; */
   border: transparent 1px solid;
   background-color: transparent;
 }
@@ -96,4 +96,10 @@ input {
   width: 30%;
   display: flex;
   justify-content: space-evenly;
+}
+
+.switchTo {
+  position: absolute;
+  bottom: 5%;
+  left: 21%;
 }

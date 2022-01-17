@@ -11,6 +11,7 @@ import styles from "./parts/modules/employee.module.css";
 import Employee from "./parts/Employee";
 import TagsCheckBoxBundle from "../../generalcomponent/TagsCheckBoxBundle";
 import SearchFilter from "../../generalcomponent/SearchFilter";
+import { Link } from "react-router-dom";
 
 const EmployerMarketplace = () => {
   // context
@@ -68,10 +69,15 @@ const EmployerMarketplace = () => {
 
   return (
     <div>
+      <Link className={styles.switchTo} to="/employeemarketplace">
+        <button type="button" class="btn btn-success">
+          Switch to Employee
+        </button>
+      </Link>
       <div className={styles.banner}>
         <img
           id={styles.marketImage}
-          src="/images/adult-g741925a1e_1920.jpg"
+          src="/images/clouds-gb0edf16cc_1920.jpg"
           alt=""
         ></img>
         <form>
