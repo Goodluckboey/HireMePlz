@@ -1,0 +1,31 @@
+.logHeader {
+  /* position: fixed; */
+  display: flex;
+  padding: 30px;
+  border: 1px black solid;
+}
+
+#logo {
+  position: relative;
+  width: 90px;
+  left: 150px;
+}
+
+.linksgrp {
+  display: flex;
+  width: 400px;
+  justify-content: space-evenly;
+  margin-left: auto;
+  margin-top: auto;
+  position: relative;
+  top: -15px;
+  font-weight: bold;
+  color: black;
+  right: 150px;
+}
+
+#logout {
+  position: relative;
+  border-radius: 20px;
+  right: 150px;
+}

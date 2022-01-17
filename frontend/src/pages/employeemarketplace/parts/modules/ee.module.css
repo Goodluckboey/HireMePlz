@@ -1,0 +1,100 @@
+#marketImage {
+  display: flex;
+  width: 40%;
+  border-radius: 12px;
+  padding: 10px;
+  margin-left: auto;
+  position: relative;
+  right: 135px;
+  top: 15px;
+}
+
+#searchBar {
+  position: absolute;
+  width: 600px;
+  height: 50px;
+  padding: 20px;
+  border: 2px solid rgb(20, 119, 86);
+  border-radius: 25px;
+  left: 200px;
+  top: 400px;
+}
+
+#marketTitleText {
+  position: absolute;
+  font-weight: bold;
+  padding: 10px;
+  line-height: 80px;
+  top: 230px;
+  text-align: center;
+  left: 190px;
+}
+
+#submitButton {
+  position: relative;
+
+  left: 750px;
+  bottom: 218px;
+  border: transparent 1px solid;
+  background-color: transparent;
+}
+
+#searchbar {
+  position: absolute;
+  width: 600px;
+  height: 50px;
+  padding: 20px;
+  border: 2px solid rgb(20, 119, 86);
+  border-radius: 25px;
+  left: 200px;
+  top: 450px;
+}
+
+input {
+  text-align: center;
+}
+
+#cardBox {
+  padding: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  grid-column-gap: 1px;
+  justify-content: center;
+}
+
+.card {
+  padding: 20px;
+  margin: 5px;
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.cardImg {
+  object-fit: cover;
+  width: 450px;
+  height: 200px;
+}
+
+.cardInfo {
+  padding: 5px;
+}
+
+.cardName {
+  font-weight: bold;
+}
+
+.banner {
+  margin-top: 50px;
+  background-color: rgb(222, 247, 237);
+  padding: 10px;
+}
+
+.smallIcons {
+  position: relative;
+  bottom: 150px;
+  left: 210px;
+  width: 30%;
+  display: flex;
+  justify-content: space-evenly;
+}
