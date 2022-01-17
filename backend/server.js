@@ -160,8 +160,9 @@ app.post("/registration", async (req, res) => {
   const { hash } = sanitize(req.body);
   try {
     const hashed = await bcrypt.hash(hash, 12);
-    await User.create({ ...req.body, hash: hashed });
-    res.json(req.body);
+    const user = new User({ ...req.body, hash: hashed });
+    await user.save();
+    res.json(user);
   } catch (err) {
     console.log(err);
     res.json(err);
