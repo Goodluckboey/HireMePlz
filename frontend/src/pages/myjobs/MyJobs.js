@@ -66,7 +66,7 @@ const MyJobs = () => {
             <Link to="/postjobs">
               <Button value="Add Job"></Button>
             </Link>
-            <Link to="/employeemarketplace">
+            <Link to="/employermarketplace">
               <Button value="Employee Marketplace"></Button>
             </Link>
             <Button onClick={handleModeChange} value="Employer Mode" />

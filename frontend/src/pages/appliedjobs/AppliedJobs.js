@@ -48,7 +48,7 @@ const AppliedJobs = () => {
       </Link>
       <Button onClick={handleModeChange} value="Employee Mode" />
       <h1>Applied Jobs</h1>
-      {appliedJobs}
+      <div>{appliedJobs}</div>
     </div>
   );
 };
