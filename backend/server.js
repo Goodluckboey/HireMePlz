@@ -105,16 +105,6 @@ app.get("/individualjob/:userid", async (req, res) => {
   }
 });
 
-// get applied jobs by employer id
-// app.get("/appliedjob/:userid", async (req, res) => {
-//   try {
-//     const jobs = await Job.find({ employerid: req.params.userid,status:"Accepted" });
-//     res.json(jobs);
-//   } catch (err) {
-//     res.json(err);
-//   }
-// });
-
 //apply jobs by attaching user id to employee id
 app.put("/applyjob/:jobid", async (req, res) => {
   const { userId } = sanitize(req.body);
