@@ -13,11 +13,16 @@ import AfterLoggedInHeader from "../../generalcomponent/AfterLoggedInHeader.js";
 
 const IndividualJob = (props) => {
   //UseContext
-  const { userId, picsArray } = useContext(Useridcontext);
+  const { userId, picsArray, switchMode, setSwitchMode } =
+    useContext(Useridcontext);
 
   // save state
   let [jobsData, setJobsData] = useState("");
   const params = useParams();
+
+  const handleModeChange = () => {
+    setSwitchMode(false);
+  };
 
   const getJobsDataUnderUser = () => {
     async function fetcher() {
@@ -70,6 +75,21 @@ const IndividualJob = (props) => {
         <>
           {/* <Link to="/myjobs">My Jobs</Link> */}
           <AfterLoggedInHeader></AfterLoggedInHeader>
+          <div id={styles.sidebar}>
+            <h1 className={styles.title}>My Jobs</h1>
+            <p>You are viewing as an Employer</p>
+            <p>Click on each job for more information</p>
+            <div className={styles.buttonGroup}></div>
+            <Link to="/myjobs">
+              <button
+                type="button"
+                class="btn btn-outline-dark col-11 mx-auto"
+                data-mdb-ripple-color="dark"
+              >
+                Back
+              </button>
+            </Link>
+          </div>
           {jobsData && (
             <Splide
               options={{
@@ -88,37 +108,57 @@ const IndividualJob = (props) => {
                     {console.log(element)}
                     <SplideSlide>
                       <div className={styles.largeJob}>
-                        <h1>{element.name}</h1>
-                        <p className={styles.description}>
-                          Job Description: {element.description}
+                        <p class="note note-light">
+                          <h3 className={styles.Title}>{element.name}</h3>
                         </p>
-                        <h2>{element.reward} Copper Coins</h2>
-                        <h2>{element.status}</h2>
-                        <div>
-                          <button
-                            type="button"
-                            class="btn btn-success"
-                            onClick={() => handleAccept(element._id)}
-                          >
-                            Accept
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            onClick={() => handleReject(element._id)}
-                          >
-                            Reject
-                          </button>
-                        </div>
-                        <button
-                          type="button"
-                          class="btn btn-link"
-                          onClick={() => handleDelete(element._id)}
-                        >
-                          Delete
-                        </button>
-
-                        <Link to={`/editjob/${element._id}`}>Edit Quest</Link>
+                        <p class="note note-info">
+                          <p className={styles.description}>
+                            Job Description: {element.description}
+                          </p>
+                          <p>{element.reward} Copper Coins</p>
+                          {element.status === "Open" && (
+                            <p>
+                              <span class="badge rounded-pill bg-light text-dark">
+                                {element.status}
+                              </span>
+                            </p>
+                          )}
+                          {element.status === "accepted" && (
+                            <p>
+                              <span class="badge rounded-pill bg-success text-dark ">
+                                {element.status}
+                              </span>
+                            </p>
+                          )}
+                          <Link to={`/editjob/${element._id}`}>Edit Quest</Link>
+                          <div className={styles.deleteButton}>
+                            <button
+                              type="button"
+                              class="btn btn-link"
+                              onClick={() => handleDelete(element._id)}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </p>
+                        {element.status === "Open" && (
+                          <div>
+                            <button
+                              type="button"
+                              class="btn btn-success"
+                              onClick={() => handleAccept(element._id)}
+                            >
+                              Accept
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-danger"
+                              onClick={() => handleReject(element._id)}
+                            >
+                              Reject
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </SplideSlide>
                   </>
