@@ -1,13 +1,16 @@
+// dependencies
 import axios from "axios";
-import React, { useEffect, useState, useReducer } from "react";
-// import { useParams } from "react-router-dom";
-import Button from "../../generalcomponent/Button";
-import InputField from "../../generalcomponent/InputField";
+import React, { useState, useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+// css modules
 import styles from "./parts/modules/registration.module.css";
+
+// child components
+import Button from "../../generalcomponent/Button";
 import TagsCheckBoxBundle from "./parts/TagsCheckBoxBundle";
 
-//Use reducer to have 5 states
+// reducer function for input field's useReducer
 const changeInput = (input, action) => {
   switch (action.type) {
     case "First Name":
@@ -27,9 +30,13 @@ const changeInput = (input, action) => {
   }
 };
 
+// functional component starts here
 const Registration = () => {
   // usestate to track checkboxes
   const [checkBoxesData, setCheckBoxesData] = useState([]);
+
+  // state to track validity of username
+  const [validUsername, setValidUsername] = useState("empty");
 
   // This is to set the state to be used as value in the input. State is required to allow inputs in the fields
   const [input, dispatchInput] = useReducer(changeInput, {
@@ -40,6 +47,30 @@ const Registration = () => {
     password: "",
     retypePassword: "",
   });
+
+  useEffect(() => {
+    const username = input.userName;
+    async function userNameValidation() {
+      try {
+        const endpoint = "http://127.0.0.1:5000/doesusernameexist";
+        const res = await axios.post(endpoint, { username });
+        const exist = res.data.data;
+        if (exist) {
+          setValidUsername("*username already taken");
+        } else {
+          setValidUsername("*username is available");
+        }
+      } catch (err) {
+        console.log(err);
+        setValidUsername("*error checking username");
+      }
+    }
+    if (username === "") {
+      setValidUsername("*username field empty");
+    } else {
+      userNameValidation();
+    }
+  }, [input.userName]);
 
   const handleSignUp = (e) => {
     const post = async () => {
@@ -80,7 +111,7 @@ const Registration = () => {
         <form>
           <h2 id={styles.welcome}>Join HireUs</h2>
           <div className={styles.inputField}>
-            <InputField
+            <input
               type="text"
               value={input.firstName}
               onChange={(event) => {
@@ -94,7 +125,7 @@ const Registration = () => {
             />
           </div>
           <div className={styles.inputField}>
-            <InputField
+            <input
               type="text"
               value={input.lastName}
               onChange={(event) => {
@@ -108,7 +139,7 @@ const Registration = () => {
             />
           </div>
           <div className={styles.inputField}>
-            <InputField
+            <input
               type="email"
               value={input.email}
               onChange={(event) => {
@@ -122,7 +153,7 @@ const Registration = () => {
             />
           </div>
           <div className={styles.inputField}>
-            <InputField
+            <input
               type="text"
               value={input.userName}
               onChange={(event) => {
@@ -135,9 +166,17 @@ const Registration = () => {
               className="YOLO"
             />
           </div>
-          <p>*username exists</p>
+          <p
+            className={
+              validUsername === "*username is available"
+                ? styles.validUserName
+                : styles.invalidUserName
+            }
+          >
+            {validUsername}
+          </p>
           <div className={styles.inputField}>
-            <InputField
+            <input
               type="password"
               value={input.password}
               onChange={(event) => {
@@ -151,7 +190,7 @@ const Registration = () => {
             />
           </div>
           <div className={styles.inputField}>
-            <InputField
+            <input
               type="password"
               value={input.retypePassword}
               onChange={(event) => {
