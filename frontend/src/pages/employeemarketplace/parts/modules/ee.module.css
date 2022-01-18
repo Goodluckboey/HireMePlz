@@ -9,17 +9,6 @@
   top: 15px;
 }
 
-#searchBar {
-  position: absolute;
-  width: 600px;
-  height: 50px;
-  padding: 20px;
-  border: 2px solid rgb(20, 119, 86);
-  border-radius: 25px;
-  left: 200px;
-  top: 400px;
-}
-
 #marketTitleText {
   position: absolute;
   padding: 10px;
@@ -46,7 +35,7 @@
   border: 2px solid rgb(20, 119, 86);
   border-radius: 25px;
   left: 200px;
-  top: 450px;
+  top: 400px;
 }
 
 input {
@@ -84,7 +73,7 @@ input {
 }
 
 .banner {
-  margin-top: 50px;
+  margin-top: 20px;
   background-color: rgb(222, 247, 237);
   padding: 10px;
 }
@@ -102,4 +91,10 @@ input {
   position: absolute;
   bottom: 10%;
   left: 21%;
+}
+
+.loadingSpinner {
+  position: fixed;
+  top: 90%;
+  left: 50%;
 }
