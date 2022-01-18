@@ -65,6 +65,7 @@ const MyJobs = () => {
           <div className={styles.encompass}>
             <div id={styles.sidebar}>
               <h1 className={styles.title}>My Jobs</h1>
+              <p>You are viewing as an Employer</p>
               <div className={styles.buttonGroup}></div>
               <button
                 type="button"
@@ -72,7 +73,7 @@ const MyJobs = () => {
                 data-mdb-ripple-color="dark"
                 onClick={handleModeChange}
               >
-                Employee Mode
+                Switch to Employee Mode
               </button>
 
               <Link to="/postjobs">
