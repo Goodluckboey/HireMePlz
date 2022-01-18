@@ -2,9 +2,11 @@
 .card {
   padding: 10px;
   margin: 5px;
-  border: 1px solid rgb(231, 148, 116);
+  /* border: 1px solid rgb(231, 148, 116); */
   border-radius: 15px;
   text-align: center;
+  -webkit-box-shadow: 5px 5px 15px 1px rgba(207, 207, 207, 0.72);
+  box-shadow: 5px 5px 15px 1px rgba(207, 207, 207, 0.72);
 }
 
 .cardInfo {
@@ -23,7 +25,7 @@
 .cardBox {
   padding: 50px;
   display: grid;
-  grid-template-columns: repeat(3, 22%);
+  grid-template-columns: repeat(4, 15%);
   grid-column-gap: 1px;
   justify-content: center;
 }
