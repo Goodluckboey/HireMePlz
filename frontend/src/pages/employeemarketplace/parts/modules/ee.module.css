@@ -12,7 +12,7 @@
 #marketTitleText {
   position: absolute;
   padding: 10px;
-  line-height: 60px;
+  line-height: 50px;
   top: 230px;
   text-align: center;
   left: 240px;
@@ -56,6 +56,7 @@ input {
   border: 1px solid rgb(211, 211, 211);
   border-radius: 5px;
   text-align: center;
+  background-color: rgb(240, 240, 240);
 }
 
 .cardImg {
@@ -73,14 +74,15 @@ input {
 }
 
 .banner {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   background-color: rgb(222, 247, 237);
   padding: 10px;
 }
 
 .smallIcons {
+  visibility: hidden;
   position: relative;
-  bottom: 150px;
+  bottom: 130px;
   left: 210px;
   width: 30%;
   display: flex;
@@ -89,7 +91,7 @@ input {
 
 .switchTo {
   position: absolute;
-  bottom: 10%;
+  bottom: 15%;
   left: 21%;
 }
 
