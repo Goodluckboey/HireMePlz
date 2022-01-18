@@ -15,7 +15,14 @@ import { Link } from "react-router-dom";
 
 const EmployerMarketplace = () => {
   // context
-  const { userId, picsArray } = useContext(Useridcontext);
+  const { userId, picsArray, switchMode, setSwitchMode } =
+    useContext(Useridcontext);
+  const employerid = userId;
+
+  //state change
+  const handleModeChange = () => {
+    setSwitchMode(false);
+  };
 
   // states
   const [employeeQuery, setEmployeeQuery] = useState("");
@@ -70,7 +77,11 @@ const EmployerMarketplace = () => {
   return (
     <div>
       <Link className={styles.switchTo} to="/employeemarketplace">
-        <button type="button" class="btn btn-success">
+        <button
+          type="button"
+          class="btn btn-success"
+          onClick={handleModeChange}
+        >
           Switch to Employee
         </button>
       </Link>
