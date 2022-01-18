@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import styles from "./parts/modules/registration.module.css";
 
 // child components
-import Button from "../../generalcomponent/Button";
 import TagsCheckBoxBundle from "./parts/TagsCheckBoxBundle";
 
 // reducer function for input field's useReducer
@@ -211,7 +210,14 @@ const Registration = () => {
           </div>
           <div className={styles.inputField}>
             <Link to="/login">
-              <Button onClick={handleSignUp} value="Sign up"></Button>
+              <button
+                id={styles.signUp}
+                className="btn btn-primary"
+                onClick={handleSignUp}
+                value="Sign up"
+              >
+                Sign Up
+              </button>
             </Link>
           </div>
           <p>
