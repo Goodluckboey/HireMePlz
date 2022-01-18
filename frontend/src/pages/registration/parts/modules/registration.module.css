@@ -33,6 +33,10 @@
   padding: 5px;
 }
 
+#signUp {
+  border-radius: 30px;
+}
+
 .validUserName {
   color: green;
 }
