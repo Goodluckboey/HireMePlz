@@ -1,31 +1,42 @@
-.logHeader {
-  /* position: fixed; */
+#headerTop {
+  position: fixed;
   display: flex;
-  padding: 30px;
-  /* border: 1px black solid; */
+  padding: 20px 50px;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 1000;
+  top: 0;
+}
+
+#headerMove {
+  position: fixed;
+  display: flex;
+  padding: 20px 50px;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0px 1px 10px 5px rgb(100,100,100,0.5);
+  top: 0;
 }
 
 #logo {
-  position: relative;
   width: 90px;
-  left: 150px;
+}
+
+.itemsgrp {
+  display: flex;
 }
 
 .linksgrp {
   display: flex;
-  width: 400px;
   justify-content: space-evenly;
-  margin-left: auto;
-  margin-top: auto;
-  position: relative;
-  top: -15px;
+  align-items: center;
   font-weight: bold;
   color: black;
-  right: 150px;
+  margin: 0 20px 0 0;
 }
 
-#logout {
-  position: relative;
-  border-radius: 20px;
-  right: 150px;
+.link {
+  margin: 0 20px 0 0;
 }
