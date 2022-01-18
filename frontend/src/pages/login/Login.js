@@ -39,10 +39,8 @@ const Login = () => {
     };
     //Login at backend checks if the username matches the password. The password is bcrypted so if the correct password matches the username, the hash in the db and the password hash will match and valid = true
     axios.post("http://localhost:5000/login", userLogin).then((res) => {
-      //Using the valid to be true will allow the state to equal to the object unique userId.
-      if (res.data.valid !== false) {
-        setUserId(res.data._id);
-        //Check is already performed by this loop. Will redirect. Check not done in route to next because you need to click the log in button twice
+      if (res.data.valid) {
+        setUserId(res.data.user._id);
         routeToNext();
       } else {
         alert("Wrong username or password");
