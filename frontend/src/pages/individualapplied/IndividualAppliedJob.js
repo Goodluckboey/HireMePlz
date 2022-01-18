@@ -54,8 +54,6 @@ const AppliedIndividualJob = (props) => {
     <div>
       {userId ? (
         <>
-          {/* <Link to="/myjobs">My Jobs</Link> */}
-          <AfterLoggedInHeader></AfterLoggedInHeader>
           <div id={styles.sidebar}>
             <h1 className={styles.title}>My Applied Jobs</h1>
             <p>You are viewing as an Employee</p>

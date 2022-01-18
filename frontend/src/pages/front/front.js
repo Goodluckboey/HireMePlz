@@ -11,7 +11,7 @@ const FrontPage = () => {
 
   return (
     <div id="FrontPage">
-      <FrontPageHeader></FrontPageHeader>
+      {/* <FrontPageHeader></FrontPageHeader> */}
       <div className={styles.banner}>
         <img id={styles.bannerImage} src={"/images/pngItem_2949029.jpg"}></img>
         <div id={styles.titleText}>

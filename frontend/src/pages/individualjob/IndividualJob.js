@@ -16,6 +16,8 @@ const IndividualJob = (props) => {
   const { userId, picsArray, switchMode, setSwitchMode } =
     useContext(Useridcontext);
 
+  const employerid = userId;
+
   // save state
   let [jobsData, setJobsData] = useState("");
   const params = useParams();
@@ -74,7 +76,6 @@ const IndividualJob = (props) => {
       {userId ? (
         <>
           {/* <Link to="/myjobs">My Jobs</Link> */}
-          <AfterLoggedInHeader></AfterLoggedInHeader>
           <div id={styles.sidebar}>
             <h1 className={styles.title}>My Jobs</h1>
             <p>You are viewing as an Employer</p>
@@ -141,24 +142,6 @@ const IndividualJob = (props) => {
                             </button>
                           </div>
                         </p>
-                        {element.status === "Open" && (
-                          <div>
-                            <button
-                              type="button"
-                              class="btn btn-success"
-                              onClick={() => handleAccept(element._id)}
-                            >
-                              Accept
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-danger"
-                              onClick={() => handleReject(element._id)}
-                            >
-                              Reject
-                            </button>
-                          </div>
-                        )}
                       </div>
                     </SplideSlide>
                   </>

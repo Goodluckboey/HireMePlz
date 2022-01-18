@@ -5,10 +5,13 @@ import styles from "./parts/modules/editjob.module.css";
 import { Link } from "react-router-dom";
 import Useridcontext from "../../context/userid-context";
 import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
+import TagsCheckBoxBundle from "./parts/tagsBoxCopy";
+import { useHistory } from "react-router-dom";
 
 const Editjob = () => {
   // context
-  const { userId } = useContext(Useridcontext);
+  const { userId, picsArray, switchMode, setSwitchMode } =
+    useContext(Useridcontext);
 
   // job id
   const params = useParams();
@@ -19,6 +22,14 @@ const Editjob = () => {
   const [jobDescription, setJobDescription] = useState("");
   const [reward, setReward] = useState("");
   const [oneJobData, setOneJobData] = useState("");
+  const [tags, setTags] = useState([]);
+
+  // Submit Button to send to myJobs
+  let history = useHistory();
+
+  const historyClick = () => {
+    history.push("/myjobs");
+  };
 
   // function for onClick to update job on database
   const handleSave = async (e) => {
@@ -27,11 +38,13 @@ const Editjob = () => {
       name: jobTitle,
       description: jobDescription,
       reward,
+      tags,
     };
     const endpoint = `http://127.0.0.1:5000/individualjob/edit/${jobid}`;
     try {
       const res = await axios.put(endpoint, editedJob);
       console.log(res);
+      history.push("/myjobs");
     } catch (err) {
       console.log(err);
     }
@@ -60,46 +73,91 @@ const Editjob = () => {
     }
   }, []);
 
+  const handleModeChange = () => {
+    setSwitchMode(false);
+  };
+
   return (
     <div>
       {userId ? (
         <>
-          {oneJobData && (
-            <div className={styles.editJobPrevious}>
-              <h1>{oneJobData.name}</h1>
-              <h3>{oneJobData.description}</h3>
-              <h3>{oneJobData.reward}</h3>
-              <h2>{oneJobData.status}</h2>
+          <div id={styles.sidebar}>
+            <h1 className={styles.title}>My Jobs</h1>
+            <p>You are viewing as an Employer</p>
+            <p>Click on each job for more information</p>
+            <div className={styles.buttonGroup}></div>
+            <Link to="/myjobs">
+              <button
+                type="button"
+                class="btn btn-outline-success col-11 mx-auto"
+                data-mdb-ripple-color="dark"
+                onClick={handleModeChange}
+              >
+                Switch to Employee Mode
+              </button>
+            </Link>
+
+            <Link to="/postjobs">
+              <button
+                type="button"
+                class="btn btn-outline-dark col-11 mx-auto"
+                data-mdb-ripple-color="dark"
+              >
+                Add a new Job
+              </button>
+            </Link>
+
+            <Link to="/employermarketplace">
+              <button
+                type="button"
+                class="btn btn-outline-secondary col-11 mx-auto"
+                data-mdb-ripple-color="dark"
+              >
+                Employer Marketplace
+              </button>
+            </Link>
+          </div>
+          <div className={styles.wholeEdit}>
+            {oneJobData && (
+              <div className={styles.editJobPrevious}>
+                <h4>{oneJobData.name}</h4>
+                <p>{oneJobData.description}</p>
+                <p>{oneJobData.reward}</p>
+                <p>{oneJobData.status}</p>
+              </div>
+            )}
+            <div className={styles.editInput}>
+              <form onSubmit={handleSave}>
+                <div className={styles.skillsGrp}>
+                  <TagsCheckBoxBundle handleData={setTags} />
+                </div>
+                <input
+                  placeholder="job title"
+                  value={jobTitle}
+                  onChange={(e) => {
+                    setJobTitle(e.target.value);
+                  }}
+                />
+                <input
+                  placeholder="job description"
+                  value={jobDescription}
+                  onChange={(e) => {
+                    setJobDescription(e.target.value);
+                  }}
+                />
+                <input
+                  placeholder="reward"
+                  value={reward}
+                  onChange={(e) => {
+                    setReward(e.target.value);
+                  }}
+                />
+                <button type="submit" value="save" class="btn btn-warning">
+                  Submit
+                </button>
+              </form>
             </div>
-          )}
-          <form onSubmit={handleSave}>
-            <input
-              placeholder="job title"
-              value={jobTitle}
-              onChange={(e) => {
-                setJobTitle(e.target.value);
-              }}
-            />
-            <input
-              placeholder="job description"
-              value={jobDescription}
-              onChange={(e) => {
-                setJobDescription(e.target.value);
-              }}
-            />
-            <input
-              placeholder="reward"
-              value={reward}
-              onChange={(e) => {
-                setReward(e.target.value);
-              }}
-            />
-            {/* <Link to="/individualjob"> */}
-            <button type="submit" value="save">
-              Submit
-            </button>
-            {/* </Link> */}
-          </form>
+          </div>
         </>
       ) : (
         <NotLoggedIn />
