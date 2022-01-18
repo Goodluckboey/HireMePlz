@@ -1,9 +1,11 @@
-import React from "react";
-import Button from "../../../generalcomponent/Button";
+import React, { useContext } from "react";
+import Useridcontext from "../../../context/userid-context";
 import styles from "./modules/ee.module.css";
 
 const Job = ({ name, description, reward, status, applyJob, imageUrl }) => {
-  const imgStyle = { width: "100px", height: "100px", objectFit: "cover" };
+  // context
+  const { userId } = useContext(Useridcontext);
+
   return (
     <div>
       <div className={styles.cardImgBox}>
@@ -15,9 +17,11 @@ const Job = ({ name, description, reward, status, applyJob, imageUrl }) => {
         <h3 className={styles.cardDescription}>{description}</h3>
         <span class="badge rounded-pill bg-light text-dark">{status}</span>
       </div>
-      <button onClick={applyJob} type="button" class="btn btn-success">
-        Apply
-      </button>
+      {userId && (
+        <button onClick={applyJob} type="button" class="btn btn-success">
+          Apply
+        </button>
+      )}
     </div>
   );
 };
