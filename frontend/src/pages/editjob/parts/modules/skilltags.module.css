@@ -1,0 +1,8 @@
+.tagsGroup {
+  display: grid;
+  grid-template-columns: repeat(4, 35%);
+  position: relative;
+  right: 20px;
+  text-align: left;
+  /* top: -150px; */
+}
