@@ -19,7 +19,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <div style={{ width: "60%", margin: "100px auto 0 auto" }}>
+    <div style={{ width: "60%", margin: "200px auto 0 auto" }}>
       <h1>Your Profile</h1>
       <div class="list-group">
         <div
@@ -50,14 +50,13 @@ const Profile = () => {
               profileData[0].firstname + " " + profileData[0].lastname}
           </h3>
         </div>
-      <div href="#" class="list-group-item list-group-item-action">
+        <div href="#" class="list-group-item list-group-item-action">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">Skills</h5>
             <small class="text-muted">Edit</small>
           </div>
           <h3 class="mb-1">
-            {profileData && profileData[0].tags.map((elem) => <h5>elem</h5>)
-              }
+            {profileData && profileData[0].tags.map((elem) => <h5>elem</h5>)}
           </h3>
         </div>
       </div>

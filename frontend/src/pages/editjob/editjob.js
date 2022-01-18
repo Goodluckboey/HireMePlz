@@ -120,10 +120,27 @@ const Editjob = () => {
           <div className={styles.wholeEdit}>
             {oneJobData && (
               <div className={styles.editJobPrevious}>
-                <h4>{oneJobData.name}</h4>
-                <p>{oneJobData.description}</p>
-                <p>{oneJobData.reward}</p>
-                <p>{oneJobData.status}</p>
+                <div className={styles.cardImgBox}>
+                  <img
+                    src={
+                      picsArray[Math.floor(Math.random() * picsArray.length)]
+                        .src.medium
+                    }
+                    className={styles.cardImg}
+                  ></img>
+                </div>
+                <div className={styles.cardInfo}>
+                  <div className={styles.ctrlBadge}>
+                    <span class="badge rounded-pill bg-light text-dark">
+                      {oneJobData.status}
+                    </span>
+                    <p className={styles.cardName}>{oneJobData.name}</p>
+                  </div>
+                  <p className={styles.cardDescription}>
+                    {oneJobData.description}
+                  </p>
+                  <h4 className={styles.cardReward}>GC {oneJobData.reward} </h4>
+                </div>
               </div>
             )}
             <div className={styles.editInput}>

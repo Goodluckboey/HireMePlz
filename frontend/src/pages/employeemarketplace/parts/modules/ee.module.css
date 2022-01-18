@@ -42,30 +42,8 @@ input {
   text-align: center;
 }
 
-#cardBox {
-  padding: 50px;
-  display: grid;
-  grid-template-columns: repeat(3, 22%);
-  grid-column-gap: 1px;
-  justify-content: center;
-}
-
-.card {
-  margin: 5px;
-  border: 1px solid rgb(190, 202, 196);
-  border-radius: 5px;
-  text-align: center;
-  /* background-color: rgb(240, 240, 240); */
-}
-
-.cardImg {
-  object-fit: cover;
-  width: 100%;
-  height: 200px;
-}
-
 .banner {
-  /* margin-top: 20px; */
+  margin-top: 100px;
   background-color: rgb(222, 247, 237);
   padding: 10px;
 }
@@ -123,4 +101,30 @@ input {
 .ctrlBadge {
   display: flex;
   margin-right: auto;
+}
+
+.buttonRound {
+  border-radius: 15px;
+}
+
+#cardBox {
+  padding: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 22%);
+  grid-column-gap: 1px;
+  justify-content: center;
+}
+
+.card {
+  margin: 5px;
+  border: 1px solid rgb(190, 202, 196);
+  border-radius: 5px;
+  text-align: center;
+  /* background-color: rgb(240, 240, 240); */
+}
+
+.cardImg {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
 }

@@ -69,9 +69,15 @@
 #bannerImage {
   position: relative;
   z-index: 0;
-  height: 650px;
+  height: 550px;
   transform: scaleX(-1);
-  justify-content: center;
+}
+
+#pngImg {
+  position: relative;
+  display: flex;
+  margin-top: 5.1%;
+  margin-left: -39.9%;
 }
 
 #searchbar {
@@ -87,7 +93,7 @@
 
 #whyChooseUs {
   position: relative;
-  top: 200px;
+  top: 280px;
   text-align: center;
 }
 
@@ -96,14 +102,21 @@
   top: 100px;
   /* max-width: fit-content; */
   background-color: rgb(243, 242, 231);
-  text-align: center;
+  text-align: right;
 }
 
 #titleText {
   position: absolute;
-  /* font-weight: bold; */
-  top: 5%;
-  left: 26%;
+  text-align: left;
+  top: 10%;
+  left: 10%;
+}
+
+.smallText {
+  display: flex;
+  margin-left: 15%;
+  position: relative;
+  bottom: -20px;
 }
 
 #iconsBox {
@@ -114,7 +127,7 @@
 
 #logout {
   border-radius: 20px;
-  margin-right:40px
+  margin-right: 40px;
 }
 
 #signup {
@@ -123,4 +136,30 @@
 
 #signin {
   border-radius: 30px;
+}
+
+.trustedBy {
+  position: absolute;
+  display: flex;
+  margin-top: 150px;
+  margin-left: 25%;
+  font-weight: bold;
+  align-items: center;
+}
+
+.trustedByText {
+  font-weight: bold;
+  color: rgba(180, 180, 180, 0.5);
+}
+
+.iconGroup {
+  color: rgba(180, 180, 180, 0.5);
+  display: grid;
+  grid-template-columns: repeat(5, 10%);
+  grid-column-gap: 100px;
+  padding-left: 50px;
+}
+
+.text {
+  margin-top: 20px;
 }

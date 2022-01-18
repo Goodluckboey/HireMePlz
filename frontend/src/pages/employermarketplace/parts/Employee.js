@@ -2,6 +2,18 @@ import React from "react";
 import styles from "./modules/er.module.css";
 
 const Employee = ({ username, firstname, lastname, imageUrl, tags }) => {
+  const produceBadge = () => {
+    const badgeArray = [
+      <span class="badge bg-warning text-dark">Gold</span>,
+      <span class="badge bg-info text-dark">Silver</span>,
+      <span class="badge bg-dark text-dark">Iron</span>,
+    ];
+
+    const ranNum = Math.round(Math.random() * 2);
+
+    return badgeArray[ranNum];
+  };
+
   return (
     <div className={styles.card}>
       <div className={styles.cardImgBox}>
@@ -10,7 +22,7 @@ const Employee = ({ username, firstname, lastname, imageUrl, tags }) => {
       <div className={styles.cardText}>
         <div className={styles.cardInfo}>
           <div className={styles.ctrlBadge}>
-            <span class="badge rounded-pill bg-warning text-dark">Bronze</span>
+            {produceBadge()}
             <p className={styles.username}>{username}</p>
           </div>
           <h5 className={styles.Names}>
