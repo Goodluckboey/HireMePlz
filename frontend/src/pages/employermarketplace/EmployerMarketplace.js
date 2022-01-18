@@ -81,15 +81,6 @@ const EmployerMarketplace = () => {
 
   return (
     <div>
-      {/* <Link className={styles.switchTo} to="/employeemarketplace">
-        <button
-          type="button"
-          class="btn btn-success"
-          onClick={handleModeChange}
-        >
-          Switch to Employee
-        </button>
-      </Link> */}
       <div className={styles.banner}>
         <img
           id={styles.marketImage}
@@ -126,17 +117,6 @@ const EmployerMarketplace = () => {
           <i class="fab fa-twitter fa-3x"></i>
         </div>
       </div>
-
-      {/* <form>
-            <InputField
-              placeholder="search jobs by employee name"
-              value={employeeQuery}
-              onChange={(e) => {
-                setEmployeeQuery(e.target.value);
-              }}
-            ></InputField>
-            <Button value="Search" onClick={handleSearchEmployee}></Button>
-          </form> */}
       {isLoading ? (
         <div className={styles.loadingSpinner}>
           <div class="text-center">

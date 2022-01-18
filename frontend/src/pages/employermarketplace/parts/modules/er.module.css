@@ -39,9 +39,10 @@
 
 /* Banner Stuff */
 .banner {
-  margin-top: 20px;
+  margin-top: 100px;
   background-color: rgb(231, 148, 116);
   padding: 10px;
+  color: white;
 }
 
 #marketImage {
