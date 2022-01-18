@@ -1,11 +1,43 @@
 .largeJob {
   margin: 0 auto;
   text-align: center;
-  background-color: darkgreen;
+  background-color: rgb(243, 243, 243);
   padding: 30px;
+  border: 1px solid rgb(233, 233, 233);
+  border-radius: 5px;
 }
 
 .description {
-  background-color: white;
+  /* background-color: white; */
   padding: 10px;
+}
+
+.mainSplider {
+  position: relative;
+  top: 250px;
+  width: 75%;
+  left: 13%;
+}
+
+.Title {
+  /* font-weight: bold; */
+  /* text-decoration: underline; */
+}
+
+/* sideBar */
+#sidebar {
+  color: rgb(43, 43, 43);
+  position: fixed;
+  /* background-color: rgb(228, 228, 228); */
+  width: 15%;
+  height: 60%;
+  left: 170px;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: 200;
 }
