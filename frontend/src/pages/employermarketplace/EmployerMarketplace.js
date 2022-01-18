@@ -5,7 +5,7 @@ import Useridcontext from "../../context/userid-context";
 import { v4 as uuidv4 } from "uuid";
 
 // css modules
-import styles from "./parts/modules/employee.module.css";
+import styles from "./parts/modules/er.module.css";
 
 // child components
 import Employee from "./parts/Employee";

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./modules/employee.module.css";
+import styles from "./modules/er.module.css";
 
 const Employee = ({ username, firstname, lastname, imageUrl, tags }) => {
   return (
