@@ -77,15 +77,19 @@ app.post("/login", async (req, res) => {
   let valid = false;
   try {
     const user = await User.findOne({ username });
+    if (!user) {
+      res.json({ valid });
+      return;
+    }
     valid = await bcrypt.compare(hash, user.hash);
     if (valid) {
-      res.json(user);
+      res.json({ valid, user });
     } else {
-      res.json("authentication failed");
+      res.json({ valid, msg: "wrong password" });
     }
   } catch (err) {
     console.log(err);
-    res.json(`authentication failed ${err}`);
+    res.json({ valid, msg: "authentication failed due to err: " + err });
   }
 });
 
@@ -298,12 +302,6 @@ app.post("/doesusernameexist", async (req, res) => {
     res.json({ data: false, msg: "username does not exist" });
   }
 });
-
-//get single profile id from login page( STILL WORKING ON THIS)
-// app.get("/profile/singleId", async (req, res) => {
-//   const singleUserId = await User.find({}, { id: 1 });
-//   res.json(singleUserId);
-// });
 
 const PORT = 5000;
 app.listen(PORT, () => {
