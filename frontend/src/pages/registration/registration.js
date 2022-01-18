@@ -78,7 +78,7 @@ const Registration = () => {
       ></img>
       <div className={styles.registerPage}>
         <form>
-          <h1 id={styles.welcome}>Sign up with Us!</h1>
+          <h2 id={styles.welcome}>Join HireUs</h2>
           <div className={styles.inputField}>
             <InputField
               type="text"
