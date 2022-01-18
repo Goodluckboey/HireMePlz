@@ -4,6 +4,7 @@ import styles from "./modules/card.module.css";
 
 const Job = ({ name, description, reward, status, applyJob, imageUrl }) => {
   const imgStyle = { width: "100px", height: "100px", objectFit: "cover" };
+
   return (
     <div className={styles.card}>
       <div className={styles.cardImgBox}>
