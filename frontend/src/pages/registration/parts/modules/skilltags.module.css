@@ -1,0 +1,7 @@
+.tagsGroup {
+  display: grid;
+  grid: auto auto / auto auto auto auto; 
+  grid-gap: 0 20px;
+  padding: 10px; 
+  position: relative;
+}
