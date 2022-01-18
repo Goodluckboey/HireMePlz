@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import NotLoggedIn from "../../generalcomponent/NotLoggedIn";
+import AfterLoggedInHeader from "../../generalcomponent/AfterLoggedInHeader.js";
 
 const IndividualJob = (props) => {
   //UseContext
@@ -67,17 +68,24 @@ const IndividualJob = (props) => {
     <div>
       {userId ? (
         <>
-          <Link to="/myjobs">My Jobs</Link>
+          {/* <Link to="/myjobs">My Jobs</Link> */}
+          <AfterLoggedInHeader></AfterLoggedInHeader>
           {jobsData && (
             <Splide
               options={{
                 start: params.index,
                 wheel: true,
+                perPage: 3,
+                perMove: 2,
+                gap: "10px",
+                slideFocus: true,
               }}
+              className={styles.mainSplider}
             >
               {jobsData.map((element) => {
                 return (
                   <>
+                    {console.log(element)}
                     <SplideSlide>
                       <div className={styles.largeJob}>
                         <h1>{element.name}</h1>
@@ -87,19 +95,28 @@ const IndividualJob = (props) => {
                         <h2>{element.reward} Copper Coins</h2>
                         <h2>{element.status}</h2>
                         <div>
-                          <Button
+                          <button
+                            type="button"
+                            class="btn btn-success"
                             onClick={() => handleAccept(element._id)}
-                            value="Accept"
-                          />
-                          <Button
+                          >
+                            Accept
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-danger"
                             onClick={() => handleReject(element._id)}
-                            value="Reject"
-                          />
+                          >
+                            Reject
+                          </button>
                         </div>
-                        <Button
+                        <button
+                          type="button"
+                          class="btn btn-link"
                           onClick={() => handleDelete(element._id)}
-                          value="Delete"
-                        ></Button>
+                        >
+                          Delete
+                        </button>
 
                         <Link to={`/editjob/${element._id}`}>Edit Quest</Link>
                       </div>

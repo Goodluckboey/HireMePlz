@@ -5,6 +5,7 @@
   border: 1px solid rgb(211, 211, 211);
   border-radius: 5px;
   text-align: center;
+  background-color: rgb(221, 221, 221);
 }
 
 .cardInfo {
@@ -33,7 +34,7 @@
 }
 
 .li {
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .cardText {
@@ -63,7 +64,7 @@
 #marketTitleText {
   position: absolute;
   padding: 10px;
-  line-height: 60px;
+  line-height: 50px;
   top: 230px;
   text-align: center;
   left: 175px;
@@ -90,6 +91,7 @@
 }
 
 .smallIcons {
+  visibility: hidden;
   position: relative;
   bottom: 150px;
   left: 210px;
@@ -100,7 +102,7 @@
 
 .switchTo {
   position: absolute;
-  bottom: 10%;
+  bottom: 15%;
   left: 21%;
 }
 

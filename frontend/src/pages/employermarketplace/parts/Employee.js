@@ -9,15 +9,15 @@ const Employee = ({ username, firstname, lastname, imageUrl, tags }) => {
       </div>
       <div className={styles.cardText}>
         <div className={styles.cardInfo}>
-          <h1 className={styles.username}>{username}</h1>
-          <h2 className={styles.firstname}>{firstname}</h2>
-          <h3 className={styles.lastname}>{lastname}</h3>
+          <h3 className={styles.username}>{username}</h3>
+          <h5 className={styles.firstname}>{firstname}</h5>
+          <h5 className={styles.lastname}>{lastname}</h5>
         </div>
         <ul className={styles.ul}>
           {tags.map((element) => {
             return (
               <li>
-                <h4 className={styles.li}>{element}</h4>
+                <h5 className={styles.li}>{element}</h5>
               </li>
             );
           })}
