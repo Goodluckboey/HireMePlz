@@ -21,7 +21,7 @@ const Employee = ({ username, firstname, lastname, imageUrl, tags }) => {
           {tags.map((element) => {
             return (
               <li>
-                <h5 className={styles.li}>{element}</h5>
+                <p className={styles.li}>{element}</p>
               </li>
             );
           })}
