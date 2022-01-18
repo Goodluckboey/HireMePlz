@@ -15,7 +15,14 @@ import { Link } from "react-router-dom";
 
 const EmployeeMarketplace = () => {
   // context
-  const { userId, picsArray } = useContext(Useridcontext);
+  const { userId, picsArray, switchMode, setSwitchMode } =
+    useContext(Useridcontext);
+  const employerid = userId;
+
+  //state change
+  const handleModeChange = () => {
+    setSwitchMode(false);
+  };
 
   // states
   const [jobQuery, setJobQuery] = useState("");
@@ -84,7 +91,7 @@ const EmployeeMarketplace = () => {
   return (
     <div>
       <Link className={styles.switchTo} to="/employermarketplace">
-        <button type="button" class="btn btn-danger">
+        <button type="button" class="btn btn-danger" onClick={handleModeChange}>
           Switch to Employer
         </button>
       </Link>
@@ -97,7 +104,7 @@ const EmployeeMarketplace = () => {
         ></img>
         <form>
           <h2 id={styles.marketTitleText}>
-            Discover a variety of lifestyles;
+            Encounter people from all walks of life,
             <br /> and Improve your Rank at the same time!
           </h2>
           <div>

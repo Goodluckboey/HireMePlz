@@ -10,7 +10,8 @@
   border: 1px solid rgb(211, 211, 211);
   border-radius: 10px;
   text-align: center;
-  background-color: rgb(223, 223, 223);
+  background-color: rgb(56, 56, 56);
+  color: white;
 }
 
 .cardImg {
