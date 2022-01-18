@@ -1,9 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Useridcontext from "../../context/userid-context";
 import styles from "../modules/aftloghead.module.css";
 
 const AfterLoggedInHeader = () => {
+  // scroll handlers
+  const [scrolly, setScrolly] = useState(0);
+  const scrollHandler = () => {
+    setScrolly(window.scrollY);
+  };
+  useEffect(() => {
+    return;
+  }, [scrolly]);
+
+  window.addEventListener("scroll", scrollHandler);
+
   // useContext: userid and switchmode (false = employee)
   const { userId, setUserId, switchMode, setSwitchMode } =
     useContext(Useridcontext);
@@ -20,11 +31,14 @@ const AfterLoggedInHeader = () => {
 
   // dynamic inline-style
   const buttonStyle = { borderRadius: "30px" };
+  const toggleButtonStyle = { ...buttonStyle, width: "170px" };
+  const linkStyle = { margin: "0 30px 0 0" };
 
   // components
   const marketplaceLink = (
     <Link
-      className="text-dark"
+      style={linkStyle}
+      className="link text-dark"
       to={switchMode ? "/employermarketplace" : "/employeemarketplace"}
     >
       Marketplace
@@ -66,12 +80,12 @@ const AfterLoggedInHeader = () => {
   );
 
   const profileLink = (
-    <Link className="text-dark" to="/profile">
+    <Link style={linkStyle} className="text-dark" to="/profile">
       Profile
     </Link>
   );
   const myjobsLink = (
-    <Link className="text-dark" to="/myjobs">
+    <Link style={linkStyle} className="text-dark" to="/myjobs">
       My Jobs
     </Link>
   );
@@ -79,11 +93,10 @@ const AfterLoggedInHeader = () => {
   const switchModeToggle = (
     <div className="form-check form-switch">
       <button
-        style={buttonStyle}
+        style={toggleButtonStyle}
         type="button"
-        className={switchMode ? "btn btn-danger" : "btn btn-info"}
+        className={switchMode ? "btn btn-danger" : "btn btn-success"}
         data-mdb-toggle="button"
-        autocomplete="off"
         onClick={handleSwitchMode}
       >
         {switchMode ? "employer mode" : "employee mode"}
@@ -93,7 +106,7 @@ const AfterLoggedInHeader = () => {
 
   return (
     <>
-      <div className={styles.logHeader}>
+      <div id={scrolly === 0 ? styles.headerTop : styles.headerMove}>
         <Link to="/">
           <img
             id={styles.logo}
@@ -102,15 +115,17 @@ const AfterLoggedInHeader = () => {
             }
           ></img>
         </Link>
-        <div className={styles.linksgrp}>
-          {marketplaceLink}
-          {userId && profileLink}
-          {userId && myjobsLink}
+        <div className={styles.itemsgrp}>
+          <div className={styles.linksgrp}>
+            {marketplaceLink}
+            {userId && profileLink}
+            {userId && myjobsLink}
+          </div>
+          {switchModeToggle}
+          {!userId && loginButton}
+          {!userId && signupButton}
+          {userId && logoutButton}
         </div>
-        {switchModeToggle}
-        {!userId && loginButton}
-        {!userId && signupButton}
-        {userId && logoutButton}
       </div>
     </>
   );
