@@ -224,6 +224,9 @@ const Registration = () => {
             Already a member? <Link to="/login">Login here</Link>
           </p>
         </form>
+        <div id={styles.backToHome}>
+          <Link to="/">Back to home</Link>
+        </div>
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ const TagsCheckBoxBundle = ({ handleData }) => {
           onChange={(e) => {
             setCheckBoxes({ ...checkBoxes, [tag]: e.target.checked });
           }}
-          class="form-check-input"
+          className="form-check-input"
         />
         <label htmlFor={tag}>{tag}</label>
       </div>

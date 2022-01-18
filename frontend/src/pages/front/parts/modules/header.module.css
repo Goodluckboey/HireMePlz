@@ -116,3 +116,11 @@
   border-radius: 20px;
   margin-right:40px
 }
+
+#signup {
+  border-radius: 30px;
+}
+
+#signin {
+  border-radius: 30px;
+}
