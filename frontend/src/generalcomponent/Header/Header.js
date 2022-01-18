@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Useridcontext from "../context/userid-context";
-import styles from "../modules/Header.module.css";
+import Useridcontext from "../../context/userid-context";
+import styles from "./Header.module.css";
 
 const AfterLoggedInHeader = () => {
   // useContext: userid and switchmode (false = employee)
