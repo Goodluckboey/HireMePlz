@@ -1,46 +1,56 @@
+.registerPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 40px;
+  width: 400px;
+  margin: 0 auto;
+  background-color: rgb(238, 238, 238);
+  border: 1px solid rgb(155, 155, 155);
+  border-radius: 10px;
+  margin-top: 115px;
+}
+
 #loginImage {
   border-radius: 12px;
   width: 1200px;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.registerPage {
-  position: relative;
-  display: inline-block;
-  justify-content: center;
-  text-align: center;
-  padding: 40px;
-  margin: auto;
-  background-color: rgb(238, 238, 238);
-  border: 1px solid rgb(155, 155, 155);
-  border-radius: 8px;
-  width: auto;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -46%);
+  z-index: -1;
 }
 
 #welcome {
-  padding: 20px;
+  margin: 40px 0 20px 0;
   font-weight: bold;
-}
-
-.inputField {
-  padding: 5px;
-}
-
-#signUp {
-  border-radius: 30px;
+  font-size: 25px;
+  color: rgb(59, 59, 59);
 }
 
 .validUserName {
   color: green;
+  margin: 0 0 5px 0;
 }
 
 .invalidUserName {
   color: red;
+  margin: 0 0 5px 0;
+}
+
+.inputField {
+  width: 250px;
+  height: 40px;
+  border-radius: 30px;
+  margin-top: 10px;
+}
+
+.skills {
+  margin-top: 20px;
+  font-size: 1.1em;
+}
+
+.alreadyAMember {
+  margin-top: 20px;
 }

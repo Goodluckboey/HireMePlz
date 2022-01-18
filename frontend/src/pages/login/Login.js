@@ -1,6 +1,4 @@
 import React, { useContext, useReducer } from "react";
-import InputField from "../../generalcomponent/InputField";
-import Button from "../../generalcomponent/Button";
 import axios from "axios";
 import Useridcontext from "../../context/userid-context";
 import { useHistory, Link } from "react-router-dom/cjs/react-router-dom.min";
@@ -61,63 +59,64 @@ const Login = () => {
     return history.push("/registration");
   };
 
+  // inline styles
+  const buttonStyle = {
+    width: "250px",
+    height: "40px",
+    borderRadius: "30px",
+    marginTop: "10px",
+  };
+  const inputStyle = { ...buttonStyle };
+
   return (
-    <div>
+    <>
       <img
         id={styles.loginImage}
         src="/images/background-g6df07de67_1920.jpg"
         alt=""
       ></img>
       <div id={styles.login}>
-        <form>
-          <h1 id={styles.welcome}>
-            Welcome <br />
-            to <br />
-            HireUs
-          </h1>
-          <div className={styles.inputField}>
-            <InputField
-              type="text"
-              value={inputLogin.Username}
-              onChange={(event) => {
-                dispatchInput({
-                  type: "Username",
-                  payload: { inputLogin: event.target.value },
-                });
-              }}
-              placeholder="Username"
-            ></InputField>
-          </div>
-          <div className={styles.inputField}>
-            {" "}
-            <InputField
-              type="password"
-              value={inputLogin.Password}
-              onChange={(event) => {
-                dispatchInput({
-                  type: "Password",
-                  payload: { inputLogin: event.target.value },
-                });
-              }}
-              placeholder="Password"
-            />
-          </div>
-          {/* <Button onClick={handleLogin} value="Login" /> */}
-          <button type="button" class="btn btn-primary" onClick={handleLogin}>
-            Login
-          </button>
-          <p>Not a member? Sign up here!</p>
-          {/* <Button onClick={handleSignUp} value="Sign up" /> */}
-          <button type="button" class="btn btn-light" onClick={handleSignUp}>
-            Sign up
-          </button>
-          <br />
-          <div id={styles.backToHome}>
-            <Link to="/">Back to home</Link>
-          </div>
-        </form>
+        <div id={styles.welcome}>Sign In to HireUs</div>
+        <input
+          type="text"
+          value={inputLogin.Username}
+          onChange={(event) => {
+            dispatchInput({
+              type: "Username",
+              payload: { inputLogin: event.target.value },
+            });
+          }}
+          placeholder="Username"
+          style={inputStyle}
+        ></input>
+        <input
+          type="password"
+          value={inputLogin.Password}
+          onChange={(event) => {
+            dispatchInput({
+              type: "Password",
+              payload: { inputLogin: event.target.value },
+            });
+          }}
+          placeholder="Password"
+          style={inputStyle}
+        />
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={handleLogin}
+          style={buttonStyle}
+        >
+          continue
+        </button>
+        <p className={styles.notAMember}>
+          Not a member? <Link to="/registration">Join Now</Link>
+        </p>
+        <div id={styles.backToHome}>
+          <Link to="/">Back to home</Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
