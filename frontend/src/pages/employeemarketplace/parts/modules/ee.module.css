@@ -45,13 +45,12 @@ input {
 #cardBox {
   padding: 50px;
   display: grid;
-  grid-template-columns: repeat(3, 30%);
+  grid-template-columns: repeat(3, 22%);
   grid-column-gap: 1px;
   justify-content: center;
 }
 
 .card {
-  padding: 20px;
   margin: 5px;
   border: 1px solid rgb(211, 211, 211);
   border-radius: 5px;
@@ -61,16 +60,8 @@ input {
 
 .cardImg {
   object-fit: cover;
-  width: 450px;
+  width: 100%;
   height: 200px;
-}
-
-.cardInfo {
-  padding: 5px;
-}
-
-.cardName {
-  font-weight: bold;
 }
 
 .banner {
@@ -99,4 +90,37 @@ input {
   position: fixed;
   top: 90%;
   left: 50%;
+}
+
+.cardInfo {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.cardReward {
+  display: flex;
+  justify-content: right;
+  font-weight: 300;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  border-top: 1px solid black;
+}
+
+.cardDescription {
+  display: flex;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.cardName {
+  display: inline-flex;
+  font-weight: lighter;
+  margin: 0;
+  margin-left: 15px;
+}
+
+.ctrlBadge {
+  display: flex;
+  margin-right: auto;
 }

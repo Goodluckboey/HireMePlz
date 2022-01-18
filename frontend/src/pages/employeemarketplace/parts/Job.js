@@ -12,10 +12,12 @@ const Job = ({ name, description, reward, status, applyJob, imageUrl }) => {
         <img src={imageUrl} className={styles.cardImg} alt="myImage" />
       </div>
       <div className={styles.cardInfo}>
-        <h1 className={styles.cardName}>{name}</h1>
-        <h2 className={styles.cardReward}>For {reward} coins</h2>
-        <h3 className={styles.cardDescription}>{description}</h3>
-        <span class="badge rounded-pill bg-light text-dark">{status}</span>
+        <div className={styles.ctrlBadge}>
+          <span class="badge rounded-pill bg-light text-dark">{status}</span>
+          <p className={styles.cardName}>{name}</p>
+        </div>
+        <p className={styles.cardDescription}>{description}</p>
+        <h4 className={styles.cardReward}>GC {reward} </h4>
       </div>
       {userId && (
         <button onClick={applyJob} type="button" class="btn btn-success">
