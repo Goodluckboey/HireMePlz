@@ -122,7 +122,13 @@ const EmployerMarketplace = () => {
             <Button value="Search" onClick={handleSearchEmployee}></Button>
           </form> */}
       {isLoading ? (
-        <h1>Loading...</h1>
+        <div className={styles.loadingSpinner}>
+          <div class="text-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden"></span>
+            </div>
+          </div>
+        </div>
       ) : (
         <div className={styles.cardBox}>{employees}</div>
       )}

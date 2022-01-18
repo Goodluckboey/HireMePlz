@@ -125,7 +125,17 @@ const EmployeeMarketplace = () => {
           <i class="fab fa-twitter fa-3x"></i>
         </div>
       </div>
-      {isLoading ? <h1>Loading...</h1> : <div id={styles.cardBox}>{jobs}</div>}
+      {isLoading ? (
+        <div className={styles.loadingSpinner}>
+          <div class="text-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden"></span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div id={styles.cardBox}>{jobs}</div>
+      )}
     </div>
   );
 };
