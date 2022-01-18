@@ -42,8 +42,8 @@ const FrontPageHeader = () => {
           {userId === "" && (
             <li className={visibillityTracker}>
               <Link to="/login">
-                <button type="button" class="btn btn-primary">
-                  Sign in
+                <button id={styles.signin} type="button" class="btn btn-light">
+                  Login
                 </button>
               </Link>
             </li>
@@ -52,11 +52,12 @@ const FrontPageHeader = () => {
             <li className={visibillityTracker}>
               <Link to="/registration">
                 <button
+                  id={styles.signup}
                   type="button"
-                  class="btn btn-light"
+                  class="btn btn-primary"
                   data-mdb-ripple-color="dark"
                 >
-                  Sign up
+                  sign up
                 </button>
               </Link>
             </li>
