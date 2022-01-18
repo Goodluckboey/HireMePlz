@@ -142,7 +142,8 @@ app.put("/applyjob/:jobid", async (req, res) => {
   }
 });
 
-//cancel apply jobs by changine the status
+//cancel apply jobs by changing the status
+//technically the same as reject job
 app.put("/appliedjob/cancel/:jobid", async (req, res) => {
   try {
     const appliedJob = await Job.findOneAndUpdate(
@@ -211,7 +212,7 @@ app.put("/individualjob/reject/:jobid", async (req, res) => {
   try {
     const updateStatus = await Job.findOneAndUpdate(
       { _id: jobid },
-      { $set: { status: "Open" } }
+      { $set: { status: "Open", employeeid: "" } }
     );
     res.json(updateStatus);
   } catch (err) {
