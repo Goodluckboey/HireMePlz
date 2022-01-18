@@ -9,9 +9,13 @@ const Employee = ({ username, firstname, lastname, imageUrl, tags }) => {
       </div>
       <div className={styles.cardText}>
         <div className={styles.cardInfo}>
-          <h3 className={styles.username}>{username}</h3>
-          <h5 className={styles.firstname}>{firstname}</h5>
-          <h5 className={styles.lastname}>{lastname}</h5>
+          <div className={styles.ctrlBadge}>
+            <span class="badge rounded-pill bg-warning text-dark">Bronze</span>
+            <p className={styles.username}>{username}</p>
+          </div>
+          <h5 className={styles.Names}>
+            {firstname} {lastname}
+          </h5>
         </div>
         <ul className={styles.ul}>
           {tags.map((element) => {
