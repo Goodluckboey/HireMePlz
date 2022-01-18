@@ -11,7 +11,7 @@ import FrontPage from "./pages/front/front.js";
 import MyJobs from "./pages/myjobs/MyJobs";
 import EmployeeMarketplace from "./pages/employeemarketplace/EmployeeMarketplace";
 import PostJobs from "./pages/postjobs/PostJobs";
-import Header from "./generalcomponent/Header/Header";
+import Header from "./generalcomponent/Header";
 import Editjob from "./pages/editjob/editjob";
 import axios from "axios";
 import EmployerMarketplace from "./pages/employermarketplace/EmployerMarketplace";
