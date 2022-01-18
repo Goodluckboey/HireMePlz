@@ -96,7 +96,10 @@ app.post("/login", async (req, res) => {
 // find jobs by employer id
 app.get("/myjobs/:userid", async (req, res) => {
   try {
-    const jobs = await Job.find({ employerid: req.params.userid });
+    const jobs = await Job.find({
+      employerid: req.params.userid,
+      status: { $in: ["Accepted", "Pending", "Open"] },
+    });
     res.json(jobs);
   } catch (err) {
     res.json(err);
@@ -209,6 +212,20 @@ app.put("/individualjob/reject/:jobid", async (req, res) => {
     const updateStatus = await Job.findOneAndUpdate(
       { _id: jobid },
       { $set: { status: "Open" } }
+    );
+    res.json(updateStatus);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
+//complete a job by jobid
+app.put("/individualjob/completed/:jobid", async (req, res) => {
+  const jobid = sanitize(req.params.jobid);
+  try {
+    const updateStatus = await Job.findOneAndUpdate(
+      { _id: jobid },
+      { $set: { status: "Completed" } }
     );
     res.json(updateStatus);
   } catch (err) {
