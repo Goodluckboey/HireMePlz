@@ -36,7 +36,6 @@ const AfterLoggedInHeader = () => {
       <button
         style={buttonStyle}
         className="btn btn-dark"
-        className="button"
         onClick={handleLogout}
       >
         Logout

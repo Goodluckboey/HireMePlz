@@ -11,7 +11,7 @@ import FrontPage from "./pages/front/front.js";
 import MyJobs from "./pages/myjobs/MyJobs";
 import EmployeeMarketplace from "./pages/employeemarketplace/EmployeeMarketplace";
 import PostJobs from "./pages/postjobs/PostJobs";
-import AfterLoggedInHeader from "./generalcomponent/Header/Header";
+import Header from "./generalcomponent/Header/Header";
 import Editjob from "./pages/editjob/editjob";
 import axios from "axios";
 import EmployerMarketplace from "./pages/employermarketplace/EmployerMarketplace";
@@ -37,11 +37,6 @@ function App() {
     fetchRandomPics();
   }, []);
 
-  // header for pages that requires authorization
-  const afterLoggedInHeader = userId && (
-    <AfterLoggedInHeader></AfterLoggedInHeader>
-  );
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -49,7 +44,7 @@ function App() {
           <Useridcontext.Provider
             value={{ userId, setUserId, picsArray, switchMode, setSwitchMode }}
           >
-            <AfterLoggedInHeader />
+            <Header />
             <Route exact path="/">
               <FrontPage></FrontPage>
             </Route>
@@ -60,7 +55,6 @@ function App() {
               <Registration></Registration>
             </Route>
             <Route exact path="/profile/">
-              {afterLoggedInHeader}
               <Profile></Profile>
             </Route>
             <Route exact path="/individualjob/:index">
@@ -70,23 +64,18 @@ function App() {
               <AppliedIndividualJob></AppliedIndividualJob>
             </Route>
             <Route exact path="/myjobs">
-              {afterLoggedInHeader}
               <MyJobs></MyJobs>
             </Route>
             <Route exact path="/postjobs">
-              {afterLoggedInHeader}
               <PostJobs></PostJobs>
             </Route>
             <Route exact path="/employeemarketplace">
-              {afterLoggedInHeader}
               <EmployeeMarketplace></EmployeeMarketplace>
             </Route>
             <Route exact path="/employermarketplace">
-              {afterLoggedInHeader}
               <EmployerMarketplace></EmployerMarketplace>
             </Route>
             <Route exact path="/editjob/:jobid">
-              {afterLoggedInHeader}
               <Editjob></Editjob>
             </Route>
           </Useridcontext.Provider>
