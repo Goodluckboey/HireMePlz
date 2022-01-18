@@ -289,6 +289,16 @@ app.post("/searchemployee?", async (req, res) => {
   }
 });
 
+app.post("/doesusernameexist", async (req, res) => {
+  const { username } = sanitize(req.body);
+  const users = await User.find({ username });
+  if (users.length !== 0) {
+    res.json({ data: true, msg: "username exists" });
+  } else {
+    res.json({ data: false, msg: "username does not exist" });
+  }
+});
+
 //get single profile id from login page( STILL WORKING ON THIS)
 // app.get("/profile/singleId", async (req, res) => {
 //   const singleUserId = await User.find({}, { id: 1 });

@@ -32,3 +32,11 @@
 .inputField {
   padding: 5px;
 }
+
+.validUserName {
+  color: green;
+}
+
+.invalidUserName {
+  color: red;
+}
