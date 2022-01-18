@@ -5,7 +5,7 @@ import Button from "../../generalcomponent/Button";
 import InputField from "../../generalcomponent/InputField";
 import { Link } from "react-router-dom";
 import styles from "./parts/modules/registration.module.css";
-import TagsCheckBoxBundle from "../../generalcomponent/TagsCheckBoxBundle";
+import TagsCheckBoxBundle from "./parts/TagsCheckBoxBundle";
 
 //Use reducer to have 5 states
 const changeInput = (input, action) => {
@@ -166,7 +166,9 @@ const Registration = () => {
           </div>
           <div className={styles.inputField}>
             <div>Skills: </div>
-            <TagsCheckBoxBundle handleData={setCheckBoxesData} />
+            <div className={styles.checkBoxContainer}>
+              <TagsCheckBoxBundle handleData={setCheckBoxesData} />
+            </div>
           </div>
           <div className={styles.inputField}>
             <Link to="/login">
