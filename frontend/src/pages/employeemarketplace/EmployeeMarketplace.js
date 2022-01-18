@@ -104,7 +104,7 @@ const EmployeeMarketplace = () => {
         ></img>
         <form>
           <h2 id={styles.marketTitleText}>
-            Discover a variety of lifestyles;
+            Encounter people from all walks of life,
             <br /> and Improve your Rank at the same time!
           </h2>
           <div>

@@ -56,6 +56,8 @@ const AppliedJobs = () => {
     <div className={styles.encompass}>
       <div id={styles.sidebar}>
         <h1 className={styles.title}>Applied Jobs</h1>
+        <p>You are viewing as an Employee</p>
+        <p>Click on each job for more information</p>
         <div className={styles.buttonGroup}></div>
         <button
           type="button"
@@ -63,7 +65,7 @@ const AppliedJobs = () => {
           data-mdb-ripple-color="dark"
           onClick={handleModeChange}
         >
-          Employer Mode
+          Switch to Employer Mode
         </button>
         <Link to="/employeemarketplace">
           <button
@@ -71,7 +73,7 @@ const AppliedJobs = () => {
             class="btn btn-outline-secondary col-11 mx-auto"
             data-mdb-ripple-color="dark"
           >
-            Employer Marketplace
+            Employee Marketplace
           </button>
         </Link>
       </div>

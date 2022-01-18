@@ -66,6 +66,7 @@ const MyJobs = () => {
             <div id={styles.sidebar}>
               <h1 className={styles.title}>My Jobs</h1>
               <p>You are viewing as an Employer</p>
+              <p>Click on each job for more information</p>
               <div className={styles.buttonGroup}></div>
               <button
                 type="button"
