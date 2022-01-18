@@ -9,7 +9,6 @@ import styles from "../myjobs/parts/modules/myJobs.module.css";
 
 const AppliedJobs = () => {
   const { userId, picsArray, setSwitchMode } = useContext(Useridcontext);
-  //state
   // states
   const [fetchAppliedJobs, setFetchAppliedJobs] = useState("");
   useEffect(() => {
