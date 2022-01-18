@@ -21,11 +21,15 @@
   top: -15px;
   font-weight: bold;
   color: black;
-  right: 150px;
+  right: 20px;
 }
 
-#logout {
+/* #logout {
   position: relative;
   border-radius: 20px;
   right: 150px;
+} */
+
+.button {
+  border-radius: 30px;
 }

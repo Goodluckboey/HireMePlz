@@ -11,7 +11,7 @@ import FrontPage from "./pages/front/front.js";
 import MyJobs from "./pages/myjobs/MyJobs";
 import EmployeeMarketplace from "./pages/employeemarketplace/EmployeeMarketplace";
 import PostJobs from "./pages/postjobs/PostJobs";
-import AfterLoggedInHeader from "./generalcomponent/AfterLoggedInHeader";
+import AfterLoggedInHeader from "./generalcomponent/Header/Header";
 import Editjob from "./pages/editjob/editjob";
 import axios from "axios";
 import EmployerMarketplace from "./pages/employermarketplace/EmployerMarketplace";
@@ -49,6 +49,7 @@ function App() {
           <Useridcontext.Provider
             value={{ userId, setUserId, picsArray, switchMode, setSwitchMode }}
           >
+            <AfterLoggedInHeader />
             <Route exact path="/">
               <FrontPage></FrontPage>
             </Route>
