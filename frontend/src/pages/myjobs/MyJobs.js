@@ -68,14 +68,16 @@ const MyJobs = () => {
               <p>You are viewing as an Employer</p>
               <p>Click on each job for more information</p>
               <div className={styles.buttonGroup}></div>
-              <button
-                type="button"
-                class="btn btn-outline-success col-11 mx-auto"
-                data-mdb-ripple-color="dark"
-                onClick={handleModeChange}
-              >
-                Switch to Employee Mode
-              </button>
+              <Link to="/myjobs">
+                <button
+                  type="button"
+                  class="btn btn-outline-success col-11 mx-auto"
+                  data-mdb-ripple-color="dark"
+                  onClick={handleModeChange}
+                >
+                  Switch to Employee Mode
+                </button>
+              </Link>
 
               <Link to="/postjobs">
                 <button

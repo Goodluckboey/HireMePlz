@@ -28,3 +28,8 @@
   padding: 20px;
   font-size: 10px;
 }
+
+.card div:hover {
+  transition: 0.2s;
+  transform: scale(1.05);
+}
