@@ -11,18 +11,20 @@ import styles from "./parts/modules/er.module.css";
 import Employee from "./parts/Employee";
 import TagsCheckBoxBundle from "../../generalcomponent/TagsCheckBoxBundle";
 import SearchFilter from "../../generalcomponent/SearchFilter";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const EmployerMarketplace = () => {
   // context
   const { userId, picsArray, switchMode, setSwitchMode } =
     useContext(Useridcontext);
-  const employerid = userId;
+
+  // use history
+  const history = useHistory();
 
   //state change
-  const handleModeChange = () => {
-    setSwitchMode(false);
-  };
+  // const handleModeChange = () => {
+  //   setSwitchMode(false);
+  // };
 
   // states
   const [employeeQuery, setEmployeeQuery] = useState("");
@@ -51,6 +53,9 @@ const EmployerMarketplace = () => {
 
   // fetch employees on mount, search changes
   useEffect(() => {
+    if (!switchMode) {
+      history.push("/employeemarketplace");
+    }
     setIsLoading(true);
     const timer = setTimeout(handleSearchEmployee, 1000);
     return () => {
@@ -58,7 +63,7 @@ const EmployerMarketplace = () => {
         clearTimeout(timer);
       }
     };
-  }, [employeeQuery, tags, searchType]);
+  }, [employeeQuery, tags, searchType, switchMode]);
 
   // create employee components to populate page
   const employees = [];
@@ -76,7 +81,7 @@ const EmployerMarketplace = () => {
 
   return (
     <div>
-      <Link className={styles.switchTo} to="/employeemarketplace">
+      {/* <Link className={styles.switchTo} to="/employeemarketplace">
         <button
           type="button"
           class="btn btn-success"
@@ -84,7 +89,7 @@ const EmployerMarketplace = () => {
         >
           Switch to Employee
         </button>
-      </Link>
+      </Link> */}
       <div className={styles.banner}>
         <img
           id={styles.marketImage}
