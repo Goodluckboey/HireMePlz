@@ -1,0 +1,60 @@
+.backgroundBody {
+  background-color: rgb(245, 245, 245);
+  padding: 20px;
+}
+
+/* .encompass {
+  background-color: rgb(245, 245, 245);
+  height: fit-content;
+  padding-bottom: 30px;
+} */
+
+/* sideBar */
+#sidebar {
+  /* visibility: hidden; */
+  color: rgb(43, 43, 43);
+  position: fixed;
+  width: 15%;
+  height: 60%;
+  left: 170px;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: 200;
+}
+
+/* content */
+
+.skillsGrp {
+  left: 25%;
+}
+
+.inputBar {
+  border-radius: 12px;
+  width: 20%;
+  font-size: 20px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.inputGrp {
+  margin-top: 20px;
+  position: relative;
+  left: 40%;
+  top: 30px;
+}
+
+.skillsGrp {
+  position: relative;
+  top: 200px;
+}
+
+.btnGrp {
+  text-align: center;
+  position: relative;
+  bottom: -100px;
+}
