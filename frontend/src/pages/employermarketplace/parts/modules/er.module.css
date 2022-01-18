@@ -1,46 +1,39 @@
 /* Cards >>>>>>>>>>>>>>>>>>>>> */
 .card {
-  padding: 20px;
+  padding: 10px;
   margin: 5px;
   border: 1px solid rgb(211, 211, 211);
-  border-radius: 5px;
+  border-radius: 15px;
   text-align: center;
-  background-color: rgb(221, 221, 221);
+  background-color: rgb(51, 51, 51);
+  color: white;
 }
 
 .cardInfo {
   padding: 5px;
   text-align: left;
-  margin-right: auto;
 }
 
 .cardImg {
   object-fit: cover;
-  width: 450px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
 .cardBox {
   padding: 50px;
   display: grid;
-  grid-template-columns: repeat(3, 30%);
+  grid-template-columns: repeat(3, 22%);
   grid-column-gap: 1px;
   justify-content: center;
-}
-
-.ul {
-  list-style-type: none;
-  text-align: right;
-}
-
-.li {
-  /* font-weight: bold; */
 }
 
 .cardText {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 /* Banner Stuff */
@@ -110,4 +103,36 @@
   position: fixed;
   top: 90%;
   left: 50%;
+}
+
+.ctrlBadge {
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 10px;
+  border-bottom: 1px black solid;
+  padding-bottom: 10px;
+}
+
+.username {
+  display: flex;
+  font-weight: lighter;
+  margin: 0;
+  margin-left: 15px;
+}
+
+.Names {
+  display: flex;
+  padding-top: 10px;
+  margin-left: auto;
+  text-align: center;
+}
+
+.ul {
+  position: relative;
+  margin-right: 5%;
+}
+
+.li {
+  padding-right: 5px;
 }
