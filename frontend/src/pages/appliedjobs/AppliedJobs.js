@@ -40,6 +40,7 @@ const AppliedJobs = () => {
           }
           setFetchAppliedJobs={setFetchAppliedJobs}
           userId={userId}
+          jobData={fetchAppliedJobs}
         />
         // </Link>
       );
