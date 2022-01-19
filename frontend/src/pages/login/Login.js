@@ -71,9 +71,8 @@ const Login = () => {
   return (
     <>
       <img
-        id={styles.loginImage}
-        src="/images/background-g6df07de67_1920.jpg"
-        alt=""
+        className={styles.background}
+        src="./images/background-g6df07de67_1920.jpg"
       ></img>
       <div id={styles.login}>
         <div id={styles.welcome}>Sign In to HireUs</div>
