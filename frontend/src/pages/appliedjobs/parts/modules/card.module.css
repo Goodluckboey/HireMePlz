@@ -24,10 +24,15 @@
 
 .cardDescription {
   margin-bottom: 20px;
+  height: 2.8em;
+  overflow: hidden;
 }
 
 #cancelApplication {
   border-radius: 25px;
+  width: 200px;
+  height: 30px;
+  padding: 0;
 }
 
 .cancelApplicationDiv {
@@ -44,4 +49,11 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
+}
+
+#chat {
+  border-radius: 30px;
+  width: 200px;
+  height: 30px;
+  padding: 0;
 }
