@@ -1,18 +1,15 @@
 #login {
-  position: relative;
-  display: inline-block;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  padding: 40px;
-  margin: auto;
+  padding-bottom: 40px;
+  width: 350px;
+  margin: 0 auto;
   background-color: rgb(238, 238, 238);
   border: 1px solid rgb(155, 155, 155);
-  border-radius: 8px;
-  width: auto;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  margin-top: 260px;
 }
 
 #loginImage {
@@ -21,19 +18,18 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -46%);
+  z-index: -1;
 }
 
-.inputField {
-  padding: 20px;
-  width: 200px;
+.notAMember {
+  margin-top: 50px;
 }
 
 #welcome {
-  padding: 20px;
+  margin: 40px 0 50px 0;
   font-weight: bold;
+  font-size: 25px;
+  color:rgb(59, 59, 59)
 }
 
-#backToHome {
-  margin-top: 20px;
-}

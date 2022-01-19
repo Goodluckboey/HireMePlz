@@ -94,11 +94,14 @@ const Registration = () => {
     };
     post();
   };
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log("handleLogin");
+  // inline styles
+  const buttonStyle = {
+    width: "250px",
+    height: "40px",
+    borderRadius: "30px",
+    marginTop: "10px",
   };
+
   return (
     <div>
       <img
@@ -109,62 +112,54 @@ const Registration = () => {
       <div className={styles.registerPage}>
         <form>
           <h2 id={styles.welcome}>Join HireUs</h2>
-          <div className={styles.inputField}>
-            <input
-              type="text"
-              value={input.firstName}
-              onChange={(event) => {
-                dispatchInput({
-                  type: "First Name",
-                  payload: { input: event.target.value },
-                });
-              }}
-              placeholder="First Name"
-              className="YOLO"
-            />
-          </div>
-          <div className={styles.inputField}>
-            <input
-              type="text"
-              value={input.lastName}
-              onChange={(event) => {
-                dispatchInput({
-                  type: "Last Name",
-                  payload: { input: event.target.value },
-                });
-              }}
-              placeholder="Last Name"
-              className="YOLO"
-            />
-          </div>
-          <div className={styles.inputField}>
-            <input
-              type="email"
-              value={input.email}
-              onChange={(event) => {
-                dispatchInput({
-                  type: "Email",
-                  payload: { input: event.target.value },
-                });
-              }}
-              placeholder="Email"
-              className="YOLO"
-            />
-          </div>
-          <div className={styles.inputField}>
-            <input
-              type="text"
-              value={input.userName}
-              onChange={(event) => {
-                dispatchInput({
-                  type: "Username",
-                  payload: { input: event.target.value },
-                });
-              }}
-              placeholder="Username"
-              className="YOLO"
-            />
-          </div>
+          <input
+            type="text"
+            value={input.firstName}
+            onChange={(event) => {
+              dispatchInput({
+                type: "First Name",
+                payload: { input: event.target.value },
+              });
+            }}
+            placeholder="First Name"
+            className={styles.inputField}
+          />
+          <input
+            type="text"
+            value={input.lastName}
+            onChange={(event) => {
+              dispatchInput({
+                type: "Last Name",
+                payload: { input: event.target.value },
+              });
+            }}
+            placeholder="Last Name"
+            className={styles.inputField}
+          />
+          <input
+            type="email"
+            value={input.email}
+            onChange={(event) => {
+              dispatchInput({
+                type: "Email",
+                payload: { input: event.target.value },
+              });
+            }}
+            placeholder="Email"
+            className={styles.inputField}
+          />
+          <input
+            type="text"
+            value={input.userName}
+            onChange={(event) => {
+              dispatchInput({
+                type: "Username",
+                payload: { input: event.target.value },
+              });
+            }}
+            placeholder="Username"
+            className={styles.inputField}
+          />
           <p
             className={
               validUsername === "*username is available"
@@ -174,53 +169,44 @@ const Registration = () => {
           >
             {validUsername}
           </p>
-          <div className={styles.inputField}>
-            <input
-              type="password"
-              value={input.password}
-              onChange={(event) => {
-                dispatchInput({
-                  type: "Password",
-                  payload: { input: event.target.value },
-                });
-              }}
-              placeholder="Password"
-              className="YOLO"
-            />
-          </div>
-          <div className={styles.inputField}>
-            <input
-              type="password"
-              value={input.retypePassword}
-              onChange={(event) => {
-                dispatchInput({
-                  type: "Retype Password",
-                  payload: { input: event.target.value },
-                });
-              }}
-              placeholder="Retype Password"
-              className="YOLO"
-            />
-          </div>
-          <div className={styles.inputField}>
-            <div>Skills: </div>
-            <div className={styles.checkBoxContainer}>
-              <TagsCheckBoxBundle handleData={setCheckBoxesData} />
-            </div>
-          </div>
-          <div className={styles.inputField}>
-            <Link to="/login">
-              <button
-                id={styles.signUp}
-                className="btn btn-primary"
-                onClick={handleSignUp}
-                value="Sign up"
-              >
-                Sign Up
-              </button>
-            </Link>
-          </div>
-          <p>
+          <input
+            type="password"
+            value={input.password}
+            onChange={(event) => {
+              dispatchInput({
+                type: "Password",
+                payload: { input: event.target.value },
+              });
+            }}
+            placeholder="Password"
+            className={styles.inputField}
+          />
+          <input
+            type="password"
+            value={input.retypePassword}
+            onChange={(event) => {
+              dispatchInput({
+                type: "Retype Password",
+                payload: { input: event.target.value },
+              });
+            }}
+            placeholder="Retype Password"
+            className={styles.inputField}
+          />
+          <div className={styles.skills}>Skills:</div>
+            <TagsCheckBoxBundle handleData={setCheckBoxesData} />
+          <Link to="/login">
+            <button
+              id={styles.signUp}
+              className="btn btn-primary"
+              onClick={handleSignUp}
+              value="Sign up"
+              style={buttonStyle}
+            >
+              Sign Up
+            </button>
+          </Link>
+          <p className={styles.alreadyAMember}>
             Already a member? <Link to="/login">Login here</Link>
           </p>
         </form>

@@ -20,7 +20,7 @@ const TagsCheckBoxBundle = ({ handleData }) => {
 
   const tagsArray = tags.map((tag) => {
     return (
-      <div key={uuidv4()}>
+      <div className={styles.tag} key={uuidv4()}>
         <input
           type="checkbox"
           checked={checkBoxes[tag]}
@@ -30,12 +30,16 @@ const TagsCheckBoxBundle = ({ handleData }) => {
           }}
           class="form-check-input"
         />
-        <label htmlFor={tag}>{tag}</label>
+        <label style={{height: "12px"}} htmlFor={tag}>{tag}</label>
       </div>
     );
   });
 
-  return <div className={styles.tagsGroup}>{tagsArray}</div>;
+  return (
+    <div className={styles.container}>
+      <div className={styles.tagsGroup}>{tagsArray}</div>
+    </div>
+  );
 };
 
 export default TagsCheckBoxBundle;

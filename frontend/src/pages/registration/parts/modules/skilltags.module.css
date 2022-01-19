@@ -1,7 +1,13 @@
 .tagsGroup {
-  display: grid;
-  grid: auto auto / auto auto auto auto; 
-  grid-gap: 0 20px;
-  padding: 10px; 
-  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  flex-wrap: wrap;
+  height: 130px;
+}
+
+.tag {
+  display: flex;
+  padding-left: 30px;
 }
