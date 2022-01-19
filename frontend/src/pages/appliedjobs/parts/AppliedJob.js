@@ -77,15 +77,11 @@ const AppliedJob = ({
         <h3 className={styles.cardReward}>GC {reward}</h3>
       </div>
       <div className={styles.cancelApplicationDiv}>
-        {/*  */}
-        {/*  */}
-        <button onClick={goToChat}>Chat</button>
-        {/*  */}
-        {/*  */}
+        <button id={styles.chat} className="btn btn-outline-primary" onClick={goToChat}>chat with employer</button>
         <button
           type="button"
           id={styles.cancelApplication}
-          class="btn btn-danger btn-rounded"
+          class="btn btn-outline-danger btn-rounded"
           onClick={() => handleUnapply(_id)}
         >
           Cancel Application
