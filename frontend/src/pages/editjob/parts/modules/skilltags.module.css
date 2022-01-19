@@ -1,6 +1,7 @@
 .tagsGroup {
   display: grid;
   grid-template-columns: repeat(4, 35%);
+  grid-column-gap: 10px;
   position: relative;
   right: 20px;
   text-align: left;

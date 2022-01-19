@@ -81,46 +81,12 @@ const Editjob = () => {
   };
 
   return (
-    <div>
+    <div id={styles.container}>
       {userId ? (
-        <>
+        <div>
           <div id={styles.sidebar}>
-            <h1 className={styles.title}>My Jobs</h1>
-            <p>You are viewing as an Employer</p>
-            <p>Click on each job for more information</p>
-            <div className={styles.buttonGroup}></div>
-            <Link to="/myjobs">
-              <button
-                type="button"
-                class="btn btn-outline-success col-11 mx-auto"
-                data-mdb-ripple-color="dark"
-                onClick={handleModeChange}
-              >
-                Switch to Employee Mode
-              </button>
-            </Link>
-
-            <Link to="/postjobs">
-              <button
-                type="button"
-                class="btn btn-outline-dark col-11 mx-auto"
-                data-mdb-ripple-color="dark"
-              >
-                Add a new Job
-              </button>
-            </Link>
-
-            <Link to="/employermarketplace">
-              <button
-                type="button"
-                class="btn btn-outline-secondary col-11 mx-auto"
-                data-mdb-ripple-color="dark"
-              >
-                Employer Marketplace
-              </button>
-            </Link>
-          </div>
-          <div className={styles.wholeEdit}>
+            <h1 className={styles.title}>Edit Job</h1>
+            <p>Summary of the job you are editing:</p>
             {oneJobData && (
               <div className={styles.editJobPrevious}>
                 <div className={styles.cardImgBox}>
@@ -146,40 +112,70 @@ const Editjob = () => {
                 </div>
               </div>
             )}
+            <div className={styles.buttonGroup}></div>
+            <Link to="/myjobs">
+              <button
+                type="button"
+                class="btn btn-outline-danger col-11 mx-auto"
+                data-mdb-ripple-color="dark"
+              >
+                cancel
+              </button>
+            </Link>
+          </div>
+          <div className={styles.wholeEdit}>
             <div className={styles.editInput}>
               <form onSubmit={handleSave}>
+                <div>
+                  <div>Job Title</div>
+                  <input
+                    id="name"
+                    placeholder="job title"
+                    value={jobTitle}
+                    onChange={(e) => {
+                      setJobTitle(e.target.value);
+                    }}
+                    className={styles.inputField}
+                  />
+                </div>
+                <div>
+                <div>Job Description</div>
+                  <textarea
+                    rows="5"
+                    placeholder="job description"
+                    value={jobDescription}
+                    onChange={(e) => {
+                      setJobDescription(e.target.value);
+                    }}
+                    className={styles.inputField}
+                  />
+                </div>
+                <div>
+                <div>Reward</div>
+                  <input
+                    placeholder="reward"
+                    value={reward}
+                    onChange={(e) => {
+                      setReward(e.target.value);
+                    }}
+                    className={styles.inputField}
+                  />
+                </div>
                 <div className={styles.skillsGrp}>
                   <TagsCheckBoxBundle handleData={setTags} />
                 </div>
-                <input
-                  placeholder="job title"
-                  value={jobTitle}
-                  onChange={(e) => {
-                    setJobTitle(e.target.value);
-                  }}
-                />
-
-                <input
-                  placeholder="job description"
-                  value={jobDescription}
-                  onChange={(e) => {
-                    setJobDescription(e.target.value);
-                  }}
-                />
-                <input
-                  placeholder="reward"
-                  value={reward}
-                  onChange={(e) => {
-                    setReward(e.target.value);
-                  }}
-                />
-                <button type="submit" value="save" class="btn btn-warning">
+                <button
+                  style={{ width: "200px" }}
+                  type="submit"
+                  value="save"
+                  className="btn btn-success"
+                >
                   Submit
                 </button>
               </form>
             </div>
           </div>
-        </>
+        </div>
       ) : (
         <NotLoggedIn />
       )}
