@@ -32,7 +32,8 @@ const Chat = ({ jobid, employeeid, employerid, jobData }) => {
     getJobChat();
   }, []);
 
-  const postChatMessage = () => {
+  const postChatMessage = (e) => {
+    e.preventDefault();
     const inputMessageToSendToBackend = {
       jobid: bringDataDown.storageData.jobid,
       message: inputMessage,
@@ -57,21 +58,19 @@ const Chat = ({ jobid, employeeid, employerid, jobData }) => {
   };
   return (
     <div>
-      <div className={styles.chatBox}>
-        {fetchedConvo.map((element) => {
-          <div>{element.message}</div>;
-        })}
-      </div>
       <div className={styles.inputMessage}>
         <form type="text">
           <input
-            value={logKeyPresses}
+            value={inputMessage}
             type="Text"
             placeholder="Type message here"
-            onSubmit={postChatMessage}
+            onChange={logKeyPresses}
+            className="inputMessage"
           ></input>
+          <button onClick={postChatMessage}>PRESS</button>
         </form>
       </div>
+      <div>{console.log(fetchedConvo)}</div>
     </div>
   );
 };
