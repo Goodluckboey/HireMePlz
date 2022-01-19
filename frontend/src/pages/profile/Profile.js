@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Useridcontext from "../../context/userid-context";
+import styles from "../profile/modules/ee.module.css";
 
 const Profile = () => {
   // useContext
@@ -101,10 +102,20 @@ const Profile = () => {
           <h3 class="mb-1">
             {completedJobs &&
               completedJobs.map((elem) => (
-                <div>
-                  <p>{elem.name}</p>
+                <div className={styles.cardBox}>
+                  <div className={styles.cardInfo}>
+                    <div className={styles.ctrlBadge}>
+                      <span class="badge rounded-pill bg-light text-dark">
+                        {elem.status}
+                      </span>
+                      <p className={styles.cardName}>{elem.name}</p>
+                    </div>
+                    <p className={styles.cardDescription}>{elem.description}</p>
+                    <h4 className={styles.cardReward}>GC {elem.reward} </h4>
+                  </div>
+                  {/* <p>{elem.name}</p>
                   <p>{elem.description}</p>
-                  <p>{elem.reward}</p>
+                  <p>{elem.reward}</p> */}
                 </div>
               ))}
           </h3>
