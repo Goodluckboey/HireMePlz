@@ -21,7 +21,12 @@ const Job = ({ name, description, reward, status, applyJob, imageUrl }) => {
       </div>
       {userId && (
         <div className={styles.buttonRound}>
-          <button onClick={applyJob} type="button" class="btn btn-success">
+          <button
+            id={styles.buttonRound}
+            onClick={applyJob}
+            type="button"
+            class="btn btn-success"
+          >
             Apply
           </button>
         </div>
