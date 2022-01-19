@@ -79,7 +79,7 @@ function App() {
             <Route exact path="/employermarketplace">
               <EmployerMarketplace></EmployerMarketplace>
             </Route>
-            <Route exact path="/editjob">
+            <Route exact path="/editjob/:jobid">
               <Editjob></Editjob>
             </Route>
             <Route exact path="/chat">
