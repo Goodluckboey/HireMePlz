@@ -31,18 +31,43 @@ const AppliedJob = ({
         <img src={imageUrl} className={styles.cardImg} alt="appliedImage" />
       </div>
       <div className={styles.cardInfo}>
-        <h3 className={styles.cardName}>{name}</h3>
-        <h3 className={styles.cardDescription}>{description}</h3>
-        <h3 className={styles.cardReward}>{reward}</h3>
-        <h5>
-          <span class="badge rounded-pill bg-success text-dark ">{status}</span>
-        </h5>
+        <div className={styles.ctrlBadge}>
+          {status === "Open" && (
+            <h5>
+              <span class="badge rounded-pill bg-warning text-dark ">
+                {status}
+              </span>
+            </h5>
+          )}
+          {status === "Accepted" && (
+            <h5>
+              <span class="badge rounded-pill bg-success text-dark ">
+                {status}
+              </span>
+            </h5>
+          )}
+          {status === "Pending" && (
+            <h5>
+              <span class="badge rounded-pill bg-primary text-dark ">
+                {status}
+              </span>
+            </h5>
+          )}
+          <p className={styles.cardName}>{name}</p>
+        </div>
+
+        <p className={styles.cardDescription}>{description}</p>
+        <h3 className={styles.cardReward}>GC {reward}</h3>
       </div>
-      <div>
-        <Button
+      <div className={styles.cancelApplicationDiv}>
+        <button
+          type="button"
+          id={styles.cancelApplication}
+          class="btn btn-danger btn-rounded"
           onClick={() => handleUnapply(_id)}
-          value="Cancel Application"
-        ></Button>
+        >
+          Cancel Application
+        </button>
       </div>
     </div>
   );
