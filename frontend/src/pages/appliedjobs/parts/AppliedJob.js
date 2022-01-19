@@ -42,6 +42,14 @@ const AppliedJob = ({
     history.push("/chat");
   };
 
+  const buttonStyle = {
+    borderRadius: "30px",
+    display: "flex",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: "5%",
+  };
+
   return (
     <div className={styles.card}>
       <div className={styles.cardImgBox}>
@@ -74,10 +82,20 @@ const AppliedJob = ({
         </div>
 
         <p className={styles.cardDescription}>{description}</p>
-        <h3 className={styles.cardReward}>GC {reward}</h3>
+        <h4 className={styles.cardReward}>GC {reward}</h4>
       </div>
+      {/*  */}
+      {/*  */}
+      <button
+        onClick={goToChat}
+        class="btn btn-primary btn-rounded"
+        style={buttonStyle}
+      >
+        Chat
+      </button>
+      {/*  */}
+      {/*  */}
       <div className={styles.cancelApplicationDiv}>
-        <button id={styles.chat} className="btn btn-outline-primary" onClick={goToChat}>chat with employer</button>
         <button
           type="button"
           id={styles.cancelApplication}

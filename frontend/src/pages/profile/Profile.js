@@ -126,6 +126,11 @@ const Profile = () => {
                         {elem.status}
                       </span>
                     )}
+                    {elem.status === "Pending" && (
+                      <span class="badge rounded-pill bg-primary text-dark">
+                        {elem.status}
+                      </span>
+                    )}
                     {elem.status === "Completed" && (
                       <span class="badge rounded-pill bg-info text-dark">
                         {elem.status}
