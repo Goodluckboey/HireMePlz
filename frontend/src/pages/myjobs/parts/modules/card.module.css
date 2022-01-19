@@ -32,3 +32,22 @@
 .cardDescription {
   margin-bottom: 20px;
 }
+
+.AccRejButtons {
+  text-align: center;
+}
+
+.positionButton {
+  display: flex;
+  justify-content: center;
+}
+
+.controlDelete {
+  position: absolute;
+  display: flex;
+  margin-left: 19%;
+  margin-top: -1%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  border: 1px solid white;
+}

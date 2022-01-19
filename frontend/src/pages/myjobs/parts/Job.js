@@ -45,6 +45,15 @@ const Job = ({
         refreshData();
       });
   };
+
+  const handleDelete = (element) => {
+    axios
+      .delete(`http://localhost:5000/individualjob/delete/${element}`)
+      .then(() => {
+        refreshData();
+      });
+  };
+
   const displayStatus = () => {
     if (status === "Open" || status === "Pending") {
       return (
@@ -93,8 +102,23 @@ const Job = ({
     }
   };
 
+  const buttonStyle = { borderRadius: "30px" };
+  const completedStyle = {
+    borderRadius: "30px",
+    display: "flex",
+    marginLeft: "auto",
+    marginRight: "auto",
+  };
+
   return (
     <div className={styles.card}>
+      <div className={styles.controlDelete}>
+        <i
+          type="button"
+          class="fas fa-times-circle fa-2x"
+          onClick={() => handleDelete(_id)}
+        ></i>
+      </div>
       <div className={styles.cardImgBox}>
         <img src={imageUrl} className={styles.cardImg} alt="myImage" />
       </div>
@@ -109,31 +133,46 @@ const Job = ({
       {/* {displayButton()} */}
       {status === "Pending" && (
         <>
-          <div>
-            <Button
+          <Link to={`/editjob/${_id}`}>
+            <div className={styles.positionButton}>
+              <p>Edit Job</p>
+            </div>
+          </Link>
+          <div className={styles.AccRejButtons}>
+            <button
+              type="button"
+              class="btn btn-success btn-rounded"
+              style={buttonStyle}
               onClick={() => handleAccept(_id)}
-              value="Accept Applicant"
-            ></Button>
-          </div>
-          <div>
-            <Button
+            >
+              <i class="far fa-check-circle fa-2x"></i>
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-danger btn-rounded"
+              style={buttonStyle}
               onClick={() => handleReject(_id)}
-              value="Reject Applicant"
-            ></Button>
+            >
+              <i class="fas fa-times-circle fa-2x"></i>
+            </button>
           </div>
         </>
       )}
       {status === "Accepted" && (
         <>
           <div>
-            <Button
+            <button
+              type="button"
+              class="btn btn-success btn-rounded"
+              style={completedStyle}
               onClick={() => handleComplete(_id)}
-              value="Job Completed"
-            ></Button>
+            >
+              Job Completed
+            </button>
           </div>
         </>
       )}
-      <Link to={`/editjob/${_id}`}>Edit Quest</Link>
     </div>
   );
 };

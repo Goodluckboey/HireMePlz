@@ -132,15 +132,6 @@ const IndividualJob = (props) => {
                             </p>
                           )}
                           <Link to={`/editjob/${element._id}`}>Edit Quest</Link>
-                          <div className={styles.deleteButton}>
-                            <button
-                              type="button"
-                              class="btn btn-link"
-                              onClick={() => handleDelete(element._id)}
-                            >
-                              Delete
-                            </button>
-                          </div>
                         </p>
                       </div>
                     </SplideSlide>
