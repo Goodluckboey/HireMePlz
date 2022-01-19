@@ -37,14 +37,6 @@ const Profile = () => {
           setPostedJobs(res.data);
         });
     }
-
-    // .post("http://127.0.0.1:5000/profile/completed/history", {
-    //   ...retrieveCompletedPostedJob,
-    //   status: typeOfStatus,
-    // })
-    // .then((res) => {
-    //   setCompletedJobs(res.data);
-    // });
   };
 
   useEffect(() => {
@@ -95,45 +87,57 @@ const Profile = () => {
             {profileData && profileData[0].tags.map((elem) => <h5>{elem}</h5>)}
           </h3>
         </div>
-        <div href="#" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Completed Jobs</h5>
-          </div>
-          <h3 class="mb-1">
-            {completedJobs &&
-              completedJobs.map((elem) => (
-                <div className={styles.cardBox}>
-                  <div className={styles.cardInfo}>
-                    <div className={styles.ctrlBadge}>
+        <div className={styles.headTitle}>
+          <h5>Completed Jobs</h5>
+        </div>
+        <div className={styles.completedJobs}>
+          {completedJobs &&
+            completedJobs.map((elem) => (
+              <div className={styles.cardBox}>
+                <div className={styles.cardInfo}>
+                  <div className={styles.ctrlBadge}>
+                    <span class="badge rounded-pill bg-info text-dark">
+                      {elem.status}
+                    </span>
+                    <p className={styles.cardName}>{elem.name}</p>
+                  </div>
+                  <p className={styles.cardDescription}>{elem.description}</p>
+                  <h4 className={styles.cardReward}>GC {elem.reward} </h4>
+                </div>
+              </div>
+            ))}
+        </div>
+        <div className={styles.headTitle}>
+          <h5>Posted Jobs</h5>
+        </div>
+        <div className={styles.postedJobs}>
+          {postedJobs &&
+            postedJobs.map((elem) => (
+              <div className={styles.cardBox}>
+                <div className={styles.cardInfo}>
+                  <div className={styles.ctrlBadge}>
+                    {elem.status === "Open" && (
                       <span class="badge rounded-pill bg-light text-dark">
                         {elem.status}
                       </span>
-                      <p className={styles.cardName}>{elem.name}</p>
-                    </div>
-                    <p className={styles.cardDescription}>{elem.description}</p>
-                    <h4 className={styles.cardReward}>GC {elem.reward} </h4>
+                    )}
+                    {elem.status === "accepted" && (
+                      <span class="badge rounded-pill bg-success text-dark">
+                        {elem.status}
+                      </span>
+                    )}
+                    {elem.status === "Completed" && (
+                      <span class="badge rounded-pill bg-info text-dark">
+                        {elem.status}
+                      </span>
+                    )}
+                    <p className={styles.cardName}>{elem.name}</p>
                   </div>
-                  {/* <p>{elem.name}</p>
-                  <p>{elem.description}</p>
-                  <p>{elem.reward}</p> */}
+                  <p className={styles.cardDescription}>{elem.description}</p>
+                  <h4 className={styles.cardReward}>GC {elem.reward} </h4>
                 </div>
-              ))}
-          </h3>
-        </div>
-        <div href="#" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Posted Jobs</h5>
-          </div>
-          <h3 class="mb-1">
-            {postedJobs &&
-              postedJobs.map((elem) => (
-                <>
-                  <p>{elem.name}</p>
-                  <p>{elem.description}</p>
-                  <p>{elem.reward}</p>
-                </>
-              ))}
-          </h3>
+              </div>
+            ))}
         </div>
       </div>
     </div>
