@@ -261,6 +261,25 @@ app.get("/profile/:userid", async (req, res) => {
   }
 });
 
+//display completed and posted jobs
+app.post("/profile/completed/history", async (req, res) => {
+  const { _id, status } = sanitize(req.body);
+  try {
+    if (status === "Completed") {
+      const completedJobFindByEmployeeId = await Job.find({
+        employeeid: _id,
+        status: "Completed",
+      });
+      res.json(completedJobFindByEmployeeId);
+    } else if (status === "Posted") {
+      const postedJobFindByEmployerId = await Job.find({ employerid: _id });
+      res.json(postedJobFindByEmployerId);
+    }
+  } catch (err) {
+    res.json(err);
+  }
+});
+
 // find specific job data
 app.get("/findjob/:jobid", async (req, res) => {
   try {
