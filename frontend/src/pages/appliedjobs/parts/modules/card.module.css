@@ -1,16 +1,7 @@
-/* #cardBox {
-  display: grid;
-  grid-template-columns: repeat(3, 30%);
-  grid-column-gap: 1px;
-  justify-content: center;
-} */
-
 .card {
-  margin-top: 20px;
-  border: 1px solid rgb(211, 211, 211);
-  border-radius: 10px;
-  text-align: center;
-  background-color: rgb(223, 223, 223);
+  border: 1px solid rgb(190, 202, 196);
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .cardImg {
@@ -25,10 +16,21 @@
 
 .cardInfo {
   padding: 20px;
-  font-size: 10px;
 }
 
-.card div:hover {
-  transition: 0.2s;
-  transform: scale(1.05);
+.cardReward {
+  text-align: right;
+}
+
+.cardDescription {
+  margin-bottom: 20px;
+}
+
+#cancelApplication {
+  border-radius: 25px;
+}
+
+.cancelApplicationDiv {
+  display: flex;
+  justify-content: center;
 }
