@@ -57,12 +57,6 @@ function App() {
             <Route exact path="/profile/">
               <Profile></Profile>
             </Route>
-            <Route exact path="/individualjob/:index">
-              <IndividualJob></IndividualJob>
-            </Route>
-            <Route exact path="/appliedjob/:index">
-              <AppliedIndividualJob></AppliedIndividualJob>
-            </Route>
             <Route exact path="/myjobs">
               <MyJobs></MyJobs>
             </Route>
