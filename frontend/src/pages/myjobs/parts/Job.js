@@ -93,7 +93,7 @@ const Job = ({
   };
 
   return (
-    <div>
+    <div className={styles.card}>
       <div className={styles.cardImgBox}>
         <img src={imageUrl} className={styles.cardImg} alt="myImage" />
       </div>
