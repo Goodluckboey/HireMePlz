@@ -16,6 +16,7 @@ import Editjob from "./pages/editjob/editjob";
 import axios from "axios";
 import EmployerMarketplace from "./pages/employermarketplace/EmployerMarketplace";
 import AppliedIndividualJob from "./pages/individualapplied/IndividualAppliedJob";
+import Chat from "./pages/chat/Chat";
 
 function App() {
   // top level states: userid and random pics
@@ -69,8 +70,11 @@ function App() {
             <Route exact path="/employermarketplace">
               <EmployerMarketplace></EmployerMarketplace>
             </Route>
-            <Route exact path="/editjob/:jobid">
+            <Route exact path="/editjob">
               <Editjob></Editjob>
+            </Route>
+            <Route exact path="/chat">
+              <Chat></Chat>
             </Route>
           </Useridcontext.Provider>
         </Switch>
