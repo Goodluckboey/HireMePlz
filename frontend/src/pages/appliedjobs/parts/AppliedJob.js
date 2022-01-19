@@ -36,8 +36,8 @@ const AppliedJob = ({
     bringDataUp.setStorageData({
       jobData: jobData,
       jobid: _id,
-      employerid: jobData.employerid,
-      employeeid: jobData.employeeid,
+      employerid: jobData[0].employerid,
+      employeeid: jobData[0].employeeid,
     });
     history.push("/chat");
   };
