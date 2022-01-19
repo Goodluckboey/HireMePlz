@@ -72,6 +72,7 @@ const Registration = () => {
   }, [input.userName]);
 
   const handleSignUp = (e) => {
+    e.preventDefault();
     const post = async () => {
       const data = {
         firstname: input.firstName,
@@ -110,8 +111,8 @@ const Registration = () => {
         alt=""
       ></img>
       <div className={styles.registerPage}>
+        <h2 id={styles.welcome}>Join HireUs</h2>
         <form>
-          <h2 id={styles.welcome}>Join HireUs</h2>
           <input
             type="text"
             value={input.firstName}
@@ -194,7 +195,7 @@ const Registration = () => {
             className={styles.inputField}
           />
           <div className={styles.skills}>Skills:</div>
-            <TagsCheckBoxBundle handleData={setCheckBoxesData} />
+          <TagsCheckBoxBundle handleData={setCheckBoxesData} />
           <Link to="/login">
             <button
               id={styles.signUp}
@@ -202,14 +203,15 @@ const Registration = () => {
               onClick={handleSignUp}
               value="Sign up"
               style={buttonStyle}
+              type="submit"
             >
               Sign Up
             </button>
           </Link>
-          <p className={styles.alreadyAMember}>
-            Already a member? <Link to="/login">Login here</Link>
-          </p>
         </form>
+        <p className={styles.alreadyAMember}>
+          Already a member? <Link to="/login">Login here</Link>
+        </p>
         <div id={styles.backToHome}>
           <Link to="/">Back to home</Link>
         </div>
