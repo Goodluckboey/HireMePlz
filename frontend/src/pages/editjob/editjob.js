@@ -59,6 +59,9 @@ const Editjob = () => {
         console.log("fetched specific Job Data!");
         setOneJobData(res.data[0]);
         console.log(oneJobData);
+        setJobTitle(res.data[0].name);
+        setJobDescription(res.data[0].description);
+        setReward(res.data[0].reward);
       } catch (err) {
         console.log(err);
       }
@@ -155,6 +158,7 @@ const Editjob = () => {
                     setJobTitle(e.target.value);
                   }}
                 />
+
                 <input
                   placeholder="job description"
                   value={jobDescription}

@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../../../generalcomponent/Button";
 import styles from "./modules/card.module.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Job = ({
   name,
@@ -93,7 +94,7 @@ const Job = ({
   };
 
   return (
-    <div>
+    <div className={styles.card}>
       <div className={styles.cardImgBox}>
         <img src={imageUrl} className={styles.cardImg} alt="myImage" />
       </div>
@@ -132,6 +133,7 @@ const Job = ({
           </div>
         </>
       )}
+      <Link to={`/editjob/${_id}`}>Edit Quest</Link>
     </div>
   );
 };
