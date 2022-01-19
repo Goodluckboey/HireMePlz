@@ -147,7 +147,7 @@ const Editjob = () => {
                     onChange={(e) => {
                       setJobDescription(e.target.value);
                     }}
-                    className={styles.inputField}
+                    className={styles.areaField}
                   />
                 </div>
                 <div>
@@ -165,6 +165,7 @@ const Editjob = () => {
                   <TagsCheckBoxBundle handleData={setTags} />
                 </div>
                 <button
+                  id={styles.buttonRound}
                   style={{ width: "200px" }}
                   type="submit"
                   value="save"
