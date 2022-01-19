@@ -23,6 +23,7 @@ function App() {
   const [switchMode, setSwitchMode] = useState(false); //false = employEE, true = employER
   const [userId, setUserId] = useState("");
   const [picsArray, setPicsArray] = useState("");
+  const [storageData, setStorageData] = useState({});
   const apiKey = "563492ad6f917000010000011ffd758dc43247008b50f4fd9d528ff2";
 
   // fetch random images for usage
@@ -43,7 +44,15 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Useridcontext.Provider
-            value={{ userId, setUserId, picsArray, switchMode, setSwitchMode }}
+            value={{
+              userId,
+              setUserId,
+              picsArray,
+              switchMode,
+              setSwitchMode,
+              storageData,
+              setStorageData,
+            }}
           >
             <Header />
             <Route exact path="/">
