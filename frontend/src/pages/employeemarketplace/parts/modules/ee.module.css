@@ -89,6 +89,10 @@ input {
   display: flex;
   margin-top: 10px;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 95%;
 }
 
 .cardName {
@@ -104,7 +108,7 @@ input {
 }
 
 .buttonRound {
-  border-radius: 15px;
+  position: relative;
 }
 
 #cardBox {
@@ -113,6 +117,7 @@ input {
   grid-template-columns: repeat(3, 22%);
   grid-column-gap: 1px;
   justify-content: center;
+  grid-auto-rows: 1fr;
 }
 
 .card {
