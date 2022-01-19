@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import noImage from "../images/noimage.png";
 import styles from "./modules/card.module.css";
 import Button from "../../../generalcomponent/Button";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Useridcontext from "../../../context/userid-context";
 
 const AppliedJob = ({
   name,
@@ -14,7 +15,9 @@ const AppliedJob = ({
   _id,
   setFetchAppliedJobs,
   userId,
+  jobData,
 }) => {
+  const bringDataUp = useContext(Useridcontext);
   const refreshData = () => {
     axios.get(`http://127.0.0.1:5000/appliedjobs/${userId}`).then((res) => {
       setFetchAppliedJobs(res.data);
@@ -30,7 +33,13 @@ const AppliedJob = ({
   let history = useHistory();
 
   const goToChat = () => {
-    history.push("/chat/:id");
+    bringDataUp.setStorageData({
+      jobData: jobData,
+      jobid: _id,
+      employerid: jobData.employerid,
+      employeeid: jobData.employeeid,
+    });
+    history.push("/chat");
   };
 
   return (
