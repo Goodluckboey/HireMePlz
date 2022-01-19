@@ -104,13 +104,12 @@ const Registration = () => {
   };
 
   return (
-    <div>
+    <div className={styles.registerPage}>
       <img
-        id={styles.loginImage}
-        src="/images/background-g6df07de67_1920.jpg"
-        alt=""
+        className={styles.background}
+        src="./images/background-g6df07de67_1920.jpg"
       ></img>
-      <div className={styles.registerPage}>
+      <div className={styles.registerSegment}>
         <h2 id={styles.welcome}>Join HireUs</h2>
         <form>
           <input
