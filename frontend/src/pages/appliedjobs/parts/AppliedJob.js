@@ -3,6 +3,7 @@ import noImage from "../images/noimage.png";
 import styles from "./modules/card.module.css";
 import Button from "../../../generalcomponent/Button";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const AppliedJob = ({
   name,
@@ -25,6 +26,13 @@ const AppliedJob = ({
       refreshData();
     });
   };
+
+  let history = useHistory();
+
+  const goToChat = () => {
+    history.push("/chat/:id");
+  };
+
   return (
     <div className={styles.card}>
       <div className={styles.cardImgBox}>
@@ -60,6 +68,11 @@ const AppliedJob = ({
         <h3 className={styles.cardReward}>GC {reward}</h3>
       </div>
       <div className={styles.cancelApplicationDiv}>
+        {/*  */}
+        {/*  */}
+        <button onClick={goToChat}>Chat</button>
+        {/*  */}
+        {/*  */}
         <button
           type="button"
           id={styles.cancelApplication}
