@@ -109,6 +109,13 @@ input {
 
 .buttonRound {
   position: relative;
+  padding-bottom: 10px;
+}
+
+#buttonRound {
+  border-radius: 30px;
+  width: 150px;
+  padding: 10px;
 }
 
 #cardBox {
