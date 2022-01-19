@@ -31,15 +31,17 @@ const AppliedJobs = () => {
   if (fetchAppliedJobs) {
     fetchAppliedJobs.map((eachJob, index) => {
       return appliedJobs.push(
-        <Link to={`/appliedjob/${index}`}>
-          <AppliedJob
-            {...eachJob}
-            key={uuidv4}
-            imageUrl={
-              picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
-            }
-          />
-        </Link>
+        // <Link to={`/appliedjob/${index}`}>
+        <AppliedJob
+          {...eachJob}
+          key={uuidv4}
+          imageUrl={
+            picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
+          }
+          setFetchAppliedJobs={setFetchAppliedJobs}
+          userId={userId}
+        />
+        // </Link>
       );
     });
   }

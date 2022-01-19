@@ -45,15 +45,17 @@ const MyJobs = () => {
   if (fetchedJobs) {
     fetchedJobs.map((element, index) => {
       return jobs.push(
-        <Link to={`/individualjob/${index}`}>
-          <Job
-            {...element}
-            key={uuidv4()}
-            imageUrl={
-              picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
-            }
-          ></Job>
-        </Link>
+        //<Link to={`/individualjob/${index}`}>
+        <Job
+          {...element}
+          key={uuidv4()}
+          imageUrl={
+            picsArray[Math.floor(Math.random() * picsArray.length)].src.medium
+          }
+          setFetchedJobs={setFetchedJobs}
+          employerid={employerid}
+        ></Job>
+        //</Link>
       );
     });
   }
