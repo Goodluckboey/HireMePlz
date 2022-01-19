@@ -140,6 +140,7 @@ input {
 
 .postedJobs {
   margin-top: 20px;
+  margin-bottom: 30px;
   display: grid;
   grid-template-columns: repeat(4, 22%);
   grid-column-gap: 1px;
