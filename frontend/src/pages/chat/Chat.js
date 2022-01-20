@@ -23,7 +23,7 @@ const Chat = ({ jobid, employeeid, employerid, jobData }) => {
   useEffect(() => {
     const getJobChat = () => {
       axios
-        .put(`http://127.0.0.1:5000/newchat`, dataToBePassedToBackend)
+        .put(`http://127.0.0.1:5000/chats/newchat`, dataToBePassedToBackend)
         .then((res) => {
           // Backend Chat Object is created if it doesnt exist.
           setFetchedConvo(res.data);
@@ -36,14 +36,22 @@ const Chat = ({ jobid, employeeid, employerid, jobData }) => {
     e.preventDefault();
     const inputMessageToSendToBackend = {
       jobid: bringDataDown.storageData.jobid,
-      message: inputMessage,
+      messages: [
+        { user: dataToBePassedToBackend.employeeid, message: inputMessage },
+      ],
     };
     try {
       axios
-        .put("http://127.0.0.1:5000/newmessage", inputMessageToSendToBackend)
+        .put(
+          "http://127.0.0.1:5000/chats/newmessage",
+          inputMessageToSendToBackend
+        )
         .then(() => {
           axios
-            .post("http://127.0.0.1:5000/allmessages", dataToBePassedToBackend)
+            .post(
+              "http://127.0.0.1:5000/chats/allmessages",
+              dataToBePassedToBackend
+            )
             .then((res) => {
               setFetchedConvo(res.data);
             });
@@ -70,7 +78,16 @@ const Chat = ({ jobid, employeeid, employerid, jobData }) => {
           <button onClick={postChatMessage}>PRESS</button>
         </form>
       </div>
-      <div>{console.log(fetchedConvo)}</div>
+      <div>
+        {console.log(fetchedConvo.messages)}
+        <p>
+          {/* {fetchedConvo.messages !== undefined && fetchedConvo.messages[0].user} */}
+        </p>
+        <p>
+          {/* {fetchedConvo.messages !== undefined &&
+            fetchedConvo.messages[0].message} */}
+        </p>
+      </div>
     </div>
   );
 };

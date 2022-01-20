@@ -22,7 +22,7 @@ router.put("/newchat", async (req, res) => {
   const { employeeid, employerid, jobid } = sanitize(req.body);
   try {
     const allMessages = await Chat.findOne({ jobid });
-    if (allMessages.length === 0) {
+    if (allMessages === null) {
       const newChat = new Chat({
         employeeid,
         employerid,
@@ -32,7 +32,6 @@ router.put("/newchat", async (req, res) => {
       await newChat.save();
       res.json(newChat);
     } else res.json(allMessages);
-    //res.json(allMessages);
   } catch (err) {
     console.log(err);
     res.json({ status: "error", message: err });
@@ -58,10 +57,10 @@ router.put("/newchat", async (req, res) => {
 // });
 
 router.put("/newmessage", async (req, res) => {
-  const { jobid, message } = sanitize(req.body);
+  const { jobid, messages } = sanitize(req.body);
   const chat = await Chat.findOneAndUpdate(
     { jobid },
-    { $push: { messages: message } },
+    { $push: { messages: messages } },
     { new: true }
   );
   res.json(chat);
